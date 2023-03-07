@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate", "Slate\Slate.csproj", "{65A10EE6-CB91-4582-A962-B72E9746C06B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitonea", "Glitonea\Glitonea.csproj", "{11F333ED-ECDD-4191-A48C-55C68C1D8634}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65A10EE6-CB91-4582-A962-B72E9746C06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A10EE6-CB91-4582-A962-B72E9746C06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A10EE6-CB91-4582-A962-B72E9746C06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A10EE6-CB91-4582-A962-B72E9746C06B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

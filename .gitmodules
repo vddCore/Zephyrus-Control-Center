@@ -1,0 +1,3 @@
+[submodule "Glitonea"]
+	path = Glitonea
+	url = https://github.com/vddcore/Glitonea.git

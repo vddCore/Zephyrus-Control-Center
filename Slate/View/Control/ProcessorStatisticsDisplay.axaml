@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             x:Class="Slate.View.Control.ProcessorStatisticsDisplay"
+             DataContext="{mvvm:DataContextSource vm:ProcessorStatisticsDisplayViewModel}">
+    <StackPanel>
+        <TextBlock Text="{Binding ProcessorTemperature, StringFormat='{}{0}°C'}"
+                   FontSize="12"
+                   HorizontalAlignment="Center"
+                   Opacity="0.66" />
+
+        <TextBlock Text="{Binding ProcessorFanRPM, StringFormat='{}{0} RPM'}"
+                   FontSize="12"
+                   HorizontalAlignment="Center"
+                   Opacity="0.66" />
+    </StackPanel>
+</UserControl>

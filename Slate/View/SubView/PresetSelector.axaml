@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.SubView"
+             xmlns:model="clr-namespace:Slate.Model"
+             xmlns:subView="clr-namespace:Slate.View.SubView"
+             x:Class="Slate.View.SubView.PresetSelector"
+             DataContext="{mvvm:DataContextSource vm:PresetSelectorViewModel}">
+    <UserControl.Styles>
+        <Style Selector="Button ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush"
+                                     Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.PresetSelected ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBackground}" />
+        </Style>
+
+        <Style Selector="Button.PresetSelected:pointerover ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBackground}" />
+        </Style>
+
+        <Style Selector="Button.PresetSelected:pressed ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBackground}" />
+        </Style>
+
+        <Style Selector="Button.PresetSelected:disabled ContentPresenter">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBackgroundDisabled}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="*,*,*"
+          HorizontalAlignment="Stretch">
+        <Button Name="SilentPresetButton"
+                Content="Silent"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                Width="NaN"
+                CornerRadius="4,0,0,4"
+                Command="{Binding $parent[subView:PresetSelector].DataContext.ActivatePreset}"
+                CommandParameter="{x:Static model:PerformancePreset.Silent}" />
+
+        <Button Name="BalancedPresetButton"
+                Content="Balanced"
+                Grid.Column="1"
+                Width="NaN"
+                Margin="-1,0,-1,0"
+                HorizontalAlignment="Stretch"
+                CornerRadius="0"
+                Command="{Binding $parent[subView:PresetSelector].DataContext.ActivatePreset}"
+                CommandParameter="{x:Static model:PerformancePreset.Balanced}" />
+
+        <Button Name="PerformancePresetButton"
+                Content="Performance"
+                Grid.Column="2"
+                Width="NaN"
+                HorizontalAlignment="Stretch"
+                CornerRadius="0,4,4,0"
+                Command="{Binding $parent[subView:PresetSelector].DataContext.ActivatePreset}"
+                CommandParameter="{x:Static model:PerformancePreset.Performance}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             DataContext="{mvvm:DataContextSource vm:SettingsPaletteViewModel}"
+             xmlns:fa="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.SubView"
+             xmlns:slate="clr-namespace:Slate"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             x:Class="Slate.View.SubView.SettingsPalette">
+    <ScrollViewer>
+        <StackPanel Margin="1,0">
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Processor}"
+                                    Header="Processor"
+                                    Description="CPU fan curve, turbo boost..."
+                                    Margin="0,2,0,0"
+                                    Command="{Binding ActivateProcessorPage}">
+                <control:MainMenuButton.GadgetContent>
+                    <control:ProcessorStatisticsDisplay HorizontalAlignment="Right" />
+                </control:MainMenuButton.GadgetContent>
+            </control:MainMenuButton>
+
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Graphics}"
+                                    Header="Graphics"
+                                    Description="GPU fan curve, power mode..." />
+
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Keyboard}"
+                                    Header="Keyboard"
+                                    Description="Aura lighting, custom keybinds..." />
+
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Grid}"
+                                    Header="AniMe Matrix"
+                                    Description="Brightness, animations, images..." />
+
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Power}"
+                                    Header="Power management"
+                                    Description="Charging threshold, power targets..." />
+
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Screen}"
+                                    Header="Display"
+                                    Description="Refresh rates, overdrive..." />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,80 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fa="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+             xmlns:slate="clr-namespace:Slate"
+             xmlns:window="clr-namespace:Slate.View.Window"
+             x:Class="Slate.App">
+    <TrayIcon.Icons>
+        <TrayIcons>
+            <TrayIcon IsVisible="False"
+                      Icon="/Resources/Icons/icon.ico"
+                      ToolTipText="Zephyrus Control Center"
+                      Clicked="OnTrayIconClicked" />
+        </TrayIcons>
+    </TrayIcon.Icons>
+
+    <Application.Resources>
+        <controls:FontIcon x:Key="ICON_Processor"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE950;" />
+
+        <controls:FontIcon x:Key="ICON_Graphics"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xF211;" />
+
+        <controls:FontIcon x:Key="ICON_Keyboard"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE087;" />
+
+        <controls:FontIcon x:Key="ICON_Screen"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE770;" />
+
+        <controls:FontIcon x:Key="ICON_Grid"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE80A;" />
+
+        <controls:FontIcon x:Key="ICON_Power"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE945;" />
+
+        <controls:FontIcon x:Key="ICON_Back"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="12"
+                           Glyph="&#xE64E;" />
+        
+        <controls:FontIcon x:Key="ICON_SpeedSlow"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="18"
+                           Glyph="&#xEC48;" />
+        
+        <controls:FontIcon x:Key="ICON_SpeedMedium"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="18"
+                           Glyph="&#xEC49;" />
+        
+        <controls:FontIcon x:Key="ICON_SpeedFast"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="18"
+                           Glyph="&#xEC49;" />
+        
+        <controls:FontIcon x:Key="ICON_Thermometer"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="18"
+                           Glyph="&#xE9CA;" />
+    </Application.Resources>
+
+    <Application.Styles>
+        <fa:FluentAvaloniaTheme PreferSystemTheme="False"
+                                PreferUserAccentColor="True"
+                                UseSystemFontOnWindows="True"
+                                RequestedTheme="Dark" />
+    </Application.Styles>
+</Application>

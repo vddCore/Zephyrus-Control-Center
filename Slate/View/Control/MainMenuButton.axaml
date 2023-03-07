@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:slate="clr-namespace:Slate"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             x:Class="Slate.View.Control.MainMenuButton">
+    <UserControl.Styles>
+        <Style Selector="control|MainMenuButton">
+            <Setter Property="Height" Value="66" />
+            <Setter Property="Margin" Value="0,3,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </UserControl.Styles>
+    
+    <Button Command="{Binding $parent[control:MainMenuButton].Command}"
+            CommandParameter="{Binding $parent[control:MainMenuButton].CommandParameter}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Padding="12,0"
+            Margin="0">
+        <Button.Content>
+            <Grid ColumnDefinitions="Auto,Auto,*"
+                  HorizontalAlignment="Stretch">
+                <ContentPresenter Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,12,0"
+                                  Content="{Binding $parent[control:MainMenuButton].FontIcon}" />
+
+                <Grid Grid.Column="1"
+                      Grid.RowDefinitions="Auto,Auto"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" 
+                               FontSize="13"
+                               Text="{Binding $parent[control:MainMenuButton].Header}" />
+                    
+                    <TextBlock Grid.Row="1"
+                               Opacity="0.66"
+                               FontSize="13"
+                               Text="{Binding $parent[control:MainMenuButton].Description}" />
+                </Grid>
+                
+                <ContentPresenter Grid.Column="2"
+                                  VerticalAlignment="Center"
+                                  Content="{Binding $parent[control:MainMenuButton].GadgetContent}" />
+            </Grid>
+        </Button.Content>
+    </Button>
+</UserControl>
