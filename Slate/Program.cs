@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using System;
+using System.Diagnostics;
 using Slate.Infrastructure.Asus.Acpi;
 
 namespace Slate
@@ -10,8 +11,9 @@ namespace Slate
         public static void Main(string[] args)
         {
 #if ACPITESTING
-            var proxy = new AsusAcpiProxy();
-            Console.WriteLine(proxy.DSTS.ReadInt32(DstsMethod.IIA0_0x00110024));
+
+            var proxy = new AsusAcpiProxy();           
+            Debugger.Break();
 #else
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 #endif

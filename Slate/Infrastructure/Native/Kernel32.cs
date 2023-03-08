@@ -24,17 +24,20 @@ namespace Slate.Infrastructure.Native
             nint hTemplateFile
         );
 
-        [DllImport(LibraryName)]
-        public static extern bool DeviceIoControl(
+        [DllImport(LibraryName, SetLastError = true)]
+        public static extern unsafe bool DeviceIoControl(
             nint hDevice,
             nuint dwIoControlCode,
-            byte[] lpInBuffer,
+            byte* lpInBuffer,
             [MarshalAs(UnmanagedType.U4)] int nInBufferSize,
-            byte[] lpOutBuffer,
+            byte* lpOutBuffer,
             [MarshalAs(UnmanagedType.U4)] int nOutBufferSize,
             out uint lpBytesReturned,
             nint lpOverlapped
         );
+
+        [DllImport(LibraryName)]
+        public static extern nint GetLastError();
 
         [DllImport(LibraryName)]
         public static extern bool CloseHandle(nint hObject);

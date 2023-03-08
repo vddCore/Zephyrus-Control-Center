@@ -9,6 +9,7 @@
         <Platform>win-x64</Platform>
         <Configurations>Debug;Release;AcpiTesting</Configurations>
         <Platforms>AnyCPU</Platforms>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>

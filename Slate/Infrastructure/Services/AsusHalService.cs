@@ -24,28 +24,28 @@ namespace Slate.Infrastructure.Services
         public int ReadCpuFanSpeed()
         {
             ThrowIfProxyNull();
-            return (_proxy!.DSTS.ReadInt32(DstsMethod.CpuFanRpm) & 0xFFFF) * 100;
+            return _proxy!.DSTS.CpuFanSpeed;
         }
         
         [RequiresAcpiSession]
         public float ReadCpuTemperatureCelsius()
         {
             ThrowIfProxyNull();
-            return (_proxy!.DSTS.ReadInt32(DstsMethod.CpuTemperature) & 0xFFFF);
+            return _proxy!.DSTS.CpuTemperatureCelsius;
         }
         
         [RequiresAcpiSession]
         public int ReadGpuFanSpeed()
         {
             ThrowIfProxyNull();
-            return (_proxy!.DSTS.ReadInt32(DstsMethod.GpuFanRpm) & 0xFFFF) * 100;
+            return _proxy!.DSTS.GpuFanSpeed;
         }
 
         [RequiresAcpiSession]
         public float ReadGpuTemperatureCelsius()
         {
             ThrowIfProxyNull();
-            return (_proxy!.DSTS.ReadInt32(DstsMethod.GpuTemperature) & 0xFFFF);
+            return _proxy!.DSTS.GpuTemperatureCelsius;
         }
         
         [RequiresAcpiSession]
