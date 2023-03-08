@@ -7,6 +7,8 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
         <Platform>win-x64</Platform>
+        <Configurations>Debug;Release;AcpiTesting</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,7 +30,6 @@
 
     <ItemGroup>
       <Folder Include="ViewModel\Page" />
-      <Folder Include="View\Control" />
       <Folder Include="View\Page" />
       <Folder Include="View\SubView" />
     </ItemGroup>
@@ -52,6 +53,10 @@
       </Compile>
       <Compile Update="View\Control\ProcessorStatisticsDisplay.axaml.cs">
         <DependentUpon>CpuStatsDisplay.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\Control\GraphicsStatisticsDisplay.axaml.cs">
+        <DependentUpon>GraphicsStatisticsDisplay.axaml</DependentUpon>
+        <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
 

@@ -9,8 +9,9 @@ namespace Slate.Infrastructure.Services
         void OpenAcpiSession();
         int ReadCpuFanSpeed();
         int ReadGpuFanSpeed();
+        float ReadCpuTemperatureCelsius();
+        float ReadGpuTemperatureCelsius();
         void CloseAcpiSession();
 
-        float ReadCpuTemperatureCelsius();
     }
 }

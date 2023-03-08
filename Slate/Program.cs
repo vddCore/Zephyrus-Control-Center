@@ -1,24 +1,30 @@
 ﻿using Avalonia;
 using System;
+using Slate.Infrastructure.Asus.Acpi;
 
-namespace Slate;
-
-class Program
+namespace Slate
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+    internal class Program
+    {
+        [STAThread]
+        public static void Main(string[] args)
+        {
+#if ACPITESTING
+            var proxy = new AsusAcpiProxy();
+            Console.WriteLine(proxy.DSTS.ReadInt32(DstsMethod.IIA0_0x00110024));
+#else
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+#endif
+        }
 
-    // Avalonia configuration, don't remove; also used by visual designer.
-    public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .With(new Win32PlatformOptions
-            {
-                UseWindowsUIComposition = true
-            })
-            .LogToTrace();
+        public static AppBuilder BuildAvaloniaApp()
+            => AppBuilder
+                .Configure<App>()
+                .UsePlatformDetect()
+                .With(new Win32PlatformOptions
+                {
+                    UseWindowsUIComposition = true
+                })
+                .LogToTrace();
+    }
 }

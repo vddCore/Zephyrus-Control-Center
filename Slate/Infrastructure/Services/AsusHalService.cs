@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using Slate.Model;
+using Slate.Infrastructure.Asus.Acpi;
 
 namespace Slate.Infrastructure.Services
 {
@@ -18,41 +17,42 @@ namespace Slate.Infrastructure.Services
                 throw new InvalidOperationException("An existing ASUS ACPI session is already active.");
             }
 
-            _proxy = new AsusAcpiProxy(@"\\.\\ATKACPI");
+            _proxy = new AsusAcpiProxy();
         }
 
         [RequiresAcpiSession]
         public int ReadCpuFanSpeed()
         {
             ThrowIfProxyNull();
-            return (_proxy!.ReadInt32(AsusComponent.CpuFan) & 0xFFFF) * 100;
+            return (_proxy!.DSTS.ReadInt32(DstsMethod.CpuFanRpm) & 0xFFFF) * 100;
         }
-
+        
+        [RequiresAcpiSession]
+        public float ReadCpuTemperatureCelsius()
+        {
+            ThrowIfProxyNull();
+            return (_proxy!.DSTS.ReadInt32(DstsMethod.CpuTemperature) & 0xFFFF);
+        }
+        
         [RequiresAcpiSession]
         public int ReadGpuFanSpeed()
         {
             ThrowIfProxyNull();
-            return (_proxy!.ReadInt32(AsusComponent.GpuFan) & 0xFFFF) * 100;
+            return (_proxy!.DSTS.ReadInt32(DstsMethod.GpuFanRpm) & 0xFFFF) * 100;
         }
 
+        [RequiresAcpiSession]
+        public float ReadGpuTemperatureCelsius()
+        {
+            ThrowIfProxyNull();
+            return (_proxy!.DSTS.ReadInt32(DstsMethod.GpuTemperature) & 0xFFFF);
+        }
+        
         [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();
             _proxy!.Dispose();
-        }
-
-        public float ReadCpuTemperatureCelsius()
-        {
-            using (var counter = new PerformanceCounter("Thermal Zone Information", "Temperature", @"\_TZ.THRM", true))
-            {
-                return counter.NextValue() - 273;
-            }
-        }
-
-        public float ReadGpuTemperatureCelsius()
-        {
-            return 0;
         }
 
         private void ThrowIfProxyNull()

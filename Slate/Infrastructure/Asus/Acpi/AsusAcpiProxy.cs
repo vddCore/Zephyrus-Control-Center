@@ -1,22 +1,22 @@
 ﻿using System;
 using System.IO;
+using Slate.Infrastructure.Asus.Acpi.Endpoints;
 using Slate.Infrastructure.Native;
 
-namespace Slate.Infrastructure
+namespace Slate.Infrastructure.Asus.Acpi
 {
     public class AsusAcpiProxy : IDisposable
     {
         private readonly nint _objectHandle;
 
-        private const nuint AsusControlCode = 0x0022240C;
+        private const nuint IoctlAsusInvokeWmnb = 0x0022240C;
 
-        private const int AsusDSTS = 0x53545344; // 'S' 'T' 'S' 'D'
-        private const int AsusDEVS = 0x53564544; // 'S' 'V' 'E' 'D'
+        public AsusDstsEndpoint DSTS { get; }
 
-        public AsusAcpiProxy(string wmiDevicePath)
+        public AsusAcpiProxy(string acpiDevicePath = @"\\.\\ATKACPI")
         {
             _objectHandle = Kernel32.CreateFile(
-                wmiDevicePath,
+                acpiDevicePath,
                 Kernel32.GENERIC_READ | Kernel32.GENERIC_WRITE,
                 Kernel32.FILE_SHARE_READ | Kernel32.FILE_SHARE_WRITE,
                 0,
@@ -27,29 +27,19 @@ namespace Slate.Infrastructure
 
             if (_objectHandle < 0)
             {
-                throw new IOException($"Failed to acquire ACPI interface at '{wmiDevicePath}'.");
+                throw new IOException($"Failed to acquire ACPI interface at '{acpiDevicePath}'.");
             }
+
+            DSTS = new AsusDstsEndpoint(this);
         }
 
-        public int ReadInt32(AsusComponent component)
-        {
-            return BitConverter.ToInt32(
-                Invoke(AsusDSTS, BitConverter.GetBytes((int)component))
-            );
-        }
-
-        public bool ReadBoolean(AsusComponent component)
-        {
-            return ReadInt32(component) != 0;
-        }
-
-        public byte[] Invoke(int acpiMethod, params byte[] args)
+        public byte[] Invoke(WmnbAcpiMethod wmnbAcpiMethod, int outBufferSize = 20, params byte[] args)
         {
             var inBuffer = new byte[sizeof(int) * 2 + args.Length];
-            var outBuffer = new byte[20];
+            var outBuffer = new byte[outBufferSize];
 
             Array.Copy(
-                BitConverter.GetBytes(acpiMethod), 0,
+                BitConverter.GetBytes((int)wmnbAcpiMethod), 0,
                 inBuffer, 0, sizeof(int)
             );
 
@@ -60,16 +50,16 @@ namespace Slate.Infrastructure
 
             Array.Copy(args, 0, inBuffer, 8, args.Length);
 
-            Write(AsusControlCode, inBuffer, outBuffer);
+            Write(IoctlAsusInvokeWmnb, inBuffer, outBuffer);
 
             return outBuffer;
         }
 
-        public uint Write(nuint controlCode, byte[] input, byte[] output)
+        public uint Write(nuint ioctl, byte[] input, byte[] output)
         {
             var requestSuccessful = Kernel32.DeviceIoControl(
                 _objectHandle,
-                controlCode,
+                ioctl,
                 input,
                 input.Length,
                 output,

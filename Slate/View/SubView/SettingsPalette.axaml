@@ -21,7 +21,11 @@
 
             <control:MainMenuButton FontIcon="{StaticResource ICON_Graphics}"
                                     Header="Graphics"
-                                    Description="GPU fan curve, power mode..." />
+                                    Description="GPU fan curve, power mode...">
+                <control:MainMenuButton.GadgetContent>
+                    <control:GraphicsStatisticsDisplay HorizontalAlignment="Right" />
+                </control:MainMenuButton.GadgetContent>
+            </control:MainMenuButton>
 
             <control:MainMenuButton FontIcon="{StaticResource ICON_Keyboard}"
                                     Header="Keyboard"
