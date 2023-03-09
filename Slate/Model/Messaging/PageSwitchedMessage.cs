@@ -3,7 +3,7 @@ using Glitonea.Mvvm.Messaging;
 
 namespace Slate.Model.Messaging
 {
-    public class PageSwitchedMessage : Message
+    public sealed class PageSwitchedMessage : Message
     {
         public UserControl Page { get; }
 

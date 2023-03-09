@@ -2,7 +2,7 @@
 
 namespace Slate.Model.Messaging
 {
-    public class MainWindowLoadedMessage : Message
+    public sealed class MainWindowLoadedMessage : Message
     {
     }
 }

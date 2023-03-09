@@ -2,7 +2,7 @@
 
 namespace Slate.Model.Messaging
 {
-    public class GlobalTickMessage : Message
+    public sealed class GlobalTickMessage : Message
     {
         public ulong TotalTicksElapsed { get; }
 

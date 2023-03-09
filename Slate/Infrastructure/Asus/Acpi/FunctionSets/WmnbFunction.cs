@@ -1,4 +1,4 @@
-﻿namespace Slate.Infrastructure.Asus.Acpi
+﻿namespace Slate.Infrastructure.Asus.Acpi.FunctionSets
 {
     public enum WmnbFunction
     {
@@ -13,7 +13,7 @@
         VERS = 0x53524556, // 'S' 'R' 'E' 'V' | IIA0, IIA1
         GLCD = 0x44434C47, // 'D' 'C' 'L' 'G'
         ANVI = 0x49564E41, // 'I' 'V' 'N' 'A'
-        MGWF = 0x4647574D, // 'F' 'G' 'W' 'M'
+        MWGF = 0x4647574D, // 'F' 'G' 'W' 'M'
         DSTS = 0x53545344, // 'S' 'T' 'S' 'D'
         DEVS = 0x53564544  // 'S' 'V' 'E' 'D'
     }

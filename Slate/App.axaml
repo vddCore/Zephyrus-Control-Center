@@ -10,7 +10,7 @@
             <TrayIcon IsVisible="False"
                       Icon="/Resources/Icons/icon.ico"
                       ToolTipText="Zephyrus Control Center"
-                      Clicked="OnTrayIconClicked" />
+                      Clicked="TrayIcon_Clicked" />
         </TrayIcons>
     </TrayIcon.Icons>
 

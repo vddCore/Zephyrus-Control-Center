@@ -5,6 +5,7 @@ using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
+using Slate.Model.Settings.Components;
 using Slate.View;
 using Slate.View.Window;
 
@@ -13,20 +14,26 @@ namespace Slate.ViewModel.Window
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly IAsusHalService _asusHalService;
-        
-        public UserControl CurrentPage { get; private set; } = Pages.MainMenu;
-        public string BackButtonClasses { get; private set; } = string.Empty;
+        private readonly ISettingsService _settingsService;
 
-        public MainWindowViewModel(IAsusHalService asusHalService)
+        public UserControl CurrentPage { get; private set; } = Pages.MainMenu;
+
+        public ApplicationSettings ApplicationSettings => _settingsService.ControlCenter!.Application;
+
+        public MainWindowViewModel(
+            IAsusHalService asusHalService,
+            ISettingsService settingsService)
         {
             _asusHalService = asusHalService;
+            _settingsService = settingsService;
 
+            Message.Subscribe<SettingsModifiedMessage>(this, OnSettingsModified);
+            Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
+            
             if (!_asusHalService.IsAcpiSessionOpen)
             {
                 _asusHalService.OpenAcpiSession();
             }
-            
-            Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
         }
 
         public void NavigateBack()
@@ -44,6 +51,11 @@ namespace Slate.ViewModel.Window
         private void OnPageSwitched(PageSwitchedMessage msg)
         {
             CurrentPage = msg.Page;
+        }
+
+        private async void OnSettingsModified(SettingsModifiedMessage _)
+        {
+            await _settingsService.Save();
         }
     }
 }

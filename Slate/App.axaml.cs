@@ -16,22 +16,18 @@ namespace Slate
     public class App : Application
     {
         private readonly Timer _globalTimer = new(1000);
+        
         private ulong _globalTickCount;
         
         public override void Initialize()
         {
-            GlitoneaCore.Initialize();
-            
-            Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
-            
+            GlitoneaCore.Initialize();            
             AvaloniaXamlLoader.Load(this);
 
-            _globalTimer.Elapsed += (_, _) =>
-            {
-                Message.Broadcast(new GlobalTickMessage(++_globalTickCount));
-            };
-            
+            _globalTimer.Elapsed += GlobalTime_Elapsed;
             _globalTimer.Start();
+            
+            TrayIcon.GetIcons(this)[0].IsVisible = true;
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -43,15 +39,16 @@ namespace Slate
 
             base.OnFrameworkInitializationCompleted();
         }
+        
 
-        private void OnTrayIconClicked(object? sender, EventArgs e)
+        private void TrayIcon_Clicked(object? sender, EventArgs e)
         {
             Message.Broadcast<TrayIconClickedMessage>();
         }
         
-        private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
+        private void GlobalTime_Elapsed(object? sender, ElapsedEventArgs elapsedEventArgs)
         {
-            TrayIcon.GetIcons(this)[0].IsVisible = true;
+            Message.Broadcast(new GlobalTickMessage(++_globalTickCount));
         }
     }
 }

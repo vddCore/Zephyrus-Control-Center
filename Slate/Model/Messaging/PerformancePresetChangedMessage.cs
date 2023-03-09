@@ -2,7 +2,7 @@
 
 namespace Slate.Model.Messaging
 {
-    public class PerformancePresetChangedMessage : Message
+    public sealed class PerformancePresetChangedMessage : Message
     {
         public PerformancePreset Preset { get; }
 

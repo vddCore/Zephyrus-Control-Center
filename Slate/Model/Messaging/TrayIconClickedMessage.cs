@@ -2,7 +2,7 @@
 
 namespace Slate.Model.Messaging
 {
-    public class TrayIconClickedMessage : Message
+    public sealed class TrayIconClickedMessage : Message
     {
     }
 }

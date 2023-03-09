@@ -1,4 +1,5 @@
 ﻿using System;
+using Slate.Infrastructure.Asus.Acpi.FunctionSets;
 
 namespace Slate.Infrastructure.Asus.Acpi
 {
