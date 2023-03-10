@@ -22,13 +22,14 @@ namespace Slate
         
         public override void Initialize()
         {
-            GlitoneaCore.Initialize();            
+            GlitoneaCore.Initialize();
+            
+            Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
+            
             AvaloniaXamlLoader.Load(this);
 
             _globalTimer.Elapsed += GlobalTime_Elapsed;
-            _globalTimer.Start();
             
-            TrayIcon.GetIcons(this)[0].IsVisible = true;
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -39,9 +40,22 @@ namespace Slate
             }
 
             base.OnFrameworkInitializationCompleted();
+            
+            TrayIcon.GetIcons(this)[0].IsVisible = true;
         }
         
-
+        private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
+        {
+            if (msg.WasSlidingIn)
+            {
+                _globalTimer.Start();
+            }
+            else
+            {
+                _globalTimer.Stop();
+            }
+        }
+        
         private void TrayIcon_Clicked(object? sender, EventArgs e)
         {
             Message.Broadcast<TrayIconClickedMessage>();

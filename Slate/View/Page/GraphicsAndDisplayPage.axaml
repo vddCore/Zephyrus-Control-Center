@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:Class="Slate.View.Page.GrapicsAndDisplayPage">
+             x:Class="Slate.View.Page.GraphicsAndDisplayPage">
   <TextBlock HorizontalAlignment="Center"
              VerticalAlignment="Center"
              Text="Graphics settings will be here one day." />

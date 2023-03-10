@@ -3,7 +3,7 @@ using Glitonea.Mvvm;
 using Slate.Model.Messaging;
 using Slate.View;
 
-namespace Slate.ViewModel.SubView
+namespace Slate.ViewModel.Control
 {
     public class SettingsPaletteViewModel : ViewModelBase
     {
@@ -17,7 +17,7 @@ namespace Slate.ViewModel.SubView
             => ActivatePage(Pages.Processor);
 
         public void ActivateGraphicsAndDisplayPage()
-            => ActivatePage(Pages.GrapicsAndDisplay);
+            => ActivatePage(Pages.GraphicsAndDisplay);
         
         public void ActivatePowerManagementPage()
             => ActivatePage(Pages.PowerManagement);

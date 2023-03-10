@@ -14,6 +14,11 @@ namespace Slate.Infrastructure.Native
         public const int WS_EX_APPWINDOW = 0x0004000;
         public const int WS_EX_TOOLWINDOW = 0x00000080;
 
+        public const nint HWND_BOTTOM = 1;
+        public const nint HWND_NOTOPMOST = 2;
+        public const nint HWND_TOP = 2;
+        public const nint HWND_TOPMOST = -1;
+
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -78,6 +83,17 @@ namespace Slate.Infrastructure.Native
         
         [DllImport(LibraryName)]
         public static extern int SetWindowLong(nint hWnd, int nIndex, int dwNewLong);
-        
+
+        [DllImport(LibraryName)]
+        public static extern nint SetParent(nint hWndChild, nint hWndNewParent);
+
+        [DllImport(LibraryName)]
+        public static extern bool SetWindowPos(
+            nint hWnd,
+            nint hWndInsertAfter,
+            int x, int y, 
+            int cx, int cy,
+            uint flags
+        );
     }
 }

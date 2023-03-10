@@ -2,10 +2,9 @@
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
-using Slate.Model;
 using Slate.Model.Messaging;
 
-namespace Slate.ViewModel.SubView
+namespace Slate.ViewModel.Control
 {
     public class PresetSelectorViewModel : ViewModelBase
     {
@@ -20,10 +19,14 @@ namespace Slate.ViewModel.SubView
             _settingsService = settingsService;
             
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
+            Message.Subscribe<PerformancePresetChangedMessage>(this, OnPerformancePresetChanged);
         }
 
         private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
         {
+            if (_settingsService.ControlCenter!.Processor.ManualFanControlEnabled)
+                return;
+            
             ActivatePreset(_settingsService.ControlCenter!.SelectedPreset);
         }
 
@@ -34,11 +37,14 @@ namespace Slate.ViewModel.SubView
             if (preset == null)
                 return;
 
-            _settingsService.ControlCenter!.SelectedPreset = preset.Value;
-            _asusHalService.SetPerformancePreset(preset.Value);
-
             new PerformancePresetChangedMessage(preset.Value)
                 .Broadcast();
+        }
+        
+        private void OnPerformancePresetChanged(PerformancePresetChangedMessage msg)
+        {
+            _settingsService.ControlCenter!.SelectedPreset = msg.Preset;
+            _asusHalService.SetPerformancePreset(msg.Preset);
         }
     }
 }

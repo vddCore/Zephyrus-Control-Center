@@ -4,12 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.View.Page.ApplicationPage"
              DataContext="{mvvm:DataContextSource vm:ApplicationPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
-          Margin="7,0">
-        <StackPanel Grid.Row="0">
+          Margin="5">
+        <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Stretch">
+            <Border CornerRadius="6"
+                    BorderBrush="#10FFFFFF"
+                    BorderThickness="1"
+                    Background="#08FFFFFF">
+                <ToggleSwitch Content="Launch on startup"
+                              IsChecked="{Binding ApplicationSettings.RunOnStartup, Mode=TwoWay}" />
+            </Border>
 
+            <Border CornerRadius="6"
+                    BorderBrush="#10FFFFFF"
+                    BorderThickness="1"
+                    Background="#08FFFFFF"
+                    Margin="0,5,0,0">
+                <ToggleSwitch Content="Check for updates"
+                              IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
+            </Border>
         </StackPanel>
 
         <Border Grid.Row="1"
@@ -20,12 +37,12 @@
 
         <Grid Grid.Row="2"
               ColumnDefinitions="*,Auto"
-              Margin="6,0,6,6">
+              Margin="6,0">
             <TextBlock Grid.Column="0">
-                <Run Text="imagine icons here." 
+                <Run Text="imagine icons here."
                      Foreground="#66FFFFFF" />
-                
-                <Run Text="| vddCore" 
+
+                <Run Text="| vddCore"
                      Foreground="#33FFFFFF" />
             </TextBlock>
 

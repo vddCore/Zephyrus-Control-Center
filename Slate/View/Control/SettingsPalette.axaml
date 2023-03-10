@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              DataContext="{mvvm:DataContextSource vm:SettingsPaletteViewModel}"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
-             xmlns:vm="clr-namespace:Slate.ViewModel.SubView"
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:view="clr-namespace:Slate.View"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
              x:Class="Slate.View.Control.SettingsPalette">
     <ScrollViewer>
         <StackPanel Margin="1,0">

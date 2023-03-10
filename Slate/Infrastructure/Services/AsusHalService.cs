@@ -56,6 +56,13 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public void SetCpuFanDutyCycle(byte dutyCycle)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetCpuFanDutyCycle(dutyCycle);
+        }
+
+        [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();

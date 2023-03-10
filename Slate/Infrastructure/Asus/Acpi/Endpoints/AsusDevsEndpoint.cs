@@ -18,5 +18,10 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
         {
             _ = ReadInt32(DevsMethod.SetPerformancePreset, (byte)preset);
         }
+
+        public void SetCpuFanDutyCycle(byte dutyCycle)
+        {
+            _ = ReadInt32(DevsMethod.SetCpuFanSpeedDirect, dutyCycle);
+        }
     }
 }

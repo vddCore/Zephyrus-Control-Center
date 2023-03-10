@@ -7,9 +7,26 @@
              x:Class="Slate.View.Page.ProcessorPage"
              DataContext="{mvvm:DataContextSource page:ProcessorPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
-          Margin="7,0">
+          Margin="5">
         <StackPanel Grid.Row="0">
+            <Border CornerRadius="6"
+                    BorderBrush="#10FFFFFF"
+                    BorderThickness="1"
+                    Background="#08FFFFFF">
+                <StackPanel>
+                    <ToggleSwitch Margin="0,4,0,0"
+                                  Content="Manual fan control"
+                                  IsChecked="{Binding ProcessorSettings.ManualFanControlEnabled, Mode=TwoWay}" />
 
+                    <Slider Margin="7,-6,7,0"
+                            Padding="0"
+                            Minimum="0"
+                            Maximum="255"
+                            Value="{Binding ProcessorSettings.ManualFanDutyCycle, Mode=TwoWay}"
+                            HorizontalAlignment="Stretch" 
+                            IsEnabled="{Binding ProcessorSettings.ManualFanControlEnabled}" />
+                </StackPanel>
+            </Border>
         </StackPanel>
 
         <Border Grid.Row="1"
@@ -20,7 +37,7 @@
 
         <Grid Grid.Row="2"
               ColumnDefinitions="*,Auto"
-              Margin="6,0,6,6">
+              Margin="6,0,6,1">
             <TextBlock Grid.Column="1"
                        Text="funniest shit i've ever seen."
                        Opacity="0.2" />

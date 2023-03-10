@@ -4,9 +4,9 @@ using PropertyChanged;
 namespace Slate.View.Page
 {
     [DoNotNotify]
-    public partial class GrapicsAndDisplayPage : UserControl
+    public partial class GraphicsAndDisplayPage : UserControl
     {
-        public GrapicsAndDisplayPage()
+        public GraphicsAndDisplayPage()
         {
             InitializeComponent();
         }

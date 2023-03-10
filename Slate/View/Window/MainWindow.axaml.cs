@@ -73,7 +73,9 @@ namespace Slate.View.Window
 
         protected override void OnLoaded()
         {
-            ConfigureAsToolWindow();
+            var hwnd =  PlatformImpl!.Handle.Handle;
+            
+            ConfigureAsToolWindow(hwnd);
             
             IsVisible = false;
             Position = HiddenDesktopPosition;
@@ -82,9 +84,8 @@ namespace Slate.View.Window
             base.OnLoaded();
         }
 
-        private void ConfigureAsToolWindow()
+        private void ConfigureAsToolWindow(nint hwnd)
         {
-            var hwnd = PlatformImpl!.Handle.Handle;
             var gwl = User32.GetWindowLong(
                 hwnd,
                 User32.GWL_EX_STYLE

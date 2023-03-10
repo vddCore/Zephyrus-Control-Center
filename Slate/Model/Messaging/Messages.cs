@@ -24,7 +24,7 @@ namespace Slate.Model.Messaging
         : Message;
     
     public sealed record SettingsModifiedMessage(
-        SettingsComponent Owner,
+        SettingsComponent Origin,
         string? PropertyName
     ) : Message;
 }

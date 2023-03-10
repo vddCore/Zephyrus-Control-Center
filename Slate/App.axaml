@@ -30,7 +30,7 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE945;" />
-        
+
         <controls:FontIcon x:Key="ICON_Keyboard"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
@@ -40,7 +40,7 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE80A;" />
-        
+
         <controls:FontIcon x:Key="ICON_Settings"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
@@ -50,26 +50,27 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="12"
                            Glyph="&#xE64E;" />
-        
+
         <controls:FontIcon x:Key="ICON_SpeedSlow"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="18"
                            Glyph="&#xEC48;" />
-        
+
         <controls:FontIcon x:Key="ICON_SpeedMedium"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="18"
                            Glyph="&#xEC49;" />
-        
+
         <controls:FontIcon x:Key="ICON_SpeedFast"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="18"
                            Glyph="&#xEC49;" />
-        
+
         <controls:FontIcon x:Key="ICON_Thermometer"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="18"
                            Glyph="&#xE9CA;" />
+
     </Application.Resources>
 
     <Application.Styles>
@@ -77,5 +78,7 @@
                                 PreferUserAccentColor="True"
                                 UseSystemFontOnWindows="True"
                                 RequestedTheme="Dark" />
+        
+        <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
     </Application.Styles>
 </Application>

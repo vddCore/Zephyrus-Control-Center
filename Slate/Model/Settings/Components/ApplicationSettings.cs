@@ -10,6 +10,7 @@ namespace Slate.Model.Settings.Components
         private const string ApplicationName = "Zephyrus Control Center";
         
         public bool RunOnStartup { get; set; }
+        public bool CheckForUpdates { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
         {
