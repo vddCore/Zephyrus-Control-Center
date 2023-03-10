@@ -14,7 +14,8 @@
                                     Margin="0,2,0,0"
                                     Command="{Binding ActivateProcessorPage}">
                 <control:MainMenuButton.GadgetContent>
-                    <control:ProcessorStatisticsDisplay HorizontalAlignment="Right" />
+                    <control:ProcessorStatisticsDisplay HorizontalAlignment="Right"
+                                                        Width="70"/>
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
 
@@ -23,13 +24,14 @@
                                     Description="GPU fan curve, refresh rates..."
                                     Command="{Binding ActivateGraphicsAndDisplayPage}">
                 <control:MainMenuButton.GadgetContent>
-                    <control:GraphicsStatisticsDisplay HorizontalAlignment="Right" />
+                    <control:GraphicsStatisticsDisplay HorizontalAlignment="Right"
+                                                       Width="70"/>
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
             
             <control:MainMenuButton FontIcon="{StaticResource ICON_Power}"
                                     Header="Power Management"
-                                    Description="Charging threshold, power targets..."
+                                    Description="Charging limits, power targets..."
                                     Command="{Binding ActivatePowerManagementPage}" />
             
             <control:MainMenuButton FontIcon="{StaticResource ICON_Keyboard}"

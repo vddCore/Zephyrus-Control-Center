@@ -1,4 +1,5 @@
 ﻿using Glitonea.Mvvm;
+using Slate.Infrastructure.Asus;
 
 namespace Slate.Infrastructure.Services
 {
@@ -11,6 +12,7 @@ namespace Slate.Infrastructure.Services
         int ReadGpuFanSpeed();
         float ReadCpuTemperatureCelsius();
         float ReadGpuTemperatureCelsius();
+        void SetPerformancePreset(PerformancePreset preset);
         void CloseAcpiSession();
 
     }

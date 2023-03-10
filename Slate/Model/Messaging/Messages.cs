@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Glitonea.Mvvm.Messaging;
+using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Settings;
 
 namespace Slate.Model.Messaging

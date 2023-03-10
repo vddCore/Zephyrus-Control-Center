@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.SubView"
              xmlns:model="clr-namespace:Slate.Model"
              xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:asus="clr-namespace:Slate.Infrastructure.Asus"
              x:Class="Slate.View.Control.PresetSelector"
              DataContext="{mvvm:DataContextSource vm:PresetSelectorViewModel}">
     <UserControl.Styles>
@@ -31,6 +32,24 @@
         <Style Selector="Button.PresetSelected:disabled ContentPresenter">
             <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBackgroundDisabled}" />
         </Style>
+        
+        <Style Selector="Button ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="Button:pointerover ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
     </UserControl.Styles>
 
     <Grid ColumnDefinitions="*,*,*"
@@ -42,7 +61,7 @@
                 Width="NaN"
                 CornerRadius="4,0,0,4"
                 Command="{Binding $parent[control:PresetSelector].DataContext.ActivatePreset}"
-                CommandParameter="{x:Static model:PerformancePreset.Silent}" />
+                CommandParameter="{x:Static asus:PerformancePreset.Silent}" />
 
         <Button Name="BalancedPresetButton"
                 Content="Balanced"
@@ -52,7 +71,7 @@
                 HorizontalAlignment="Stretch"
                 CornerRadius="0"
                 Command="{Binding $parent[control:PresetSelector].DataContext.ActivatePreset}"
-                CommandParameter="{x:Static model:PerformancePreset.Balanced}" />
+                CommandParameter="{x:Static asus:PerformancePreset.Balanced}" />
 
         <Button Name="PerformancePresetButton"
                 Content="Performance"
@@ -61,6 +80,6 @@
                 HorizontalAlignment="Stretch"
                 CornerRadius="0,4,4,0"
                 Command="{Binding $parent[control:PresetSelector].DataContext.ActivatePreset}"
-                CommandParameter="{x:Static model:PerformancePreset.Performance}" />
+                CommandParameter="{x:Static asus:PerformancePreset.Performance}" />
     </Grid>
 </UserControl>

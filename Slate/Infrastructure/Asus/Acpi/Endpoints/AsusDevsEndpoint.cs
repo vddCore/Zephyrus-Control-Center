@@ -3,7 +3,7 @@
 namespace Slate.Infrastructure.Asus.Acpi.Endpoints
 {
     public class AsusDevsEndpoint : AsusAcpiEndpoint<DevsMethod>
-    {
+    {        
         public AsusDevsEndpoint(AsusAcpiProxy proxy) 
             : base(proxy, WmnbFunction.DEVS)
         {
@@ -11,7 +11,12 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
 
         public void InvokeEmbeddedController(EmbeddedControllerRequest request)
         {
-            ReadInt32(DevsMethod.InvokeEmbeddedController, (byte)request);
+            _ = ReadInt32(DevsMethod.InvokeEmbeddedController, (byte)request);
+        }
+
+        public void SetPerformancePreset(PerformancePreset preset)
+        {
+            _ = ReadInt32(DevsMethod.SetPerformancePreset, (byte)preset);
         }
     }
 }

@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Glitonea.Mvvm.Messaging;
 using PropertyChanged;
+using Slate.Infrastructure.Asus;
 using Slate.Model;
 using Slate.Model.Messaging;
 
@@ -12,7 +13,7 @@ namespace Slate.View.Control
         public PresetSelector()
         {
             InitializeComponent();
-            
+
             Message.Subscribe<PerformancePresetChangedMessage>(this, OnPerformancePresetChanged);
         }
 

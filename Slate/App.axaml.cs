@@ -16,7 +16,7 @@ namespace Slate
     [DoNotNotify]
     public class App : Application
     {
-        private readonly Timer _globalTimer = new(1000);
+        private readonly Timer _globalTimer = new(250);
         
         private ulong _globalTickCount;
         

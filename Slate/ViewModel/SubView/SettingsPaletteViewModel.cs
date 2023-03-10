@@ -1,4 +1,5 @@
-﻿using Glitonea.Mvvm;
+﻿using Avalonia.Controls;
+using Glitonea.Mvvm;
 using Slate.Model.Messaging;
 using Slate.View;
 
@@ -6,40 +7,29 @@ namespace Slate.ViewModel.SubView
 {
     public class SettingsPaletteViewModel : ViewModelBase
     {
-        public void ActivateProcessorPage()
+        public void ActivatePage(UserControl page)
         {
-            new PageSwitchedMessage(Pages.Processor)
+            new PageSwitchedMessage(page)
                 .Broadcast();
         }
+
+        public void ActivateProcessorPage()
+            => ActivatePage(Pages.Processor);
 
         public void ActivateGraphicsAndDisplayPage()
-        {
-            new PageSwitchedMessage(Pages.GrapicsAndDisplay)
-                .Broadcast();
-        }
+            => ActivatePage(Pages.GrapicsAndDisplay);
         
         public void ActivatePowerManagementPage()
-        {
-            new PageSwitchedMessage(Pages.PowerManagement)
-                .Broadcast();
-        }
-
+            => ActivatePage(Pages.PowerManagement);
+        
         public void ActivateKeyboardPage()
-        {
-            new PageSwitchedMessage(Pages.Keyboard)
-                .Broadcast();
-        }
+            => ActivatePage(Pages.Keyboard);
 
         public void ActivateAniMeMatrixPage()
-        {
-            new PageSwitchedMessage(Pages.AniMeMatrix)
-                .Broadcast();
-        }
+            => ActivatePage(Pages.AniMeMatrix);
         
         public void ActivateApplicationPage()
-        {
-            new PageSwitchedMessage(Pages.Application)
-                .Broadcast();
-        }
+            => ActivatePage(Pages.Application);
+
     }
 }

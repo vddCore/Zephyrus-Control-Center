@@ -142,8 +142,6 @@ namespace Slate.View.Window
             var tx = HiddenDesktopPosition.X;
             var ty = HiddenDesktopPosition.Y;
 
-            Topmost = false;
-
             Task.Run(async () =>
             {
                 _animating = true;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Asus.Acpi;
 
 namespace Slate.Infrastructure.Services
@@ -46,7 +47,14 @@ namespace Slate.Infrastructure.Services
             ThrowIfProxyNull();
             return _proxy!.DSTS.GpuTemperatureCelsius;
         }
-        
+
+        [RequiresAcpiSession]
+        public void SetPerformancePreset(PerformancePreset preset)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetPerformancePreset(preset);
+        }
+
         [RequiresAcpiSession]
         public void CloseAcpiSession()
         {

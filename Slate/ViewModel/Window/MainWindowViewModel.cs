@@ -26,6 +26,7 @@ namespace Slate.ViewModel.Window
             _settingsService = settingsService;
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
+            Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
             Message.Subscribe<SettingsModifiedMessage>(this, OnSettingsModified);
             Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
         }
@@ -47,9 +48,17 @@ namespace Slate.ViewModel.Window
                 .Broadcast();
         }
 
-        private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
+        private void OnMainWindowLoaded(MainWindowLoadedMessage _)
         {
             SetCurrentPage(Pages.MainMenu);
+        }
+        
+        private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
+        {
+            if (!msg.WasSlidingIn)
+            {
+                SetCurrentPage(Pages.MainMenu);
+            }
         }
 
         private void OnPageSwitched(PageSwitchedMessage msg)
