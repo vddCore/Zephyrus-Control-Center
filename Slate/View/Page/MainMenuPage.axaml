@@ -1,12 +1,9 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:subView="clr-namespace:Slate.View.SubView"
+             xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.View.Page.MainMenuPage">
     <Grid RowDefinitions="Auto,*">
-        <subView:PresetSelector Grid.Row="0"
-                               Margin="5,0,5,5" />
-
-        <subView:SettingsPalette Grid.Row="1"
-                                        Margin="4,0" />
+        <control:PresetSelector Grid.Row="0" Margin="5,7,5,5" />
+        <control:SettingsPalette Grid.Row="1" Margin="4,0" />
     </Grid>
 </UserControl>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Slate.Infrastructure.Asus.Acpi;
 
 namespace Slate.Infrastructure.Services

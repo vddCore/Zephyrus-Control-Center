@@ -4,7 +4,7 @@ using PropertyChanged;
 using Slate.Model;
 using Slate.Model.Messaging;
 
-namespace Slate.View.SubView
+namespace Slate.View.Control
 {
     [DoNotNotify]
     public partial class PresetSelector : UserControl

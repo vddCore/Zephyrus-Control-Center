@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:slate="clr-namespace:Slate"
              xmlns:window="clr-namespace:Slate.View.Window"
+             xmlns:view="clr-namespace:Slate.View"
              x:Class="Slate.App">
     <TrayIcon.Icons>
         <TrayIcons>
@@ -25,25 +26,25 @@
                            FontSize="24"
                            Glyph="&#xF211;" />
 
+        <controls:FontIcon x:Key="ICON_Power"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xE945;" />
+        
         <controls:FontIcon x:Key="ICON_Keyboard"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE087;" />
 
-        <controls:FontIcon x:Key="ICON_Screen"
-                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="24"
-                           Glyph="&#xE770;" />
-
         <controls:FontIcon x:Key="ICON_Grid"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE80A;" />
-
-        <controls:FontIcon x:Key="ICON_Power"
+        
+        <controls:FontIcon x:Key="ICON_Settings"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
-                           Glyph="&#xE945;" />
+                           Glyph="&#xE115;" />
 
         <controls:FontIcon x:Key="ICON_Back"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"

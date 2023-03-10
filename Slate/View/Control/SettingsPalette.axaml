@@ -1,12 +1,11 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              DataContext="{mvvm:DataContextSource vm:SettingsPaletteViewModel}"
-             xmlns:fa="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.SubView"
-             xmlns:slate="clr-namespace:Slate"
              xmlns:control="clr-namespace:Slate.View.Control"
-             x:Class="Slate.View.SubView.SettingsPalette">
+             xmlns:view="clr-namespace:Slate.View"
+             x:Class="Slate.View.Control.SettingsPalette">
     <ScrollViewer>
         <StackPanel Margin="1,0">
             <control:MainMenuButton FontIcon="{StaticResource ICON_Processor}"
@@ -20,28 +19,33 @@
             </control:MainMenuButton>
 
             <control:MainMenuButton FontIcon="{StaticResource ICON_Graphics}"
-                                    Header="Graphics"
-                                    Description="GPU fan curve, power mode...">
+                                    Header="Graphics &amp; Display"
+                                    Description="GPU fan curve, refresh rates..."
+                                    Command="{Binding ActivateGraphicsAndDisplayPage}">
                 <control:MainMenuButton.GadgetContent>
                     <control:GraphicsStatisticsDisplay HorizontalAlignment="Right" />
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
-
+            
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Power}"
+                                    Header="Power Management"
+                                    Description="Charging threshold, power targets..."
+                                    Command="{Binding ActivatePowerManagementPage}" />
+            
             <control:MainMenuButton FontIcon="{StaticResource ICON_Keyboard}"
                                     Header="Keyboard"
-                                    Description="Aura lighting, custom keybinds..." />
+                                    Description="Aura lighting, custom keybinds..."
+                                    Command="{Binding ActivateKeyboardPage}" />
 
             <control:MainMenuButton FontIcon="{StaticResource ICON_Grid}"
                                     Header="AniMe Matrix"
-                                    Description="Brightness, animations, images..." />
-
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Power}"
-                                    Header="Power management"
-                                    Description="Charging threshold, power targets..." />
-
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Screen}"
-                                    Header="Display"
-                                    Description="Refresh rates, overdrive..." />
+                                    Description="Brightness, animations, images..."
+                                    Command="{Binding ActivateAniMeMatrixPage}" />
+            
+            <control:MainMenuButton FontIcon="{StaticResource ICON_Settings}"
+                                    Header="Application"
+                                    Description="Startup, updates..."
+                                    Command="{Binding ActivateApplicationPage}" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

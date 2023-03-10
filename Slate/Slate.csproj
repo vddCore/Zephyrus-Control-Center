@@ -10,6 +10,8 @@
         <Configurations>Debug;Release;AcpiTesting</Configurations>
         <Platforms>AnyCPU</Platforms>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        
+        <NoWarn>CA1416; CS0067</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,18 +32,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ViewModel\Page" />
-      <Folder Include="View\Page" />
-      <Folder Include="View\SubView" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Update="View\Window\MainWindow.axaml.cs">
         <DependentUpon>MainWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="View\SubView\PresetSelector.axaml.cs">
-        <DependentUpon>PresetSubView.axaml</DependentUpon>
       </Compile>
       <Compile Update="View\Controls\MainMenuButton.axaml.cs">
         <DependentUpon>MainMenuButton.axaml</DependentUpon>
@@ -57,6 +50,34 @@
       </Compile>
       <Compile Update="View\Control\GraphicsStatisticsDisplay.axaml.cs">
         <DependentUpon>GraphicsStatisticsDisplay.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\GraphicsAndDisplayPage.axaml.cs">
+        <DependentUpon>GraphicsPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\KeyboardPage.axaml.cs">
+        <DependentUpon>KeyboardPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\AniMeMatrixPage.axaml.cs">
+        <DependentUpon>AniMeMatrixPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\ApplicationPage.axaml.cs">
+        <DependentUpon>ApplicationSettingsPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\PowerManagementPage.axaml.cs">
+        <DependentUpon>PowerManagementPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\PresetSelector.axaml.cs">
+        <DependentUpon>PresetSelector.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\SettingsPalette.axaml.cs">
+        <DependentUpon>SettingsPalette.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

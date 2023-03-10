@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
@@ -48,7 +49,8 @@ namespace Slate
         
         private void GlobalTime_Elapsed(object? sender, ElapsedEventArgs elapsedEventArgs)
         {
-            Message.Broadcast(new GlobalTickMessage(++_globalTickCount));
+            new GlobalTickMessage(++_globalTickCount)
+                .Broadcast();
         }
     }
 }

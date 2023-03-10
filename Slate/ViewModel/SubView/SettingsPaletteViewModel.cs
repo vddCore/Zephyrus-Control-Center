@@ -1,5 +1,4 @@
 ﻿using Glitonea.Mvvm;
-using Glitonea.Mvvm.Messaging;
 using Slate.Model.Messaging;
 using Slate.View;
 
@@ -9,23 +8,38 @@ namespace Slate.ViewModel.SubView
     {
         public void ActivateProcessorPage()
         {
-            Message.Broadcast(new PageSwitchedMessage(Pages.Processor));
+            new PageSwitchedMessage(Pages.Processor)
+                .Broadcast();
         }
 
-        public void ActivateGraphicsPage()
+        public void ActivateGraphicsAndDisplayPage()
         {
+            new PageSwitchedMessage(Pages.GrapicsAndDisplay)
+                .Broadcast();
+        }
+        
+        public void ActivatePowerManagementPage()
+        {
+            new PageSwitchedMessage(Pages.PowerManagement)
+                .Broadcast();
         }
 
         public void ActivateKeyboardPage()
         {
+            new PageSwitchedMessage(Pages.Keyboard)
+                .Broadcast();
         }
 
         public void ActivateAniMeMatrixPage()
         {
+            new PageSwitchedMessage(Pages.AniMeMatrix)
+                .Broadcast();
         }
-
-        public void ActivateDisplayPage()
+        
+        public void ActivateApplicationPage()
         {
+            new PageSwitchedMessage(Pages.Application)
+                .Broadcast();
         }
     }
 }

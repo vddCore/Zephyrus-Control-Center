@@ -5,7 +5,6 @@ using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
-using Slate.Model.Settings.Components;
 using Slate.View;
 using Slate.View.Window;
 
@@ -13,27 +12,22 @@ namespace Slate.ViewModel.Window
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly IAsusHalService _asusHalService;
         private readonly ISettingsService _settingsService;
 
-        public UserControl CurrentPage { get; private set; } = Pages.MainMenu;
-
-        public ApplicationSettings ApplicationSettings => _settingsService.ControlCenter!.Application;
+        public UserControl? CurrentPage { get; private set; }
 
         public MainWindowViewModel(
             IAsusHalService asusHalService,
             ISettingsService settingsService)
         {
-            _asusHalService = asusHalService;
+            if (!asusHalService.IsAcpiSessionOpen)
+                asusHalService.OpenAcpiSession();
+            
             _settingsService = settingsService;
 
+            Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
             Message.Subscribe<SettingsModifiedMessage>(this, OnSettingsModified);
             Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
-            
-            if (!_asusHalService.IsAcpiSessionOpen)
-            {
-                _asusHalService.OpenAcpiSession();
-            }
         }
 
         public void NavigateBack()
@@ -44,8 +38,18 @@ namespace Slate.ViewModel.Window
             }
             else
             {
-                Message.Broadcast(new PageSwitchedMessage(Pages.MainMenu));
+                SetCurrentPage(Pages.MainMenu);
             }
+        }
+        private void SetCurrentPage(UserControl? page)
+        {
+            new PageSwitchedMessage(page)
+                .Broadcast();
+        }
+
+        private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
+        {
+            SetCurrentPage(Pages.MainMenu);
         }
 
         private void OnPageSwitched(PageSwitchedMessage msg)

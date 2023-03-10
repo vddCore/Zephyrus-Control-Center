@@ -1,5 +1,4 @@
 using System;
-using System.Numerics;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Animation.Easings;
@@ -16,10 +15,14 @@ namespace Slate.View.Window
     public partial class MainWindow : Avalonia.Controls.Window
     {
         private readonly Easing _slideOutEasing = Easing.Parse("CubicEaseIn");
-        private readonly Easing _slideInEasing = Easing.Parse("CircularEaseInOut");
+        private readonly Easing _slideInEasing = Easing.Parse("CubicEaseOut");
 
         private const int ScreenSideMargin = 12; // Notification center margin.
         private const int ScreenBottomMargin = 48 + ScreenSideMargin; // Taskbar height.
+
+        private double _slideInStep = 0.038;
+        private double _slideOutStep = 0.038;
+        
         private bool _animating;
 
         public PixelPoint VisibleDesktopPosition
@@ -70,23 +73,28 @@ namespace Slate.View.Window
 
         protected override void OnLoaded()
         {
+            ConfigureAsToolWindow();
+            
             IsVisible = false;
             Position = HiddenDesktopPosition;
 
-            var hwnd = PlatformImpl!.Handle.Handle;
-            var gwl = User32.GetWindowLong(
-                hwnd, 
-                User32.GWL_EX_STYLE
-            );
-            
-            User32.SetWindowLong(
-                hwnd, 
-                User32.GWL_EX_STYLE, 
-                (gwl | User32.WS_EX_TOOLWINDOW) & ~User32.WS_EX_APPWINDOW
-            );
-
             Message.Broadcast<MainWindowLoadedMessage>();
             base.OnLoaded();
+        }
+
+        private void ConfigureAsToolWindow()
+        {
+            var hwnd = PlatformImpl!.Handle.Handle;
+            var gwl = User32.GetWindowLong(
+                hwnd,
+                User32.GWL_EX_STYLE
+            );
+
+            User32.SetWindowLong(
+                hwnd,
+                User32.GWL_EX_STYLE,
+                (gwl | User32.WS_EX_TOOLWINDOW) & ~User32.WS_EX_APPWINDOW
+            );
         }
 
         private void OnTrayClicked(TrayIconClickedMessage _)
@@ -131,8 +139,8 @@ namespace Slate.View.Window
         internal void SlideOut()
         {
             var vy = VisibleDesktopPosition.Y;
-            var ty = HiddenDesktopPosition.Y;
             var tx = HiddenDesktopPosition.X;
+            var ty = HiddenDesktopPosition.Y;
 
             Topmost = false;
 
@@ -148,15 +156,21 @@ namespace Slate.View.Window
                             progress = 1.0;
 
                         int y = (int)(vy + ty * _slideOutEasing.Ease(progress));
-                        progress += 0.029;
+                        progress += _slideOutStep;
 
                         Position = new PixelPoint(tx, y);
                         await Task.Delay(1);
                     }
-
-                    Dispatcher.UIThread.Post(() => IsVisible = false);
                 }
                 _animating = false;
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    IsVisible = false;
+
+                    new MainWindowTransitionFinishedMessage(false)
+                        .Broadcast();
+                });
             });
         }
 
@@ -173,29 +187,28 @@ namespace Slate.View.Window
                 _animating = true;
                 {
                     double progress = 0;
-                    int y = Position.Y;
 
-                    while (y > ty)
+                    while (progress < 1.0)
                     {
-                        y = (int)(vy - ty * _slideInEasing.Ease(progress));
-                        progress += 0.029;
-
-                        if (y < ty)
-                        {
-                            Position = new PixelPoint(tx, ty);
-                        }
-                        else
-                        {
-                            Position = new PixelPoint(tx, y);
-                        }
+                        if (progress > 1.0)
+                            progress = 1.0;
+                        
+                        int y = (int)((vy + (ScreenSideMargin * 2) /* wtf? */) - ty * _slideInEasing.Ease(progress));
+                        progress += _slideInStep;
+                        
+                        Position = new PixelPoint(tx, y);
                         await Task.Delay(1);
                     }
-
-                    Position = new PixelPoint(tx, ty);
-
-                    Dispatcher.UIThread.Post(() => Topmost = true);
                 }
                 _animating = false;
+
+                Dispatcher.UIThread.Post(() =>
+                {
+                    Topmost = true;
+
+                    new MainWindowTransitionFinishedMessage(true)
+                        .Broadcast();
+                });
             });
         }
     }

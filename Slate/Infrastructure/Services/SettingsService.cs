@@ -62,7 +62,7 @@ namespace Slate.Infrastructure.Services
                     );
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // todo show a message box, log a failure. anything.
                 ControlCenter = new ControlCenterSettings();

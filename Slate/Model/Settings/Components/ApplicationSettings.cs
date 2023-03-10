@@ -44,7 +44,7 @@ namespace Slate.Model.Settings.Components
                     regKey?.DeleteValue(ApplicationName, false);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // todo log or something. idk.
                 
