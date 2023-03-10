@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
@@ -17,19 +16,18 @@ namespace Slate
     public class App : Application
     {
         private readonly Timer _globalTimer = new(250);
-        
+
         private ulong _globalTickCount;
-        
+
         public override void Initialize()
         {
             GlitoneaCore.Initialize();
-            
+
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
-            
+
             AvaloniaXamlLoader.Load(this);
 
             _globalTimer.Elapsed += GlobalTime_Elapsed;
-            
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -40,10 +38,10 @@ namespace Slate
             }
 
             base.OnFrameworkInitializationCompleted();
-            
+
             TrayIcon.GetIcons(this)[0].IsVisible = true;
         }
-        
+
         private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
         {
             if (msg.WasSlidingIn)
@@ -55,12 +53,12 @@ namespace Slate
                 _globalTimer.Stop();
             }
         }
-        
+
         private void TrayIcon_Clicked(object? sender, EventArgs e)
         {
             Message.Broadcast<TrayIconClickedMessage>();
         }
-        
+
         private void GlobalTime_Elapsed(object? sender, ElapsedEventArgs elapsedEventArgs)
         {
             new GlobalTickMessage(++_globalTickCount)

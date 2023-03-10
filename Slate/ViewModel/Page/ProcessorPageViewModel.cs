@@ -13,7 +13,7 @@ namespace Slate.ViewModel.Page
         private readonly ISettingsService _settingsService;
 
         public ProcessorSettings ProcessorSettings => _settingsService.ControlCenter!.Processor;
-        
+
         public ProcessorPageViewModel(
             IAsusHalService asusHalService,
             ISettingsService settingsService)

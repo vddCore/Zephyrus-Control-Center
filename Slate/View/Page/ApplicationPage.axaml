@@ -9,9 +9,11 @@
              DataContext="{mvvm:DataContextSource vm:ApplicationPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
           Margin="5">
-        <StackPanel Grid.Row="0"
-                    HorizontalAlignment="Stretch">
-            <Border CornerRadius="6"
+        <Grid Grid.Row="0"
+              RowDefinitions="Auto,Auto,*"
+              HorizontalAlignment="Stretch">
+            <Border Grid.Row="0"
+                    CornerRadius="6"
                     BorderBrush="#10FFFFFF"
                     BorderThickness="1"
                     Background="#08FFFFFF">
@@ -19,7 +21,8 @@
                               IsChecked="{Binding ApplicationSettings.RunOnStartup, Mode=TwoWay}" />
             </Border>
 
-            <Border CornerRadius="6"
+            <Border Grid.Row="1"
+                    CornerRadius="6"
                     BorderBrush="#10FFFFFF"
                     BorderThickness="1"
                     Background="#08FFFFFF"
@@ -27,7 +30,31 @@
                 <ToggleSwitch Content="Check for updates"
                               IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
             </Border>
-        </StackPanel>
+
+            <Grid Grid.Row="2">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap">
+                    <Run Text="This computer program is in no way"
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <Run Text="associated with ASUSTeK Computer Inc."
+                         Foreground="#33FFFFFF" />                    
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="Don't get me wrong, their hardware is amazing"
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <Run Text="but their software is completely dogshit."
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="🏳️‍⚧️" />
+                </TextBlock>
+
+            </Grid>
+        </Grid>
 
         <Border Grid.Row="1"
                 BorderBrush="White"

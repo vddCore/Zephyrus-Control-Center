@@ -1,14 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using Slate.Infrastructure.Settings;
-using Microsoft.Win32;
+﻿using Slate.Infrastructure.Settings;
+using Slate.Model.Messaging;
 
 namespace Slate.Model.Settings.Components
 {
     public class ApplicationSettings : SettingsComponent
-    {
-        private const string ApplicationName = "Zephyrus Control Center";
-        
+    {        
         public bool RunOnStartup { get; set; }
         public bool CheckForUpdates { get; set; }
 
@@ -18,41 +14,14 @@ namespace Slate.Model.Settings.Components
             {
                 case nameof(RunOnStartup):
                 {
-                    TryUpdateRegistryKey();
+                    WithEventSuppressed(() =>
+                    {
+                        new StartupLaunchChangedMessage(RunOnStartup)
+                            .Broadcast();
+                    });
+
                     break;
                 }
-            }
-        }
-
-        private void TryUpdateRegistryKey()
-        {
-            using var regKey = Registry.CurrentUser.OpenSubKey(
-                "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", 
-                true
-            );
-
-            try
-            {
-                if (RunOnStartup)
-                {
-                    regKey?.SetValue(
-                        ApplicationName,
-                        Process.GetCurrentProcess().MainModule!.FileName
-                    );
-                }
-                else
-                {
-                    regKey?.DeleteValue(ApplicationName, false);
-                }
-            }
-            catch (Exception)
-            {
-                // todo log or something. idk.
-                
-                WithEventSuppressed(() =>
-                {
-                    RunOnStartup = false;
-                });
             }
         }
     }

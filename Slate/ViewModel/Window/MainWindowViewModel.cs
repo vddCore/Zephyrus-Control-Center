@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Glitonea.Extensions;
 using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
+using Slate.Controller;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.View;
@@ -13,6 +14,7 @@ namespace Slate.ViewModel.Window
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly ISettingsService _settingsService;
+        private readonly ApplicationController _applicationController;
 
         public UserControl? CurrentPage { get; private set; }
 
@@ -20,10 +22,8 @@ namespace Slate.ViewModel.Window
             IAsusHalService asusHalService,
             ISettingsService settingsService)
         {
-            if (!asusHalService.IsAcpiSessionOpen)
-                asusHalService.OpenAcpiSession();
-            
             _settingsService = settingsService;
+            _applicationController = new ApplicationController(asusHalService, settingsService);
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);

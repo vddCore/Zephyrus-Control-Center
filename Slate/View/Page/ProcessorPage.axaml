@@ -8,14 +8,27 @@
              DataContext="{mvvm:DataContextSource page:ProcessorPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
           Margin="5">
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0"
+                    Spacing="5">
+            <Border CornerRadius="6"
+                    BorderBrush="#10FFFFFF"
+                    BorderThickness="1"
+                    Background="#08FFFFFF">
+                <StackPanel Spacing="4">
+                    <TextBlock Margin="7,7,0,0"
+                               Text="CPU fan curve" />
+                    
+
+                </StackPanel>
+            </Border>
+            
             <Border CornerRadius="6"
                     BorderBrush="#10FFFFFF"
                     BorderThickness="1"
                     Background="#08FFFFFF">
                 <StackPanel>
                     <ToggleSwitch Margin="0,4,0,0"
-                                  Content="Manual fan control"
+                                  Content="Manual CPU fan control"
                                   IsChecked="{Binding ProcessorSettings.ManualFanControlEnabled, Mode=TwoWay}" />
 
                     <Slider Margin="7,-6,7,0"
@@ -26,6 +39,18 @@
                             HorizontalAlignment="Stretch" 
                             IsEnabled="{Binding ProcessorSettings.ManualFanControlEnabled}" />
                 </StackPanel>
+            </Border>
+            
+            <Border CornerRadius="6"
+                    BorderBrush="#10FFFFFF"
+                    BorderThickness="1"
+                    Background="#08FFFFFF">
+                <ToggleSwitch>
+                    <TextBlock>
+                        <Run Text="CPU turbo boost" />
+                        <Run Foreground="#33FFFFFF" Text="when available" />
+                    </TextBlock>
+                </ToggleSwitch>
             </Border>
         </StackPanel>
 
