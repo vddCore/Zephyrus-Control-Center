@@ -8,33 +8,30 @@ namespace Slate.Model.Settings.Components
     {
         public bool ManualFanControlEnabled { get; set; } = false;
         public byte ManualFanDutyCycle { get; set; } = 64;
-        
+
         public FanCurve? FanCurve { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
         {
-            WithEventSuppressed(() =>
+            switch (propertyName)
             {
-                switch (propertyName)
+                case nameof(ManualFanDutyCycle) when ManualFanControlEnabled:
+                case nameof(ManualFanControlEnabled):
                 {
-                    case nameof(ManualFanDutyCycle) when ManualFanControlEnabled:
-                    case nameof(ManualFanControlEnabled):
-                    {
-                        new ManualCpuFanControlChangedMessage(ManualFanControlEnabled, ManualFanDutyCycle)
-                            .Broadcast();
+                    new ManualCpuFanControlChangedMessage(ManualFanControlEnabled, ManualFanDutyCycle)
+                        .Broadcast();
 
-                        break;
-                    }
-
-                    case nameof(FanCurve):
-                    {
-                        new CpuFanCurveUpdatedMessage(FanCurve!)
-                            .Broadcast();
-
-                        break;
-                    }
+                    break;
                 }
-            });
+
+                case nameof(FanCurve):
+                {
+                    new CpuFanCurveUpdatedMessage(FanCurve!)
+                        .Broadcast();
+
+                    break;
+                }
+            }
         }
     }
 }

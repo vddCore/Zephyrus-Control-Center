@@ -10,8 +10,12 @@ namespace Slate.Infrastructure.Asus
         public const int MinimumTemperature = 20;
         public const int MaximumTemperature = 110;
         
-        public byte[] RawData { get; } = new byte[16];
-        public FanCurvePoint[] Points { get; } = new FanCurvePoint[8];
+        public byte[] RawData { get; set; } = new byte[16];
+        public FanCurvePoint[] Points { get; set; } = new FanCurvePoint[8];
+
+        public FanCurve()
+        {
+        }
 
         public FanCurve(byte[] rawData)
         {

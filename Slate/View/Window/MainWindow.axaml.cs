@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Animation.Easings;
+using Avalonia.Platform;
 using Avalonia.Threading;
 using Glitonea.Mvvm.Messaging;
 using PropertyChanged;
@@ -200,7 +201,7 @@ namespace Slate.View.Window
                         if (progress > 1.0)
                             progress = 1.0;
                         
-                        int y = (int)((vy + (ScreenSideMargin * 2) /* wtf? */) - ty * _slideInEasing.Ease(progress));
+                        int y = (int)(SystemParameters.PrimaryScreenSize.Height - (vy - ty - ScreenBottomMargin) * _slideInEasing.Ease(progress));
                         progress += _slideInStep;
                         
                         Position = new PixelPoint(tx, y);

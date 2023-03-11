@@ -39,7 +39,8 @@
             <control:Card ShowHeader="True"
                           HeaderContent="CPU fan curve">
                 <Grid RowDefinitions="Auto,Auto"
-                      IsEnabled="{Binding !ProcessorSettings.ManualFanControlEnabled}">
+                      IsEnabled="{Binding !ProcessorSettings.ManualFanControlEnabled}"
+                      Margin="0,1,0,0">
                     <control:EditableChart Grid.Row="0"
                                            Series="{Binding Series}"
                                            HorizontalAlignment="Stretch"
@@ -55,6 +56,7 @@
                                 Content="Silent"
                                 Grid.Column="0"
                                 HorizontalAlignment="Stretch"
+                                BorderThickness="0,1,1,0"
                                 Width="NaN"
                                 CornerRadius="0,0,0,4"
                                 Command="{Binding ActivatePreset}"
@@ -64,6 +66,7 @@
                                 Content="Balanced"
                                 Grid.Column="1"
                                 Width="NaN"
+                                BorderThickness="0,1,0,0"
                                 Margin="-1,0,-1,0"
                                 HorizontalAlignment="Stretch"
                                 CornerRadius="0"
@@ -75,6 +78,7 @@
                                 Grid.Column="2"
                                 Width="NaN"
                                 HorizontalAlignment="Stretch"
+                                BorderThickness="0,1,1,0"
                                 CornerRadius="0,0,4,0"
                                 Command="{Binding ActivatePreset}"
                                 CommandParameter="{x:Static asus:PerformancePreset.Performance}" />
@@ -117,7 +121,7 @@
               ColumnDefinitions="*,Auto"
               Margin="6,0,6,1">
             <TextBlock Grid.Column="1"
-                       Text="{Binding rpm}"
+                       Text="{Binding RPM, StringFormat='{}{0} RPM'}"
                        Opacity="0.2" />
         </Grid>
     </Grid>

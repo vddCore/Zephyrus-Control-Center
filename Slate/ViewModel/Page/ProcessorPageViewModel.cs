@@ -36,9 +36,9 @@ namespace Slate.ViewModel.Page
             }
         };
 
+        public int FanSpeed => _asusHalService.ReadCpuFanSpeed();
+        
         public ProcessorSettings ProcessorSettings => _settingsService.ControlCenter!.Processor;
-
-        public string rpm => _asusHalService.ReadCpuFanSpeed().ToString();
         
         public ProcessorPageViewModel(
             ISettingsService settingsService,
@@ -69,11 +69,6 @@ namespace Slate.ViewModel.Page
             
             Message.Subscribe<SystemAccentColorChangedMessage>(this, OnSystemAccentColorChanged);
             Message.Subscribe<GlobalTickMessage>(this, OnGlobalTick);
-        }
-
-        private void OnGlobalTick(GlobalTickMessage obj)
-        {
-            OnPropertyChanged(nameof(rpm));
         }
 
         public void HandleCurveModification()
@@ -107,6 +102,9 @@ namespace Slate.ViewModel.Page
             series.Stroke = new SolidColorPaint(msg.PrimaryAccentColor.ToSKColor(), 2);
         }
         
-
+        private void OnGlobalTick(GlobalTickMessage obj)
+        {
+            OnPropertyChanged(nameof(FanSpeed));
+        }
     }
 }

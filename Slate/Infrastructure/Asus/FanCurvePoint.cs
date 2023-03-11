@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Slate.Infrastructure.Asus
 {
@@ -14,9 +15,10 @@ namespace Slate.Infrastructure.Asus
          * 
          * *sobs*
          **/
+        [JsonIgnore]
         private static readonly int[] _rpmLookupForward = new[]
         {
-            0000, 1800, 1850, 1900, 1950, 2000,
+            1799, 1800, 1850, 1900, 1950, 2000,
             2050, 2100, 2150, 2175, 2200, 2250,
             2300, 2350, 2375, 2400, 2450, 2500,
             2550, 2575, 2600, 2650, 2700, 2750,
@@ -40,16 +42,17 @@ namespace Slate.Infrastructure.Asus
         /// <summary>
         /// Represents X axis on the fan curve.
         /// </summary>
-        public byte Temperature { get; }
+        public byte Temperature { get; set; }
 
         /// <summary>
         /// Represents Y axis on the fan curve (RPM LUT index).
         /// </summary>
-        public byte LookupTableIndex { get; }
+        public byte LookupTableIndex { get; set; }
 
         /// <summary>
         /// Actual RPM based on the lookup table index.
         /// </summary>
+        [JsonIgnore]
         public int RPM => _rpmLookupForward[LookupTableIndex];
 
         public FanCurvePoint(byte temperature, byte lookupTableIndex)
@@ -61,7 +64,7 @@ namespace Slate.Infrastructure.Asus
         public static (byte, int) Approximate(int rpm)
         {
             if (rpm < 1800)
-                return (0, 0);
+                return (0, 849);
             
             var result = _rpmLookupForward.Nearest(rpm);
             return ((byte)result.IndexOf, result.Value);
