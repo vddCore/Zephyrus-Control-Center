@@ -5,6 +5,7 @@
              xmlns:slate="clr-namespace:Slate"
              xmlns:window="clr-namespace:Slate.View.Window"
              xmlns:view="clr-namespace:Slate.View"
+             xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.App">
     <TrayIcon.Icons>
         <TrayIcons>
@@ -80,5 +81,8 @@
                                 RequestedTheme="Dark" />
         
         <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
+        <StyleInclude Source="/Resources/Styles/Card.axaml" />
+        
+
     </Application.Styles>
 </Application>

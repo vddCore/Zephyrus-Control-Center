@@ -1,0 +1,30 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:control="clr-namespace:Slate.View.Control">
+    <Style Selector="control|Card">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#10FFFFFF" />
+        <Setter Property="Background" Value="#08FFFFFF" />
+
+        <Setter Property="Template">
+            <ControlTemplate TargetType="{x:Type control:Card}">
+                <Border CornerRadius="{TemplateBinding CornerRadius}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                    <Grid RowDefinitions="Auto,*">
+                        <ContentPresenter Grid.Row="0"
+                                          Margin="10,5"
+                                          Content="{TemplateBinding HeaderContent}"
+                                          IsVisible="{TemplateBinding ShowHeader}" />
+
+                        <ContentPresenter Grid.Row="1"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

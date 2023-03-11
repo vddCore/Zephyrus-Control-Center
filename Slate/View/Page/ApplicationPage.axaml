@@ -12,24 +12,16 @@
         <Grid Grid.Row="0"
               RowDefinitions="Auto,Auto,*"
               HorizontalAlignment="Stretch">
-            <Border Grid.Row="0"
-                    CornerRadius="6"
-                    BorderBrush="#10FFFFFF"
-                    BorderThickness="1"
-                    Background="#08FFFFFF">
+            <control:Card>
                 <ToggleSwitch Content="Launch on startup"
                               IsChecked="{Binding ApplicationSettings.RunOnStartup, Mode=TwoWay}" />
-            </Border>
+            </control:Card>
 
-            <Border Grid.Row="1"
-                    CornerRadius="6"
-                    BorderBrush="#10FFFFFF"
-                    BorderThickness="1"
-                    Background="#08FFFFFF"
+            <control:Card Grid.Row="1"
                     Margin="0,5,0,0">
                 <ToggleSwitch Content="Check for updates"
                               IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
-            </Border>
+            </control:Card>
 
             <Grid Grid.Row="2">
                 <TextBlock HorizontalAlignment="Center"
@@ -50,9 +42,12 @@
                          Foreground="#33FFFFFF" />
                     <LineBreak />
                     <LineBreak />
+                    <Run Text="Made with pure spite and Avalonia."
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <LineBreak />
                     <Run Text="🏳️‍⚧️" />
                 </TextBlock>
-
             </Grid>
         </Grid>
 

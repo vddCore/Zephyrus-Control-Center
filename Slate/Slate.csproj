@@ -91,6 +91,7 @@
       <AvaloniaResource Include="Resources\Fonts\segoe_fluent.ttf" />
       <AvaloniaResource Include="Resources\Icons\icon.ico" />
       <AvaloniaXaml Remove="Resources\Styles\ToggleSwitch.axaml" />
+      <AvaloniaResource Include="Resources\Styles\Card.axaml" />
       <AvaloniaResource Include="Resources\Styles\ToggleSwitch.axaml" />
     </ItemGroup>
 

@@ -5,23 +5,16 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:page="clr-namespace:Slate.ViewModel.Page"
              xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              x:Class="Slate.View.Page.ProcessorPage"
              DataContext="{mvvm:DataContextSource page:ProcessorPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
           Margin="5">
         <StackPanel Grid.Row="0"
                     Spacing="5">
-            <Border CornerRadius="6"
-                    BorderBrush="#10FFFFFF"
-                    BorderThickness="1"
-                    Background="#08FFFFFF">
-                <StackPanel Spacing="4">
-                    <TextBlock Margin="7,7,0,0"
-                               Text="CPU fan curve" />
-                    
-
-                </StackPanel>
-            </Border>
+            <control:Card ShowHeader="True"
+                          HeaderContent="CPU fan curve">
+            </control:Card>
             
             <control:Card>
                 <StackPanel>
@@ -38,17 +31,14 @@
                 </StackPanel>
             </control:Card>
             
-            <Border CornerRadius="6"
-                    BorderBrush="#10FFFFFF"
-                    BorderThickness="1"
-                    Background="#08FFFFFF">
+            <control:Card>
                 <ToggleSwitch>
                     <TextBlock>
                         <Run Text="CPU turbo boost" />
                         <Run Foreground="#33FFFFFF" Text="when available" />
                     </TextBlock>
                 </ToggleSwitch>
-            </Border>
+            </control:Card>
         </StackPanel>
 
         <Border Grid.Row="1"
