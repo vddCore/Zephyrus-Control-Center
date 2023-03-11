@@ -142,9 +142,14 @@ namespace Slate.View.Window
             var vy = VisibleDesktopPosition.Y;
             var tx = HiddenDesktopPosition.X;
             var ty = HiddenDesktopPosition.Y;
-
+            
             Task.Run(async () =>
             {
+                Dispatcher.UIThread.Post(() =>
+                {
+                    Topmost = true;
+                });
+                
                 _animating = true;
                 {
                     double progress = 0;
@@ -166,7 +171,8 @@ namespace Slate.View.Window
                 Dispatcher.UIThread.Post(() =>
                 {
                     IsVisible = false;
-
+                    Topmost = false;
+                    
                     new MainWindowTransitionFinishedMessage(false)
                         .Broadcast();
                 });
@@ -179,6 +185,7 @@ namespace Slate.View.Window
             var tx = VisibleDesktopPosition.X;
             var ty = VisibleDesktopPosition.Y;
 
+            Topmost = true;
             IsVisible = true;
 
             Task.Run(async () =>
@@ -203,8 +210,6 @@ namespace Slate.View.Window
 
                 Dispatcher.UIThread.Post(() =>
                 {
-                    Topmost = true;
-
                     new MainWindowTransitionFinishedMessage(true)
                         .Broadcast();
                 });

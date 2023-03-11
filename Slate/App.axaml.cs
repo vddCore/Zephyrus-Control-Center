@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Glitonea;
+using Glitonea.Extensions;
 using Glitonea.Mvvm.Messaging;
 using PropertyChanged;
 using Slate.Model.Messaging;
@@ -63,6 +64,12 @@ namespace Slate
         {
             new GlobalTickMessage(++_globalTickCount)
                 .Broadcast();
+        }
+
+        private void Quit_Clicked(object? sender, EventArgs e)
+        {
+            this.GetDesktopLifetime()
+                .Shutdown();
         }
     }
 }

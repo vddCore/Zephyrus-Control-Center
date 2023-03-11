@@ -12,7 +12,14 @@
             <TrayIcon IsVisible="False"
                       Icon="/Resources/Icons/icon.ico"
                       ToolTipText="Zephyrus Control Center"
-                      Clicked="TrayIcon_Clicked" />
+                      Clicked="TrayIcon_Clicked">
+                <TrayIcon.Menu>
+                    <NativeMenu>
+                        <NativeMenuItem Header="Quit" 
+                                        Click="Quit_Clicked" />
+                    </NativeMenu>
+                </TrayIcon.Menu>
+            </TrayIcon>
         </TrayIcons>
     </TrayIcon.Icons>
 
@@ -82,7 +89,5 @@
         
         <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
         <StyleInclude Source="/Resources/Styles/Card.axaml" />
-        
-
     </Application.Styles>
 </Application>
