@@ -1,4 +1,5 @@
-﻿using Slate.Infrastructure.Settings;
+﻿using Slate.Infrastructure.Asus;
+using Slate.Infrastructure.Settings;
 using Slate.Model.Messaging;
 
 namespace Slate.Model.Settings.Components
@@ -8,7 +9,7 @@ namespace Slate.Model.Settings.Components
         public bool ManualFanControlEnabled { get; set; } = false;
         public byte ManualFanDutyCycle { get; set; } = 64;
         
-        public byte[] FanCurve { get; set; } = new byte[8];
+        public FanCurve? FanCurve { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
         {
@@ -27,7 +28,7 @@ namespace Slate.Model.Settings.Components
 
                     case nameof(FanCurve):
                     {
-                        new CpuFanCurveUpdatedMessage(FanCurve)
+                        new CpuFanCurveUpdatedMessage(FanCurve!)
                             .Broadcast();
 
                         break;

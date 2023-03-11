@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using System;
+using Glitonea.Mvvm.Messaging;
+using Slate.Model.Messaging;
 
 #if ACPITESTING
     using System.Diagnostics;
@@ -17,7 +19,8 @@ namespace Slate
                 var proxy = new AsusAcpiProxy();           
                 Debugger.Break();
 #else
-            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            var app = BuildAvaloniaApp()
+                .StartWithClassicDesktopLifetime(args);
 #endif
         }
 
@@ -29,6 +32,7 @@ namespace Slate
                 {
                     UseWindowsUIComposition = true
                 })
-                .LogToTrace();
+                .LogToTrace()
+                .AfterSetup((_) => Message.Broadcast<MainWindowLoadedMessage>());
     }
 }

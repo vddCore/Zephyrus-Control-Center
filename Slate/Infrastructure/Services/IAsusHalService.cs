@@ -14,6 +14,10 @@ namespace Slate.Infrastructure.Services
         float ReadGpuTemperatureCelsius();
         void SetPerformancePreset(PerformancePreset preset);
         void SetCpuFanDutyCycle(byte dutyCycle);
+        FanCurve ReadBuiltInCpuFanCurve(PerformancePreset performancePreset);
+        FanCurve ReadBuiltInGpuFanCurve(PerformancePreset performancePreset);
+        void WriteCpuFanCurve(FanCurve curve);
+        void WriteGpuFanCurve(FanCurve curve);
         void CloseAcpiSession();
 
     }

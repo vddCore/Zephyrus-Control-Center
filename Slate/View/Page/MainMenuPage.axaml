@@ -2,8 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.View.Page.MainMenuPage">
-    <Grid RowDefinitions="Auto,*">
-        <control:PresetSelector Grid.Row="0" Margin="5,7,5,5" />
-        <control:SettingsPalette Grid.Row="1" Margin="4,0" />
-    </Grid>
+    <control:SettingsPalette Margin="5,7,5,5" 
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" />
 </UserControl>

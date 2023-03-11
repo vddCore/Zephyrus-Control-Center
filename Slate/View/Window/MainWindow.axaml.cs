@@ -80,8 +80,9 @@ namespace Slate.View.Window
             IsVisible = false;
             Position = HiddenDesktopPosition;
 
-            Message.Broadcast<MainWindowLoadedMessage>();
             base.OnLoaded();
+            
+            new MainWindowLoadedMessage().Broadcast();
         }
 
         private void ConfigureAsToolWindow(nint hwnd)

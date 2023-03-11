@@ -14,7 +14,6 @@ namespace Slate.Controller
         private void SubscribeToApplicationSettings()
         {
             Message.Subscribe<StartupLaunchChangedMessage>(this, OnStartupLaunchChanged);
-            Message.Subscribe<PerformancePresetChangedMessage>(this, OnPerformancePresetChanged);
         }
 
         private void OnStartupLaunchChanged(StartupLaunchChangedMessage msg)
@@ -42,11 +41,6 @@ namespace Slate.Controller
             {
                 ApplicationSettings.RunOnStartup = false;
             }
-        }
-        
-        private void OnPerformancePresetChanged(PerformancePresetChangedMessage msg)
-        {
-            _asusHalService.SetPerformancePreset(msg.Preset);
         }
     }
 }

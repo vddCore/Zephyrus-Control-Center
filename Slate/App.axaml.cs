@@ -4,9 +4,12 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Platform;
 using Glitonea;
 using Glitonea.Extensions;
 using Glitonea.Mvvm.Messaging;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using PropertyChanged;
 using Slate.Model.Messaging;
 using Slate.View.Window;
@@ -17,6 +20,7 @@ namespace Slate
     public class App : Application
     {
         private readonly Timer _globalTimer = new(250);
+        private IPlatformSettings? _platformSettings;
 
         private ulong _globalTickCount;
 
@@ -27,7 +31,12 @@ namespace Slate
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
 
             AvaloniaXamlLoader.Load(this);
-
+            LiveCharts.Configure(c => c
+                .AddSkiaSharp()
+                .AddDefaultMappers()
+                .AddDarkTheme()
+            );
+            
             _globalTimer.Elapsed += GlobalTime_Elapsed;
         }
 
@@ -39,8 +48,11 @@ namespace Slate
             }
 
             base.OnFrameworkInitializationCompleted();
-
+            
             TrayIcon.GetIcons(this)[0].IsVisible = true;
+            
+            _platformSettings = AvaloniaLocator.Current.GetRequiredService<IPlatformSettings>();
+            _platformSettings.ColorValuesChanged += PlatformSettings_ColorValuesChanged;
         }
 
         private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
@@ -70,6 +82,15 @@ namespace Slate
         {
             this.GetDesktopLifetime()
                 .Shutdown();
+        }
+        
+        private void PlatformSettings_ColorValuesChanged(object? sender, PlatformColorValues e)
+        {
+            new SystemAccentColorChangedMessage(
+                e.AccentColor1,
+                e.AccentColor2,
+                e.AccentColor3
+            ).Broadcast();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Asus.Acpi;
 
@@ -63,6 +64,35 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public FanCurve ReadBuiltInCpuFanCurve(PerformancePreset performancePreset)
+        {
+            ThrowIfProxyNull();
+            return _proxy!.DSTS.ReadRawCpuFanCurve(performancePreset);
+        }
+
+        [RequiresAcpiSession]
+        public FanCurve ReadBuiltInGpuFanCurve(PerformancePreset performancePreset)
+        {
+            ThrowIfProxyNull();
+            return _proxy!.DSTS.ReadRawGpuFanCurve(performancePreset);
+        }
+
+        [RequiresAcpiSession]
+        public void WriteCpuFanCurve(FanCurve curve)
+        {
+            ThrowIfProxyNull();
+            Debug.WriteLine(curve);
+            _proxy!.DEVS.SetCpuFanCurve(curve);
+        }
+
+        [RequiresAcpiSession]
+        public void WriteGpuFanCurve(FanCurve curve)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetGpuFanCurve(curve);
+        }
+
+        [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();
@@ -70,7 +100,7 @@ namespace Slate.Infrastructure.Services
         }
 
         private void ThrowIfProxyNull()
-        {
+        {   
             if (!IsAcpiSessionOpen)
             {
                 throw new InvalidOperationException("There is no ASUS ACPI session open at the moment.");

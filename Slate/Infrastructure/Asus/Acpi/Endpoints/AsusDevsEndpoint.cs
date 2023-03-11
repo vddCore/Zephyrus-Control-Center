@@ -23,5 +23,20 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
         {
             _ = ReadInt32(DevsMethod.SetCpuFanSpeedDirect, dutyCycle);
         }
+        
+        public void SetGpuFanDutyCycle(byte dutyCycle)
+        {
+            _ = ReadInt32(DevsMethod.SetGpuFanSpeedDirect, dutyCycle);
+        }
+
+        public void SetCpuFanCurve(FanCurve curve)
+        {
+            _ = ReadInt32(DevsMethod.SetCpuFanCurve, curve.RawData);
+        }
+
+        public void SetGpuFanCurve(FanCurve curve)
+        {
+            _ = ReadInt32(DevsMethod.SetGpuFanCurve, curve.RawData);
+        }
     }
 }

@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:painting="clr-namespace:LiveChartsCore.SkiaSharpView.Painting;assembly=LiveChartsCore.SkiaSharpView"
+             xmlns:skiaSharp="clr-namespace:SkiaSharp;assembly=SkiaSharp"
+             x:Class="Slate.View.Control.EditableChart">
+    <UserControl.Styles>
+        <Style Selector="Grid#DisabledNoticeBox">
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity"
+                                      Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="Grid#DisabledNoticeBox:disabled">
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="Opacity" Value="0.75" />
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid>
+        <lvc:CartesianChart x:Name="CartesianChart"
+                            Series="{Binding $parent[control:EditableChart].Series}"
+                            Sections="{Binding $parent[control:EditableChart].Sections}"
+                            XAxes="{Binding $parent[control:EditableChart].XAxes}"
+                            YAxes="{Binding $parent[control:EditableChart].YAxes}"
+                            FontFamily="Segoe UI"
+                            ChartPointPointerDown="Chart_OnChartPointPointerDown"
+                            PointerMoved="Chart_OnPointerMoved"
+                            PointerReleased="Chart_OnPointerReleased"
+                            Margin="0"
+                            Padding="0"
+                            TooltipPosition="Hidden" />
+        
+        <Grid x:Name="DisabledNoticeBox"
+              Panel.ZIndex="999"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Background="Black"
+              Margin="48,17,20,35">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                <Run Text="Manual fan override is enabled." />
+                <LineBreak />
+                <Run Text="Disengage to control this curve." />
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

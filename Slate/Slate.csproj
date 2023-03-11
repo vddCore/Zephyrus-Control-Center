@@ -73,16 +73,16 @@
         <DependentUpon>PowerManagementPage.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="View\Control\PresetSelector.axaml.cs">
-        <DependentUpon>PresetSelector.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="View\Control\SettingsPalette.axaml.cs">
         <DependentUpon>SettingsPalette.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\Control\Card.axaml.cs">
         <DependentUpon>Card.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\EditableChart.axaml.cs">
+        <DependentUpon>EditableChart.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

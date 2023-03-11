@@ -1,4 +1,7 @@
-﻿using Slate.Infrastructure.Services;
+﻿using Glitonea.Mvvm.Messaging;
+using Slate.Infrastructure.Services;
+using Slate.Model.Messaging;
+using Slate.Model.Settings;
 
 namespace Slate.Controller
 {
@@ -8,6 +11,8 @@ namespace Slate.Controller
 
         private readonly IAsusHalService _asusHalService;
         private readonly ISettingsService _settingsService;
+
+        private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
         
         public ApplicationController(
             IAsusHalService asusHalService,
@@ -21,6 +26,21 @@ namespace Slate.Controller
             
             SubscribeToApplicationSettings();
             SubscribeToProcessorSettings();
+            
+            Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
+        }
+
+        private void ApplyInitialValues()
+        {
+            new ManualCpuFanControlChangedMessage(
+                ProcessorSettings.ManualFanControlEnabled,
+                ProcessorSettings.ManualFanDutyCycle
+            );
+        }
+        
+        private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
+        {
+            ApplyInitialValues();
         }
     }
 }
