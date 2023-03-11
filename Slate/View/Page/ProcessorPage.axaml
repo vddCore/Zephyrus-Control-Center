@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:page="clr-namespace:Slate.ViewModel.Page"
+             xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.View.Page.ProcessorPage"
              DataContext="{mvvm:DataContextSource page:ProcessorPageViewModel}">
     <Grid RowDefinitions="*,1,Auto"
@@ -22,13 +23,9 @@
                 </StackPanel>
             </Border>
             
-            <Border CornerRadius="6"
-                    BorderBrush="#10FFFFFF"
-                    BorderThickness="1"
-                    Background="#08FFFFFF">
+            <control:Card>
                 <StackPanel>
-                    <ToggleSwitch Margin="0,4,0,0"
-                                  Content="Manual CPU fan control"
+                    <ToggleSwitch Content="Manual CPU fan control"
                                   IsChecked="{Binding ProcessorSettings.ManualFanControlEnabled, Mode=TwoWay}" />
 
                     <Slider Margin="7,-6,7,0"
@@ -39,7 +36,7 @@
                             HorizontalAlignment="Stretch" 
                             IsEnabled="{Binding ProcessorSettings.ManualFanControlEnabled}" />
                 </StackPanel>
-            </Border>
+            </control:Card>
             
             <Border CornerRadius="6"
                     BorderBrush="#10FFFFFF"

@@ -1,4 +1,5 @@
-﻿using Slate.View.Page;
+﻿using Avalonia.Input;
+using Slate.View.Page;
 
 namespace Slate.View
 {

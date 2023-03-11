@@ -81,6 +81,10 @@
         <DependentUpon>SettingsPalette.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\Card.axaml.cs">
+        <DependentUpon>Card.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

@@ -37,5 +37,6 @@ namespace Slate.Model.Messaging
     public sealed record ManualCpuFanControlChangedMessage(bool Enabled, byte DutyCycle)
         : Message;
 
-    public sealed record CpuFanCurveUpdatedMessage(byte[] FanCurveData);
+    public sealed record CpuFanCurveUpdatedMessage(byte[] FanCurveData)
+        : Message;
 }

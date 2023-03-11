@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             x:Class="Slate.View.Control.Card">
+    <UserControl.Styles>
+        <Style Selector="control|Card">
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#10FFFFFF" />
+            <Setter Property="Background" Value="#08FFFFFF" />
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="Auto,*">
+        <ContentPresenter Grid.Row="0"
+                          Margin="0,4,0,0"
+                          Content="{Binding $parent[control:Card].HeaderContent}"
+                          IsVisible="{Binding $parent[control:Card].ShowHeader}" />
+        
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding $parent[control:Card].Content}"
+                          ContentTemplate="{Binding $parent[control:Card].ContentTemplate}" />
+    </Grid>
+</UserControl>
