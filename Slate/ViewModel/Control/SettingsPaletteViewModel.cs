@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using Glitonea.Mvvm;
+﻿using Glitonea.Mvvm;
 using Slate.Model.Messaging;
 using Slate.View;
 
@@ -7,7 +6,7 @@ namespace Slate.ViewModel.Control
 {
     public class SettingsPaletteViewModel : ViewModelBase
     {
-        public void ActivatePage(UserControl page)
+        public void ActivatePage(PageMarker page)
         {
             new PageSwitchedMessage(page)
                 .Broadcast();

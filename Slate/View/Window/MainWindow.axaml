@@ -4,6 +4,7 @@
         xmlns:vm="clr-namespace:Slate.ViewModel.Window"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:view="clr-namespace:Slate.View"
+        xmlns:page="clr-namespace:Slate.View.Page"
         x:Class="Slate.View.Window.MainWindow"
         SystemDecorations="None"
         TransparencyLevelHint="AcrylicBlur"
@@ -77,7 +78,7 @@
                                Text="{Binding $parent[Window].Title}" />
                 </Grid>
 
-
+                <!-- Don't bind to UserControl? directly, causes inconsistent layouting. -->
                 <TransitioningContentControl Grid.Row="1"
                                              Content="{Binding CurrentPage, 
                                                                Mode=TwoWay,
@@ -86,6 +87,36 @@
                         <CrossFade Duration="0:0:0.135"
                                    FadeInEasing="CircularEaseIn" />
                     </TransitioningContentControl.PageTransition>
+                    
+                    <TransitioningContentControl.DataTemplates>
+                        <DataTemplate DataType="{x:Type view:MainMenuPageMarker}">
+                            <page:MainMenuPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:ProcessorPageMarker}">
+                            <page:ProcessorPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:GraphicsAndDisplayPageMarker}">
+                            <page:GraphicsAndDisplayPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:PowerManagementPageMarker}">
+                            <page:PowerManagementPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:KeyboardPageMarker}">
+                            <page:KeyboardPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:AniMeMatrixPageMarker}">
+                            <page:AniMeMatrixPage />
+                        </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:ApplicationPageMarker}">
+                            <page:ApplicationPage />
+                        </DataTemplate>
+                    </TransitioningContentControl.DataTemplates>
                 </TransitioningContentControl>
             </Grid>
         </Border>

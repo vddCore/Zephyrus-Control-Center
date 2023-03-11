@@ -61,7 +61,7 @@ namespace Slate.View.Window
 
         private void OnPageSwitched(PageSwitchedMessage msg)
         {
-            if (msg.Page == Pages.MainMenu)
+            if (msg.PageMarker == Pages.MainMenu)
             {
                 BackButton.Classes.Set("OnMainPage", true);
             }

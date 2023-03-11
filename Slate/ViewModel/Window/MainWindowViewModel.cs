@@ -16,7 +16,7 @@ namespace Slate.ViewModel.Window
         private readonly ISettingsService _settingsService;
         private readonly ApplicationController _applicationController;
 
-        public UserControl? CurrentPage { get; private set; }
+        public PageMarker? CurrentPage { get; private set; }
 
         public MainWindowViewModel(
             IAsusHalService asusHalService,
@@ -42,7 +42,7 @@ namespace Slate.ViewModel.Window
                 SetCurrentPage(Pages.MainMenu);
             }
         }
-        private void SetCurrentPage(UserControl? page)
+        private void SetCurrentPage(PageMarker? page)
         {
             new PageSwitchedMessage(page)
                 .Broadcast();
@@ -63,7 +63,7 @@ namespace Slate.ViewModel.Window
 
         private void OnPageSwitched(PageSwitchedMessage msg)
         {
-            CurrentPage = msg.Page;
+            CurrentPage = msg.PageMarker;
         }
 
         private async void OnSettingsModified(SettingsModifiedMessage _)

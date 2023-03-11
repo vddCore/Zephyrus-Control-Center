@@ -1,7 +1,7 @@
-﻿using Avalonia.Controls;
-using Glitonea.Mvvm.Messaging;
+﻿using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Settings;
+using Slate.View;
 
 namespace Slate.Model.Messaging
 {
@@ -17,7 +17,7 @@ namespace Slate.Model.Messaging
     public sealed record MainWindowTransitionFinishedMessage(bool WasSlidingIn) 
         : Message;
     
-    public sealed record PageSwitchedMessage(UserControl? Page) 
+    public sealed record PageSwitchedMessage(PageMarker? PageMarker) 
         : Message;
     
     public sealed record SettingsModifiedMessage(

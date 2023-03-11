@@ -1,16 +1,23 @@
-﻿using Avalonia.Input;
-using Slate.View.Page;
-
-namespace Slate.View
+﻿namespace Slate.View
 {
+    public abstract record PageMarker;
+    
+    public sealed record MainMenuPageMarker : PageMarker;
+    public sealed record ProcessorPageMarker : PageMarker;
+    public sealed record GraphicsAndDisplayPageMarker : PageMarker;
+    public sealed record PowerManagementPageMarker : PageMarker;
+    public sealed record KeyboardPageMarker : PageMarker;
+    public sealed record AniMeMatrixPageMarker : PageMarker;
+    public sealed record ApplicationPageMarker : PageMarker;
+
     public static class Pages
     {
-        public static readonly MainMenuPage MainMenu = new();
-        public static readonly ProcessorPage Processor = new();
-        public static readonly GraphicsAndDisplayPage GraphicsAndDisplay = new();
-        public static readonly PowerManagementPage PowerManagement = new();
-        public static readonly KeyboardPage Keyboard = new();
-        public static readonly AniMeMatrixPage AniMeMatrix = new();
-        public static readonly ApplicationPage Application = new();
+        public static MainMenuPageMarker MainMenu = new();
+        public static ProcessorPageMarker Processor = new();
+        public static GraphicsAndDisplayPageMarker GraphicsAndDisplay = new();
+        public static PowerManagementPageMarker PowerManagement = new();
+        public static KeyboardPageMarker Keyboard = new();
+        public static AniMeMatrixPageMarker AniMeMatrix = new();
+        public static ApplicationPageMarker Application = new();
     }
 }
