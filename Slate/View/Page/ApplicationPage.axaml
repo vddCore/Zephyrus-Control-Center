@@ -67,28 +67,30 @@
                 Opacity="0.1" />
 
         <Grid Grid.Row="2"
-              ColumnDefinitions="Auto,Auto,*"
+              ColumnDefinitions="Auto,*"
               Margin="6,0">
+             <StackPanel Grid.Column="0"
+                         Orientation="Horizontal"
+                         Spacing="4">
+                  <Button Grid.Column="0"
+                          Classes="LinkIcon"
+                          Content="{DynamicResource ICON_GitHub}"
+                          Command="{Binding OpenPage}"
+                          CommandParameter="https://github.com/vddCore/Zephyrus-Control-Center"
+                          ToolTip.Tip="i'm open source."
+                          ToolTip.Placement="Right" />
 
-            <Button Grid.Column="0"
-                    Margin="0,0,4,0"
-                    Classes="LinkIcon"
-                    Content="{DynamicResource ICON_GitHub}"
-                    Command="{Binding OpenPage}"
-                    CommandParameter="https://github.com/vddCore/Zephyrus-Control-Center"
-                    ToolTip.Tip="i'm open source."
-                    ToolTip.Placement="Right" />
+                  <Button Grid.Column="1"
+                          Classes="LinkIcon"
+                          Content="{DynamicResource ICON_FortAwesome}"
+                          Command="{Binding OpenPage}"
+                          CommandParameter="https://fontawesome.com"
+                          ToolTip.Tip="i use fontawesome."
+                          ToolTip.Placement="Right" />
+             </StackPanel>
 
-            <Button Grid.Column="1"
-                    Classes="LinkIcon"
-                    Content="{DynamicResource ICON_FortAwesome}"
-                    Command="{Binding OpenPage}"
-                    CommandParameter="https://fontawesome.com"
-                    ToolTip.Tip="i use fontawesome."
-                    ToolTip.Placement="Right" />
-
-            <TextBlock Grid.Column="2"
-                       Text="1.0.0"
+            <TextBlock Grid.Column="1"
+                       Text="{Binding VersionString}"
                        HorizontalAlignment="Right"
                        Opacity="0.2" />
         </Grid>

@@ -32,12 +32,19 @@ namespace Slate.Model.Messaging
     public sealed record UpdateCheckChangedMessage(bool Enabled)
         : Message;
 
-    public sealed record ManualCpuFanControlChangedMessage(bool Enabled, byte DutyCycle)
-        : Message;
+    public sealed record ManualCpuFanControlChangedMessage(
+            bool Enabled, 
+            byte DutyCycle
+    ) : Message;
 
     public sealed record CpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
 
+    public sealed record CpuBoostModeChangedMessage(
+            bool EnableOnAC,
+            bool EnableOnDC
+    ) : Message;
+    
     public sealed record GpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
 

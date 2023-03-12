@@ -7,25 +7,11 @@ namespace Slate.ViewModel.Control
 {
     public class ProcessorStatisticsDisplayViewModel : ViewModelBase
     {
-        private readonly IAsusHalService _asusHalService;
+        protected IHardwareMonitorService HardwareMonitor { get; }
 
-        public int ProcessorFanRPM => _asusHalService.ReadCpuFanSpeed();
-        public float ProcessorTemperature => _asusHalService.ReadCpuTemperatureCelsius();
-
-        public ProcessorStatisticsDisplayViewModel(IAsusHalService asusHalService)
+        public ProcessorStatisticsDisplayViewModel(IHardwareMonitorService hardwareMonitor)
         {
-            _asusHalService = asusHalService;
-            
-            Message.Subscribe<GlobalTickMessage>(this, OnGlobalTick);
-        }
-        
-        private void OnGlobalTick(GlobalTickMessage _)
-        {
-            if (!_asusHalService.IsAcpiSessionOpen)
-                return;
-            
-            OnPropertyChanged(nameof(ProcessorFanRPM));
-            OnPropertyChanged(nameof(ProcessorTemperature));
+            HardwareMonitor = hardwareMonitor;
         }
     }
 }

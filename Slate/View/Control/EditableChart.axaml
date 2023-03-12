@@ -37,7 +37,7 @@
 
         <Style Selector="Grid#DisabledNoticeBox:disabled > Border">
             <Setter Property="IsHitTestVisible" Value="True" />
-            <Setter Property="Opacity" Value="0.77" />
+            <Setter Property="Opacity" Value="0.85" />
         </Style>
     </UserControl.Styles>
 

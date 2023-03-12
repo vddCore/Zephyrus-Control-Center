@@ -9,6 +9,9 @@ namespace Slate.Model.Settings.Components
         public bool ManualFanControlEnabled { get; set; } = false;
         public byte ManualFanDutyCycle { get; set; } = 64;
 
+        public bool IsBoostActiveOnAC { get; set; } = true;
+        public bool IsBoostActiveOnDC { get; set; } = false;
+        
         public FanCurve? FanCurve { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
@@ -27,6 +30,15 @@ namespace Slate.Model.Settings.Components
                 case nameof(FanCurve):
                 {
                     new CpuFanCurveUpdatedMessage(FanCurve!)
+                        .Broadcast();
+
+                    break;
+                }
+
+                case nameof(IsBoostActiveOnAC):
+                case nameof(IsBoostActiveOnDC):
+                {
+                    new CpuBoostModeChangedMessage(IsBoostActiveOnAC, IsBoostActiveOnDC)
                         .Broadcast();
 
                     break;

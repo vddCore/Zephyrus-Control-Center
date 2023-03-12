@@ -12,3 +12,5 @@ namespace Slate.View.Control
         }
     }
 }
+
+/* I wonder if anyone reads this shit. Screenshot this and contact me if you do. */

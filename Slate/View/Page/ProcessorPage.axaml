@@ -98,7 +98,7 @@
                     <ToggleSwitch Content="Manual CPU fan control"
                                   IsChecked="{Binding ProcessorSettings.ManualFanControlEnabled, Mode=TwoWay}" />
 
-                    <Slider Margin="7,-6,7,0"
+                    <Slider Margin="7,-6,7,-2"
                             Padding="0"
                             Minimum="0"
                             Maximum="255"
@@ -109,27 +109,39 @@
             </control:Card>
 
             <control:Card>
-                <ToggleSwitch>
-                    <TextBlock>
-                        <Run Text="CPU turbo boost" />
-                        <Run Foreground="#33FFFFFF" Text="when available" />
-                    </TextBlock>
-                </ToggleSwitch>
+                <StackPanel>
+                    <ToggleSwitch Content="Aggressive boost when plugged-in"
+                                  IsChecked="{Binding ProcessorSettings.IsBoostActiveOnAC, Mode=TwoWay}" />
+
+                    <ToggleSwitch Content="Aggressive boost on battery"
+                                  IsChecked="{Binding ProcessorSettings.IsBoostActiveOnDC, Mode=TwoWay}" />
+                </StackPanel>
             </control:Card>
         </StackPanel>
 
         <Border Grid.Row="1"
                 BorderBrush="White"
                 BorderThickness="0,1,0,0"
-                Margin="4,6"
+                Margin="4,5,4,6"
                 Opacity="0.1" />
 
-        <Grid Grid.Row="2"
-              ColumnDefinitions="*,Auto"
-              Margin="6,0,6,1">
+        <StackPanel Grid.Row="2"
+                    Margin="6,0,6,1"
+                    Spacing="2"
+                    Orientation="Horizontal">
             <TextBlock Grid.Column="1"
-                       Text="{Binding RPM, StringFormat='{}{0} RPM'}"
-                       Opacity="0.2" />
-        </Grid>
+                       Width="40">
+                <Run Text="{Binding HardwareMonitor.ProcessorTemperature, Mode=OneWay}"
+                     Foreground="#BBFFFFFF" />
+                <Run Text="°C" Foreground="#66FFFFFF" />
+            </TextBlock>
+
+            <TextBlock Grid.Column="1"
+                       Width="65">
+                <Run Text="{Binding HardwareMonitor.ProcessorFanRPM, Mode=OneWay}"
+                     Foreground="#BBFFFFFF" />
+                <Run Text="RPM" Foreground="#66FFFFFF" />
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

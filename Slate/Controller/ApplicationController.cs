@@ -1,4 +1,5 @@
 ﻿using Glitonea.Mvvm.Messaging;
+using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.Model.Settings;
@@ -11,15 +12,18 @@ namespace Slate.Controller
 
         private readonly IAsusHalService _asusHalService;
         private readonly ISettingsService _settingsService;
-
+        private readonly IPowerManagementService _powerManagementService;
+        
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
         
         public ApplicationController(
             IAsusHalService asusHalService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IPowerManagementService powerManagementService)
         {
             _asusHalService = asusHalService;
             _settingsService = settingsService;
+            _powerManagementService = powerManagementService;
 
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
@@ -32,13 +36,29 @@ namespace Slate.Controller
 
         private void ApplyInitialValues()
         {
+            if (ProcessorSettings.FanCurve == null)
+            {
+                ProcessorSettings.FanCurve = _asusHalService.ReadBuiltInCpuFanCurve(
+                    PerformancePreset.Balanced
+                );
+            }
+            
+            new CpuFanCurveUpdatedMessage(
+                ProcessorSettings.FanCurve
+            ).Broadcast();
+            
             new ManualCpuFanControlChangedMessage(
                 ProcessorSettings.ManualFanControlEnabled,
                 ProcessorSettings.ManualFanDutyCycle
+            ).Broadcast();
+
+            new CpuBoostModeChangedMessage(
+                ProcessorSettings.IsBoostActiveOnAC,
+                ProcessorSettings.IsBoostActiveOnDC
             );
         }
         
-        private void OnMainWindowLoaded(MainWindowLoadedMessage obj)
+        private void OnMainWindowLoaded(MainWindowLoadedMessage _)
         {
             ApplyInitialValues();
         }

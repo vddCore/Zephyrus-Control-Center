@@ -10,7 +10,7 @@
         <Configurations>Debug;Release;AcpiTesting</Configurations>
         <Platforms>AnyCPU</Platforms>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        
+        <Version>1.0.0</Version>
         <NoWarn>CA1416; CS0067</NoWarn>
     </PropertyGroup>
 

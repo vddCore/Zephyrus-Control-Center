@@ -20,10 +20,16 @@ namespace Slate.ViewModel.Window
 
         public MainWindowViewModel(
             IAsusHalService asusHalService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IPowerManagementService powerManagementService)
         {
             _settingsService = settingsService;
-            _applicationController = new ApplicationController(asusHalService, settingsService);
+            
+            _applicationController = new ApplicationController(
+                asusHalService, 
+                settingsService,
+                powerManagementService
+            );
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);

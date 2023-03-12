@@ -5,12 +5,12 @@
              x:Class="Slate.View.Control.ProcessorStatisticsDisplay"
              DataContext="{mvvm:DataContextSource vm:ProcessorStatisticsDisplayViewModel}">
     <StackPanel>
-        <TextBlock Text="{Binding ProcessorTemperature, StringFormat='{}{0}°C'}"
+        <TextBlock Text="{Binding HardwareMonitor.ProcessorTemperature, StringFormat='{}{0}°C'}"
                    FontSize="12"
                    HorizontalAlignment="Center"
                    Opacity="0.66" />
 
-        <TextBlock Text="{Binding ProcessorFanRPM, StringFormat='{}{0} RPM'}"
+        <TextBlock Text="{Binding HardwareMonitor.ProcessorFanRPM, StringFormat='{}{0} RPM'}"
                    FontSize="12"
                    HorizontalAlignment="Center"
                    Opacity="0.66" />

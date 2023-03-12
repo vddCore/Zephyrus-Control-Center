@@ -24,6 +24,8 @@ namespace Slate.ViewModel.Page
         private readonly ISettingsService _settingsService;
         private readonly IAsusHalService _asusHalService;
 
+        protected IHardwareMonitorService HardwareMonitor { get; }
+
         public ISeries[] Series { get; set; } = new ISeries[]
         {
             new LineSeries<ObservablePoint>
@@ -37,16 +39,16 @@ namespace Slate.ViewModel.Page
             }
         };
 
-        public int FanSpeed => _asusHalService.ReadCpuFanSpeed();
-        
         public ProcessorSettings ProcessorSettings => _settingsService.ControlCenter!.Processor;
         
         public ProcessorPageViewModel(
             ISettingsService settingsService,
-            IAsusHalService asusHalService)
+            IAsusHalService asusHalService,
+            IHardwareMonitorService hardwareMonitor)
         {
             _settingsService = settingsService;
             _asusHalService = asusHalService;
+            HardwareMonitor = hardwareMonitor;
 
             var primaryColor = AvaloniaLocator
                 .Current
@@ -55,21 +57,13 @@ namespace Slate.ViewModel.Page
                 .AccentColor1
                 .ToSKColor();
 
-            if (ProcessorSettings.FanCurve == null)
-            {
-                ProcessorSettings.FanCurve = _asusHalService.ReadBuiltInCpuFanCurve(
-                    PerformancePreset.Balanced
-                );
-            }
-            
             var series = (LineSeries<ObservablePoint>)Series[0];
-            series.Values = ProcessorSettings.FanCurve.ToChartValues();
-
+            
+            series.Values = ProcessorSettings.FanCurve!.ToChartValues();
             series.GeometryStroke = new SolidColorPaint(primaryColor, 2);
             series.Stroke = new SolidColorPaint(primaryColor, 2);
             
             Message.Subscribe<SystemAccentColorChangedMessage>(this, OnSystemAccentColorChanged);
-            Message.Subscribe<GlobalTickMessage>(this, OnGlobalTick);
         }
 
         public void HandleCurveModification()
@@ -84,13 +78,12 @@ namespace Slate.ViewModel.Page
         {
             var preset = (PerformancePreset)parameter!;
             var curve = _asusHalService.ReadBuiltInCpuFanCurve(preset);
-
-            ProcessorSettings.FanCurve = curve;
             
             var series = (LineSeries<ObservablePoint>)Series[0];
             var oldValues = (ObservableCollection<ObservablePoint>)series.Values!;
-            var newValues = ProcessorSettings.FanCurve.ToChartValues();
-
+            var newValues = curve.ToChartValues();
+            ProcessorSettings.FanCurve = newValues.ToFanCurve();
+            
             for (var i = 0; i < 8; i++)
                  oldValues[i] = newValues[i];
         }
@@ -102,11 +95,6 @@ namespace Slate.ViewModel.Page
             
             series.GeometryStroke = new SolidColorPaint(msg.PrimaryAccentColor.ToSKColor(), 2);
             series.Stroke = new SolidColorPaint(msg.PrimaryAccentColor.ToSKColor(), 2);
-        }
-        
-        private void OnGlobalTick(GlobalTickMessage obj)
-        {
-            OnPropertyChanged(nameof(FanSpeed));
         }
     }
 }

@@ -7,25 +7,11 @@ namespace Slate.ViewModel.Control
 {
     public class GraphicsStatisticsDisplayViewModel : ViewModelBase
     {
-        private readonly IAsusHalService _asusHalService;
+        protected IHardwareMonitorService HardwareMonitor { get; }
 
-        public int GraphicsFanRPM => _asusHalService.ReadGpuFanSpeed();
-        public float GraphicsTemperature => _asusHalService.ReadGpuTemperatureCelsius();
-
-        public GraphicsStatisticsDisplayViewModel(IAsusHalService asusHalService)
+        public GraphicsStatisticsDisplayViewModel(IHardwareMonitorService hardwareMonitor)
         {
-            _asusHalService = asusHalService;
-            
-            Message.Subscribe<GlobalTickMessage>(this, OnGlobalTick);
-        }
-        
-        private void OnGlobalTick(GlobalTickMessage _)
-        {
-            if (!_asusHalService.IsAcpiSessionOpen)
-                return;
-            
-            OnPropertyChanged(nameof(GraphicsFanRPM));
-            OnPropertyChanged(nameof(GraphicsTemperature));
+            HardwareMonitor = hardwareMonitor;
         }
     }
 }
