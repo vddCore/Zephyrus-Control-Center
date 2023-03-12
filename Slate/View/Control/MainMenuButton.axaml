@@ -6,7 +6,6 @@
     <UserControl.Styles>
         <Style Selector="control|MainMenuButton">
             <Setter Property="Height" Value="66" />
-            <Setter Property="Margin" Value="0,3,0,0" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Styles>

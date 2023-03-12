@@ -36,18 +36,25 @@
           Margin="5">
         <StackPanel Grid.Row="0"
                     Spacing="5">
-            <control:Card ShowHeader="True"
-                          HeaderContent="CPU fan curve">
+            <control:Card>
                 <Grid RowDefinitions="Auto,Auto"
                       IsEnabled="{Binding !ProcessorSettings.ManualFanControlEnabled}"
                       Margin="0,1,0,0">
-                    <control:EditableChart Grid.Row="0"
-                                           Series="{Binding Series}"
-                                           HorizontalAlignment="Stretch"
-                                           VerticalAlignment="Stretch"
-                                           Margin="0,-12,0,0"
-                                           Height="180"
-                                           CurveModifiedCommand="{Binding HandleCurveModification}" />
+                    <Grid Grid.Row="0"
+                          RowDefinitions="Auto,*">
+                        <TextBlock Text="CPU fan curve"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,3,0,0"
+                                   Grid.Row="0" />
+
+                        <control:EditableChart Grid.Row="1"
+                                               Series="{Binding Series}"
+                                               HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Stretch"
+                                               Height="180"
+                                               Margin="0,-8,0,0"
+                                               CurveModifiedCommand="{Binding HandleCurveModification}" />
+                    </Grid>
 
                     <Grid Grid.Row="1"
                           ColumnDefinitions="*,*,*"

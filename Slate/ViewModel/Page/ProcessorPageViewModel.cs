@@ -9,6 +9,7 @@ using LiveChartsCore.Defaults;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using PropertyChanged;
 using SkiaSharp;
 using Slate.Infrastructure;
 using Slate.Infrastructure.Asus;
@@ -94,6 +95,7 @@ namespace Slate.ViewModel.Page
                  oldValues[i] = newValues[i];
         }
 
+        [SuppressPropertyChangedWarnings]
         private void OnSystemAccentColorChanged(SystemAccentColorChangedMessage msg)
         {
             var series = (LineSeries<ObservablePoint>)Series[0];

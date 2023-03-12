@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avalonia;
@@ -13,6 +12,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Avalonia;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
+using LiveChartsCore.SkiaSharpView.VisualElements;
 using PropertyChanged;
 using SkiaSharp;
 using Slate.Infrastructure.Asus;
@@ -30,13 +30,13 @@ namespace Slate.View.Control
             {
                 new()
                 {
-                    TextSize = 12,
+                    TextSize = 11,
                     MinLimit = FanCurve.MinimumTemperature,
                     MaxLimit = FanCurve.MaximumTemperature,
                     MinStep = 10,
                     ForceStepToMin = true,
                     SeparatorsPaint = new SolidColorPaint(SKColors.DimGray) { StrokeThickness = 1 },
-                    Padding = new(0,3,3,5)
+                    Padding = new(0,3,6,6)
                 }
             });
 
@@ -45,13 +45,14 @@ namespace Slate.View.Control
             {
                 new()
                 {
-                    TextSize = 12,
+                    TextSize = 11,
                     MinLimit = 0,
                     MaxLimit = FanCurve.MaximumFanRPM,
-                    MinStep = FanCurve.MaximumFanRPM / 5,
+                    MinStep = 650,
                     ForceStepToMin = true,
                     Labeler = (d) => { return d >= FanCurve.MinimumFanRPM || d == 0 ? d.ToString("F0") : ""; },
                     SeparatorsPaint = new SolidColorPaint(SKColors.DimGray) { StrokeThickness = 1 },
+                    Padding = new(6,6,6,12)
                 }
             });
 

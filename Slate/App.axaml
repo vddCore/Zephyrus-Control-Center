@@ -15,7 +15,7 @@
                       Clicked="TrayIcon_Clicked">
                 <TrayIcon.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Header="Quit" 
+                        <NativeMenuItem Header="Quit"
                                         Click="Quit_Clicked" />
                     </NativeMenu>
                 </TrayIcon.Menu>
@@ -79,6 +79,15 @@
                            FontSize="18"
                            Glyph="&#xE9CA;" />
 
+        <controls:FontIcon x:Key="ICON_GitHub"
+                           FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"
+                           FontSize="16"
+                           Glyph="&#xF09B;" />
+        
+        <controls:FontIcon x:Key="ICON_FortAwesome"
+                           FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"
+                           FontSize="16"
+                           Glyph="&#xF3A3;" />
     </Application.Resources>
 
     <Application.Styles>
@@ -86,8 +95,9 @@
                                 PreferUserAccentColor="True"
                                 UseSystemFontOnWindows="True"
                                 RequestedTheme="Dark" />
-        
+
         <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
         <StyleInclude Source="/Resources/Styles/Card.axaml" />
+        <StyleInclude Source="/Resources/Styles/LinkIcon.axaml" />
     </Application.Styles>
 </Application>

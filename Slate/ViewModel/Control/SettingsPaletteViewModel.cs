@@ -1,4 +1,5 @@
-﻿using Glitonea.Mvvm;
+﻿using System.Diagnostics;
+using Glitonea.Mvvm;
 using Slate.Model.Messaging;
 using Slate.View;
 
@@ -17,18 +18,17 @@ namespace Slate.ViewModel.Control
 
         public void ActivateGraphicsAndDisplayPage()
             => ActivatePage(Pages.GraphicsAndDisplay);
-        
+
         public void ActivatePowerManagementPage()
             => ActivatePage(Pages.PowerManagement);
-        
+
         public void ActivateKeyboardPage()
             => ActivatePage(Pages.Keyboard);
 
         public void ActivateAniMeMatrixPage()
             => ActivatePage(Pages.AniMeMatrix);
-        
+
         public void ActivateApplicationPage()
             => ActivatePage(Pages.Application);
-
     }
 }

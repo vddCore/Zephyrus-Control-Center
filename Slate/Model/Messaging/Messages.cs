@@ -37,10 +37,9 @@ namespace Slate.Model.Messaging
 
     public sealed record CpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
-    
+
     public sealed record GpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
-
 
     public sealed record SystemAccentColorChangedMessage(
         Color PrimaryAccentColor,

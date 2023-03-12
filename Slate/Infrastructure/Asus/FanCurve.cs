@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Slate.Infrastructure.Asus
 {
-    public class FanCurve
+    public record FanCurve
     {
         public const int MaximumFanRPM = 6500;
         public const int MinimumFanRPM = 1800;
@@ -13,6 +14,7 @@ namespace Slate.Infrastructure.Asus
         public byte[] RawData { get; set; } = new byte[16];
         public FanCurvePoint[] Points { get; set; } = new FanCurvePoint[8];
 
+        [JsonConstructor]
         public FanCurve()
         {
         }

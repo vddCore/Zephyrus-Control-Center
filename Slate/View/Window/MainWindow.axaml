@@ -20,7 +20,7 @@
         ShowInTaskbar="False"
         CanResize="False"
         Width="336"
-        Height="460"
+        Height="456"
         DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
         Deactivated="Window_OnDeactivated">
     <Panel>
@@ -34,7 +34,7 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
-        <Border Padding="0,0,0,4">
+        <Border>
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   RowDefinitions="36,*">
@@ -48,7 +48,7 @@
                             Classes="OnMainPage"
                             Margin="0"
                             CornerRadius="0"
-                            Content="{StaticResource ICON_Back}"
+                            Content="{DynamicResource ICON_Back}"
                             BorderThickness="1,1,1,0"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Center"
@@ -87,32 +87,32 @@
                         <CrossFade Duration="0:0:0.135"
                                    FadeInEasing="CircularEaseIn" />
                     </TransitioningContentControl.PageTransition>
-                    
+
                     <TransitioningContentControl.DataTemplates>
                         <DataTemplate DataType="{x:Type view:MainMenuPageMarker}">
                             <page:MainMenuPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:ProcessorPageMarker}">
                             <page:ProcessorPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:GraphicsAndDisplayPageMarker}">
                             <page:GraphicsAndDisplayPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:PowerManagementPageMarker}">
                             <page:PowerManagementPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:KeyboardPageMarker}">
                             <page:KeyboardPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:AniMeMatrixPageMarker}">
                             <page:AniMeMatrixPage />
                         </DataTemplate>
-                        
+
                         <DataTemplate DataType="{x:Type view:ApplicationPageMarker}">
                             <page:ApplicationPage />
                         </DataTemplate>

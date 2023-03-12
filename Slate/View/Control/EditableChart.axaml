@@ -21,11 +21,26 @@
         
         <Style Selector="Grid#DisabledNoticeBox:disabled">
             <Setter Property="IsHitTestVisible" Value="True" />
-            <Setter Property="Opacity" Value="0.75" />
-            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Opacity" Value="1.0" />
+        </Style>
+        
+        <Style Selector="Grid#DisabledNoticeBox > Border">
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity"
+                                      Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Grid#DisabledNoticeBox:disabled > Border">
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="Opacity" Value="0.77" />
         </Style>
     </UserControl.Styles>
-    
+
     <Grid>
         <lvc:CartesianChart x:Name="CartesianChart"
                             Series="{Binding $parent[control:EditableChart].Series}"
@@ -39,15 +54,38 @@
                             Margin="0"
                             Padding="0"
                             TooltipPosition="Hidden" />
-        
+
         <Grid x:Name="DisabledNoticeBox"
-              Panel.ZIndex="999"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              Background="Black"
-              Margin="48,17,20,35">
+              Panel.ZIndex="999">
+            <Border HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Black">
+                <Border.OpacityMask>
+                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+                        <GradientStop Color="Transparent" Offset="0" />
+                        <GradientStop Color="Black" Offset="0.08" />
+                        <GradientStop Color="Black" Offset="0.33" />
+                        <GradientStop Color="Black" Offset="0.66" />
+                        <GradientStop Color="Black" Offset="0.93" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.OpacityMask>
+
+                <!-- <Border.Background> -->
+                <!--     <LinearGradientBrush> -->
+                <!--         <GradientStop Color="Transparent" Offset="0" /> -->
+                <!--         <GradientStop Color="Black" Offset="0.25" /> -->
+                <!--         <GradientStop Color="Black" Offset="0.33" /> -->
+                <!--         <GradientStop Color="Black" Offset="0.66" /> -->
+                <!--         <GradientStop Color="Black" Offset="0.75" /> -->
+                <!--         <GradientStop Color="Transparent" Offset="1.0" /> -->
+                <!--     </LinearGradientBrush> -->
+                <!-- </Border.Background> -->
+            </Border>
+            
             <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center">
+                       VerticalAlignment="Center"
+                       Opacity="0.9">
                 <Run Text="Manual fan override is enabled." />
                 <LineBreak />
                 <Run Text="Disengage to control this curve." />

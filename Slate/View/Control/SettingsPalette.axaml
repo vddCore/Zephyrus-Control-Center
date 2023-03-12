@@ -7,46 +7,45 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.Control"
              x:Class="Slate.View.Control.SettingsPalette">
     <ScrollViewer>
-        <StackPanel Margin="1,0">
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Processor}"
+        <StackPanel Spacing="3">
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Processor}"
                                     Header="Processor"
                                     Description="CPU fan curve, turbo boost..."
-                                    Margin="0,2,0,0"
                                     Command="{Binding ActivateProcessorPage}">
                 <control:MainMenuButton.GadgetContent>
                     <control:ProcessorStatisticsDisplay HorizontalAlignment="Right"
-                                                        Width="70"/>
+                                                        Width="70" />
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Graphics}"
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Graphics}"
                                     Header="Graphics &amp; Display"
                                     Description="GPU fan curve, refresh rates..."
                                     Command="{Binding ActivateGraphicsAndDisplayPage}">
                 <control:MainMenuButton.GadgetContent>
                     <control:GraphicsStatisticsDisplay HorizontalAlignment="Right"
-                                                       Width="70"/>
+                                                       Width="70" />
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
-            
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Power}"
+
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Power}"
                                     Header="Power Management"
                                     Description="Charging limits, power targets..."
                                     Command="{Binding ActivatePowerManagementPage}" />
-            
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Keyboard}"
+
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Keyboard}"
                                     Header="Keyboard"
                                     Description="Aura lighting, custom keybinds..."
                                     Command="{Binding ActivateKeyboardPage}" />
 
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Grid}"
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Grid}"
                                     Header="AniMe Matrix"
                                     Description="Brightness, animations, images..."
                                     Command="{Binding ActivateAniMeMatrixPage}" />
-            
-            <control:MainMenuButton FontIcon="{StaticResource ICON_Settings}"
+
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_Settings}"
                                     Header="Application"
-                                    Description="Startup, updates..."
+                                    Description="Startup, updates, links, disclaimers..."
                                     Command="{Binding ActivateApplicationPage}" />
         </StackPanel>
     </ScrollViewer>

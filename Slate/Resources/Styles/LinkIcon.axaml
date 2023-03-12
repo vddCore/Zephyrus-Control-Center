@@ -1,0 +1,26 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="Button.LinkIcon /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="1" />
+
+        <Setter Property="Foreground" Value="#999999" />
+
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground"
+                                 Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <Style Selector="Button.LinkIcon:pointerover /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="#DDDDDD" />
+    </Style>
+
+    <Style Selector="Button.LinkIcon:pressed /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="#666666" />
+    </Style>
+</Styles>

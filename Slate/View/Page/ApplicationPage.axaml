@@ -1,7 +1,5 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:control="clr-namespace:Slate.View.Control"
@@ -18,7 +16,7 @@
             </control:Card>
 
             <control:Card Grid.Row="1"
-                    Margin="0,5,0,0">
+                          Margin="0,5,0,0">
                 <ToggleSwitch Content="Check for updates"
                               IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
             </control:Card>
@@ -32,7 +30,7 @@
                          Foreground="#33FFFFFF" />
                     <LineBreak />
                     <Run Text="associated with ASUSTeK Computer Inc."
-                         Foreground="#33FFFFFF" />                    
+                         Foreground="#33FFFFFF" />
                     <LineBreak />
                     <LineBreak />
                     <Run Text="Don't get me wrong, their hardware is amazing"
@@ -40,6 +38,17 @@
                     <LineBreak />
                     <Run Text="but their software is completely dogshit."
                          Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="Also goes without saying but it's you who is"
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <Run Text="responsible for your own G14. So maybe don't"
+                         Foreground="#33FFFFFF" />
+                    <LineBreak />
+                    <Run Text="fuck it up. And if you do, it's all your fault."
+                         Foreground="#33FFFFFF" />
+                    <Run Text="❤️" />
                     <LineBreak />
                     <LineBreak />
                     <Run Text="Made with pure spite and Avalonia."
@@ -58,18 +67,29 @@
                 Opacity="0.1" />
 
         <Grid Grid.Row="2"
-              ColumnDefinitions="*,Auto"
+              ColumnDefinitions="Auto,Auto,*"
               Margin="6,0">
-            <TextBlock Grid.Column="0">
-                <Run Text="imagine icons here."
-                     Foreground="#66FFFFFF" />
 
-                <Run Text="| vddCore"
-                     Foreground="#33FFFFFF" />
-            </TextBlock>
+            <Button Grid.Column="0"
+                    Margin="0,0,4,0"
+                    Classes="LinkIcon"
+                    Content="{DynamicResource ICON_GitHub}"
+                    Command="{Binding OpenPage}"
+                    CommandParameter="https://github.com/vddCore/Zephyrus-Control-Center"
+                    ToolTip.Tip="i'm open source."
+                    ToolTip.Placement="Right" />
 
-            <TextBlock Grid.Column="1"
+            <Button Grid.Column="1"
+                    Classes="LinkIcon"
+                    Content="{DynamicResource ICON_FortAwesome}"
+                    Command="{Binding OpenPage}"
+                    CommandParameter="https://fontawesome.com"
+                    ToolTip.Tip="i use fontawesome."
+                    ToolTip.Placement="Right" />
+
+            <TextBlock Grid.Column="2"
                        Text="1.0.0"
+                       HorizontalAlignment="Right"
                        Opacity="0.2" />
         </Grid>
     </Grid>
