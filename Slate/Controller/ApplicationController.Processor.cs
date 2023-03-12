@@ -1,5 +1,4 @@
 ﻿using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.PowerManagement;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;

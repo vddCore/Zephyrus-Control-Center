@@ -30,6 +30,7 @@ namespace Slate.Controller
             
             SubscribeToApplicationSettings();
             SubscribeToProcessorSettings();
+            SubscribeToGraphicsAndDisplaySettings();
             
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }
@@ -42,6 +43,13 @@ namespace Slate.Controller
                     PerformancePreset.Balanced
                 );
             }
+
+            if (GraphicsAndDisplaySettings.FanCurve == null)
+            {
+                GraphicsAndDisplaySettings.FanCurve = _asusHalService.ReadBuiltInGpuFanCurve(
+                    PerformancePreset.Balanced
+                );
+            }
             
             new CpuFanCurveUpdatedMessage(
                 ProcessorSettings.FanCurve
@@ -51,6 +59,10 @@ namespace Slate.Controller
                 ProcessorSettings.IsBoostActiveOnAC,
                 ProcessorSettings.IsBoostActiveOnDC
             );
+            
+            new GpuFanCurveUpdatedMessage(
+                GraphicsAndDisplaySettings.FanCurve
+            ).Broadcast();
         }
         
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)

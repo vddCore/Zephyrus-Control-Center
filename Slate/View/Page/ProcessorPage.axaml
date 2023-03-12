@@ -10,28 +10,6 @@
              xmlns:asus="clr-namespace:Slate.Infrastructure.Asus"
              x:Class="Slate.View.Page.ProcessorPage"
              DataContext="{mvvm:DataContextSource page:ProcessorPageViewModel}">
-    <UserControl.Styles>
-        <Style Selector="Button ContentPresenter">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
-                    <BrushTransition Property="Background" Duration="0:0:0.1" />
-                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
-                </Transitions>
-            </Setter>
-        </Style>
-
-        <Style Selector="Button:pointerover ContentPresenter">
-            <Setter Property="Transitions">
-                <Transitions>
-                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
-                    <BrushTransition Property="Background" Duration="0:0:0.1" />
-                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
-                </Transitions>
-            </Setter>
-        </Style>
-    </UserControl.Styles>
-
     <Grid RowDefinitions="*,1,Auto"
           Margin="5">
         <StackPanel Grid.Row="0"

@@ -101,5 +101,25 @@
         <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
         <StyleInclude Source="/Resources/Styles/Card.axaml" />
         <StyleInclude Source="/Resources/Styles/LinkIcon.axaml" />
+        
+        <Style Selector="Button ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button:pointerover ContentPresenter">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                    <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
     </Application.Styles>
 </Application>

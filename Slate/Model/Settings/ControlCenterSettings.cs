@@ -7,5 +7,6 @@ namespace Slate.Model.Settings
     {
         public ApplicationSettings Application { get; set; } = new();
         public ProcessorSettings Processor { get; set; } = new();
+        public GraphicsAndDisplaySettings GraphicsAndDisplay { get; set; } = new();
     }
 }
