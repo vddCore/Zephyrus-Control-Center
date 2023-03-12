@@ -6,9 +6,6 @@ namespace Slate.Model.Settings.Components
 {
     public class ProcessorSettings : SettingsComponent
     {
-        public bool ManualFanControlEnabled { get; set; } = false;
-        public byte ManualFanDutyCycle { get; set; } = 64;
-
         public bool IsBoostActiveOnAC { get; set; } = true;
         public bool IsBoostActiveOnDC { get; set; } = false;
         
@@ -18,15 +15,6 @@ namespace Slate.Model.Settings.Components
         {
             switch (propertyName)
             {
-                case nameof(ManualFanDutyCycle) when ManualFanControlEnabled:
-                case nameof(ManualFanControlEnabled):
-                {
-                    new ManualCpuFanControlChangedMessage(ManualFanControlEnabled, ManualFanDutyCycle)
-                        .Broadcast();
-
-                    break;
-                }
-
                 case nameof(FanCurve):
                 {
                     new CpuFanCurveUpdatedMessage(FanCurve!)

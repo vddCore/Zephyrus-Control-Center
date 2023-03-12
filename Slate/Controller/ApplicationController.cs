@@ -46,11 +46,6 @@ namespace Slate.Controller
             new CpuFanCurveUpdatedMessage(
                 ProcessorSettings.FanCurve
             ).Broadcast();
-            
-            new ManualCpuFanControlChangedMessage(
-                ProcessorSettings.ManualFanControlEnabled,
-                ProcessorSettings.ManualFanDutyCycle
-            ).Broadcast();
 
             new CpuBoostModeChangedMessage(
                 ProcessorSettings.IsBoostActiveOnAC,

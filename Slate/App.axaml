@@ -53,6 +53,11 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE115;" />
+        
+        <controls:FontIcon x:Key="ICON_SpeedFast"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="24"
+                           Glyph="&#xEC4A;" />
 
         <controls:FontIcon x:Key="ICON_Back"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
@@ -69,10 +74,7 @@
                            FontSize="18"
                            Glyph="&#xEC49;" />
 
-        <controls:FontIcon x:Key="ICON_SpeedFast"
-                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="18"
-                           Glyph="&#xEC49;" />
+
 
         <controls:FontIcon x:Key="ICON_Thermometer"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"

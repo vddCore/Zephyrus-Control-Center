@@ -38,7 +38,6 @@
                     Spacing="5">
             <control:Card>
                 <Grid RowDefinitions="Auto,Auto"
-                      IsEnabled="{Binding !ProcessorSettings.ManualFanControlEnabled}"
                       Margin="0,1,0,0">
                     <Grid Grid.Row="0"
                           RowDefinitions="Auto,*">
@@ -91,21 +90,6 @@
                                 CommandParameter="{x:Static asus:PerformancePreset.Performance}" />
                     </Grid>
                 </Grid>
-            </control:Card>
-
-            <control:Card>
-                <StackPanel>
-                    <ToggleSwitch Content="Manual CPU fan control"
-                                  IsChecked="{Binding ProcessorSettings.ManualFanControlEnabled, Mode=TwoWay}" />
-
-                    <Slider Margin="7,-6,7,-2"
-                            Padding="0"
-                            Minimum="0"
-                            Maximum="255"
-                            Value="{Binding ProcessorSettings.ManualFanDutyCycle, Mode=TwoWay}"
-                            HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding ProcessorSettings.ManualFanControlEnabled}" />
-                </StackPanel>
             </control:Card>
 
             <control:Card>
