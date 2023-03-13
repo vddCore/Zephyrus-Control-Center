@@ -33,7 +33,6 @@ namespace Slate
             AvaloniaXamlLoader.Load(this);
             LiveCharts.Configure(c => c
                 .AddSkiaSharp()
-                .AddDefaultMappers()
                 .AddDarkTheme()
             );
             

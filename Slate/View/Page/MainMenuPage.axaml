@@ -2,7 +2,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:Slate.View.Control"
              x:Class="Slate.View.Page.MainMenuPage">
-    <control:SettingsPalette Margin="5,4,5,5" 
-                             HorizontalAlignment="Stretch"
+    <control:SettingsPalette HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch" />
 </UserControl>

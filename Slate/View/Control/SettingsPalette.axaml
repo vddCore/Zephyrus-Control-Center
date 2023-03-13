@@ -5,48 +5,67 @@
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:view="clr-namespace:Slate.View"
              xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             xmlns:icons="clr-namespace:Slate.View.Control.Icons"
              x:Class="Slate.View.Control.SettingsPalette">
     <ScrollViewer>
-        <StackPanel Spacing="3">
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_FanCurves}"
-                                    Header="Fan controls"
+        <StackPanel Spacing="4">
+            <control:MainMenuButton Header="Fan controls"
                                     Description="Curves, presets, overrides..."
                                     Command="{Binding ActivateFansPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xE9D9;" />
+                </control:MainMenuButton.ImageContent>
+
                 <control:MainMenuButton.GadgetContent>
                     <control:CoreStatisticsDisplay HorizontalAlignment="Right"
                                                    Width="55" />
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Graphics}"
-                                    Header="Graphics &amp; Display"
+            <control:MainMenuButton Header="Graphics &amp; Display"
                                     Description="MUX switch, refresh rates..."
-                                    Command="{Binding ActivateGraphicsAndDisplayPage}" />
+                                    Command="{Binding ActivateGraphicsAndDisplayPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xF211;" />
+                </control:MainMenuButton.ImageContent>
+            </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Power}"
-                                    Header="Power Management"
+            <control:MainMenuButton Header="Power Management"
                                     Description="Charging limits, power targets..."
-                                    Command="{Binding ActivatePowerManagementPage}" />
+                                    Command="{Binding ActivatePowerManagementPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xE945;" />
+                </control:MainMenuButton.ImageContent>
+            </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Keyboard}"
-                                    Header="Keyboard"
+            <control:MainMenuButton Header="Keyboard"
                                     Description="Aura lighting, custom keybinds..."
-                                    Command="{Binding ActivateKeyboardPage}" />
+                                    Command="{Binding ActivateKeyboardPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xE087;" />
+                </control:MainMenuButton.ImageContent>
+            </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Grid}"
-                                    Header="AniMe Matrix"
+            <control:MainMenuButton Header="AniMe Matrix"
                                     Description="Brightness, animations, images..."
-                                    Command="{Binding ActivateAniMeMatrixPage}" />
+                                    Command="{Binding ActivateAniMeMatrixPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xE80A;" />
+                </control:MainMenuButton.ImageContent>
+            </control:MainMenuButton>
 
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Settings}"
-                                    Header="Application"
+            <control:MainMenuButton Header="Application"
                                     Description="Startup, updates, links, disclaimers..."
-                                    Command="{Binding ActivateApplicationPage}" />
-            
+                                    Command="{Binding ActivateApplicationPage}">
+                <control:MainMenuButton.ImageContent>
+                    <icons:SFIcon FontSize="24" Glyph="&#xE115;" />
+                </control:MainMenuButton.ImageContent>
+            </control:MainMenuButton>
+
             <TextBlock Text="imagine useful content here."
                        Opacity="0.6"
-                       Margin="0,64,0,0" 
-                       HorizontalAlignment="Center"/>
+                       Margin="0,64,0,0"
+                       HorizontalAlignment="Center" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

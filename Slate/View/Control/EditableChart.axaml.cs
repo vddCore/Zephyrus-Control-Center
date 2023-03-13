@@ -30,13 +30,20 @@ namespace Slate.View.Control
             {
                 new()
                 {
-                    TextSize = 11,
+                    SeparatorsPaint = new SolidColorPaint(new SKColor(80, 80, 80, 255))
+                    {
+                        StrokeThickness = 1,
+                    },
+                    LabelsPaint = new SolidColorPaint(new SKColor(180, 180, 180, 255))
+                    {
+                        SKTypeface = SKTypeface.FromFamilyName("Segoe UI")
+                    },
                     MinLimit = FanCurve.MinimumTemperature,
                     MaxLimit = FanCurve.MaximumTemperature,
                     MinStep = 10,
                     ForceStepToMin = true,
-                    SeparatorsPaint = new SolidColorPaint(SKColors.DimGray) { StrokeThickness = 1 },
-                    Padding = new(0,3,6,6)
+                    Padding = new(2, 2, 6, 6),
+                    TextSize = 11
                 }
             });
 
@@ -45,14 +52,21 @@ namespace Slate.View.Control
             {
                 new()
                 {
-                    TextSize = 11,
+                    SeparatorsPaint = new SolidColorPaint(new SKColor(80, 80, 80, 255))
+                    {
+                        StrokeThickness = 1,
+                    },
+                    LabelsPaint = new SolidColorPaint(new SKColor(180, 180, 180, 255))
+                    {
+                        SKTypeface = SKTypeface.FromFamilyName("Segoe UI")
+                    },
                     MinLimit = 0,
                     MaxLimit = FanCurve.MaximumFanRPM,
                     MinStep = 650,
                     ForceStepToMin = true,
-                    Labeler = (d) => { return d >= FanCurve.MinimumFanRPM || d == 0 ? d.ToString("F0") : ""; },
-                    SeparatorsPaint = new SolidColorPaint(SKColors.DimGray) { StrokeThickness = 1 },
-                    Padding = new(6,6,6,12)
+                    Labeler = (d) => { return d >= FanCurve.MinimumFanRPM ? d.ToString("F0") : ""; },
+                    Padding = new(4, 8, 4, 0),
+                    TextSize = 11,
                 }
             });
 
@@ -69,7 +83,6 @@ namespace Slate.View.Control
                     {
                         StrokeThickness = 1,
                         PathEffect = new DashEffect(new float[] { 4, 4 }),
-                        
                     },
                     Fill = new SolidColorPaint(new SKColor(0, 0, 0, 100))
                 }
@@ -149,7 +162,7 @@ namespace Slate.View.Control
                 horizontalMoveLegal = horizontalMoveLegal && (nextPoint.X - 5 > dataCoordinates.X);
             }
 
-            if (horizontalMoveLegal 
+            if (horizontalMoveLegal
                 && dataCoordinates.X >= FanCurve.MinimumTemperature
                 && dataCoordinates.X <= FanCurve.MaximumTemperature)
             {
@@ -177,7 +190,7 @@ namespace Slate.View.Control
                 return;
 
             var index = points.IndexOf(_editedPoint!);
-            
+
             if (_editedPoint.Y < FanCurve.MinimumFanRPM)
                 _editedPoint.Y = FanCurve.MinimumFanRPM - 1;
 

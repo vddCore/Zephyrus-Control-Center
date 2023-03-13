@@ -15,8 +15,8 @@ namespace Slate.View.Control
         public static readonly StyledProperty<object?> CommandParameterProperty =
             AvaloniaProperty.Register<MainMenuButton, object?>(nameof(CommandParameter));
         
-        public static readonly StyledProperty<FontIcon?> FontIconProperty =
-            AvaloniaProperty.Register<MainMenuButton, FontIcon?>(nameof(FontIcon));
+        public static readonly StyledProperty<object?> ImageContentProperty =
+            AvaloniaProperty.Register<MainMenuButton, object?>(nameof(ImageContent));
         
         public static readonly StyledProperty<string?> HeaderProperty =
             AvaloniaProperty.Register<MainMenuButton, string?>(nameof(Header));
@@ -39,10 +39,10 @@ namespace Slate.View.Control
             set => SetValue(CommandParameterProperty, value);
         }
         
-        public FontIcon? FontIcon
+        public object? ImageContent
         {
-            get => GetValue(FontIconProperty);
-            set => SetValue(FontIconProperty, value);
+            get => GetValue(ImageContentProperty);
+            set => SetValue(ImageContentProperty, value);
         }
         
         public string? Header

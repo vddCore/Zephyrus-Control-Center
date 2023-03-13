@@ -1,0 +1,23 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:control="clr-namespace:Slate.View.Control">
+    <Style Selector="Button ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                <BrushTransition Property="Background" Duration="0:0:0.1" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <Style Selector="Button:pointerover ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                <BrushTransition Property="Background" Duration="0:0:0.1" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+</Styles>
