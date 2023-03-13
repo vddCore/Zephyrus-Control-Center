@@ -8,25 +8,20 @@
              x:Class="Slate.View.Control.SettingsPalette">
     <ScrollViewer>
         <StackPanel Spacing="3">
-            <control:MainMenuButton FontIcon="{DynamicResource ICON_Processor}"
-                                    Header="Processor"
-                                    Description="CPU fan curve, turbo boost..."
-                                    Command="{Binding ActivateProcessorPage}">
+            <control:MainMenuButton FontIcon="{DynamicResource ICON_FanCurves}"
+                                    Header="Fan controls"
+                                    Description="Curves, presets, overrides..."
+                                    Command="{Binding ActivateFansPage}">
                 <control:MainMenuButton.GadgetContent>
-                    <control:ProcessorStatisticsDisplay HorizontalAlignment="Right"
-                                                        Width="70" />
+                    <control:CoreStatisticsDisplay HorizontalAlignment="Right"
+                                                   Width="55" />
                 </control:MainMenuButton.GadgetContent>
             </control:MainMenuButton>
 
             <control:MainMenuButton FontIcon="{DynamicResource ICON_Graphics}"
                                     Header="Graphics &amp; Display"
-                                    Description="GPU fan curve, refresh rates..."
-                                    Command="{Binding ActivateGraphicsAndDisplayPage}">
-                <control:MainMenuButton.GadgetContent>
-                    <control:GraphicsStatisticsDisplay HorizontalAlignment="Right"
-                                                       Width="70" />
-                </control:MainMenuButton.GadgetContent>
-            </control:MainMenuButton>
+                                    Description="MUX switch, refresh rates..."
+                                    Command="{Binding ActivateGraphicsAndDisplayPage}" />
 
             <control:MainMenuButton FontIcon="{DynamicResource ICON_Power}"
                                     Header="Power Management"
@@ -47,6 +42,11 @@
                                     Header="Application"
                                     Description="Startup, updates, links, disclaimers..."
                                     Command="{Binding ActivateApplicationPage}" />
+            
+            <TextBlock Text="imagine useful content here."
+                       Opacity="0.6"
+                       Margin="0,64,0,0" 
+                       HorizontalAlignment="Center"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

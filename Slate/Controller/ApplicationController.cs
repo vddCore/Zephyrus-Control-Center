@@ -29,7 +29,7 @@ namespace Slate.Controller
                 _asusHalService.OpenAcpiSession();
             
             SubscribeToApplicationSettings();
-            SubscribeToProcessorSettings();
+            SubscribeToFansSettings();
             SubscribeToGraphicsAndDisplaySettings();
             
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
@@ -37,32 +37,30 @@ namespace Slate.Controller
 
         private void ApplyInitialValues()
         {
-            if (ProcessorSettings.FanCurve == null)
+            if (FansSettings.CpuFanCurve == null)
             {
-                ProcessorSettings.FanCurve = _asusHalService.ReadBuiltInCpuFanCurve(
+                FansSettings.CpuFanCurve = _asusHalService.ReadBuiltInCpuFanCurve(
                     PerformancePreset.Balanced
                 );
             }
 
-            if (GraphicsAndDisplaySettings.FanCurve == null)
+            if (FansSettings.GpuFanCurve == null)
             {
-                GraphicsAndDisplaySettings.FanCurve = _asusHalService.ReadBuiltInGpuFanCurve(
+                FansSettings.GpuFanCurve = _asusHalService.ReadBuiltInGpuFanCurve(
                     PerformancePreset.Balanced
                 );
             }
             
-            new CpuFanCurveUpdatedMessage(
-                ProcessorSettings.FanCurve
-            ).Broadcast();
-
+            new CpuFanCurveUpdatedMessage(FansSettings.CpuFanCurve)
+                .Broadcast();
+            
+            new GpuFanCurveUpdatedMessage(FansSettings.GpuFanCurve)
+                .Broadcast();
+            
             new CpuBoostModeChangedMessage(
-                ProcessorSettings.IsBoostActiveOnAC,
-                ProcessorSettings.IsBoostActiveOnDC
+                PowerManagementSettings.IsBoostActiveOnAC,
+                PowerManagementSettings.IsBoostActiveOnDC
             );
-            
-            new GpuFanCurveUpdatedMessage(
-                GraphicsAndDisplaySettings.FanCurve
-            ).Broadcast();
         }
         
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)

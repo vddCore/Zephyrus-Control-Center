@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             x:Class="Slate.View.Control.CoreStatisticsDisplay"
+             DataContext="{mvvm:DataContextSource vm:CoreStatisticsDisplayViewModel}">
+    <Grid RowDefinitions="Auto,Auto">
+        <Grid Grid.Row="0"
+              ColumnDefinitions="Auto,Auto">
+            <ContentPresenter Grid.Column="0"
+                              Margin="0,1,0,0"
+                              Content="{DynamicResource ICON_Processor16x}"
+                              Opacity="0.66" />
+
+            <TextBlock Grid.Column="1"
+                       Margin="5,0,0,0"
+                       Text="{Binding HardwareMonitor.CpuTemperature, StringFormat='{}{0}°C'}"
+                       FontSize="13"
+                       Opacity="0.90" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="Auto,Auto"
+              Margin="0,1,0,0">
+            <ContentPresenter Grid.Column="0"
+                              Margin="0,1,1,0"
+                              Content="{DynamicResource ICON_Graphics16x}"
+                              Opacity="0.66" />
+
+            <TextBlock Grid.Column="1"
+                       Margin="4,0,0,0"
+                       Text="{Binding HardwareMonitor.GpuTemperature, StringFormat='{}{0}°C'}"
+                       FontSize="13"
+                       Opacity="0.90" />
+        </Grid>
+    </Grid>
+</UserControl>

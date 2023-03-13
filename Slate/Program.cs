@@ -23,7 +23,7 @@ namespace Slate
                 .StartWithClassicDesktopLifetime(args);
 #endif
         }
-
+    
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder
                 .Configure<App>()

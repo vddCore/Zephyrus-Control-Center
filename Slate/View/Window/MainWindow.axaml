@@ -20,7 +20,7 @@
         ShowInTaskbar="False"
         CanResize="False"
         Width="336"
-        Height="456"
+        Height="600"
         DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
         Deactivated="Window_OnDeactivated">
     <Panel>
@@ -93,8 +93,8 @@
                             <page:MainMenuPage />
                         </DataTemplate>
 
-                        <DataTemplate DataType="{x:Type view:ProcessorPageMarker}">
-                            <page:ProcessorPage />
+                        <DataTemplate DataType="{x:Type view:FansPageMarker}">
+                            <page:FansPage />
                         </DataTemplate>
 
                         <DataTemplate DataType="{x:Type view:GraphicsAndDisplayPageMarker}">

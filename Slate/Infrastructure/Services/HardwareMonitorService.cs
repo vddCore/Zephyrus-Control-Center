@@ -10,11 +10,11 @@ namespace Slate.Infrastructure.Services
         
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int ProcessorFanRPM { get; private set; }
-        public int ProcessorTemperature { get; private set; }
+        public int CpuFanRPM { get; private set; }
+        public int CpuTemperature { get; private set; }
         
-        public int GraphicsFanRPM { get; private set; }
-        public int GraphicsTemperature { get; private set; }
+        public int GpuFanRPM { get; private set; }
+        public int GpuTemperature { get; private set; }
 
         public HardwareMonitorService(IAsusHalService asusHalService)
         {
@@ -28,11 +28,11 @@ namespace Slate.Infrastructure.Services
             if (!_asusHalService.IsAcpiSessionOpen)
                 return;
             
-            ProcessorFanRPM = _asusHalService.ReadCpuFanSpeed();
-            ProcessorTemperature = (int)_asusHalService.ReadCpuTemperatureCelsius();
+            CpuFanRPM = _asusHalService.ReadCpuFanSpeed();
+            CpuTemperature = (int)_asusHalService.ReadCpuTemperatureCelsius();
             
-            GraphicsFanRPM = _asusHalService.ReadGpuFanSpeed();
-            GraphicsTemperature = (int)_asusHalService.ReadGpuTemperatureCelsius();
+            GpuFanRPM = _asusHalService.ReadGpuFanSpeed();
+            GpuTemperature = (int)_asusHalService.ReadGpuTemperatureCelsius();
         }
     }
 }

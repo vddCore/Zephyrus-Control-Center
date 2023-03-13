@@ -5,11 +5,11 @@ using Slate.Model.Messaging;
 
 namespace Slate.ViewModel.Control
 {
-    public class ProcessorStatisticsDisplayViewModel : ViewModelBase
+    public class CoreStatisticsDisplayViewModel : ViewModelBase
     {
         protected IHardwareMonitorService HardwareMonitor { get; }
 
-        public ProcessorStatisticsDisplayViewModel(IHardwareMonitorService hardwareMonitor)
+        public CoreStatisticsDisplayViewModel(IHardwareMonitorService hardwareMonitor)
         {
             HardwareMonitor = hardwareMonitor;
         }

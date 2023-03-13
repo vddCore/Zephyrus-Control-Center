@@ -24,10 +24,10 @@
     </TrayIcon.Icons>
 
     <Application.Resources>
-        <controls:FontIcon x:Key="ICON_Processor"
+        <controls:FontIcon x:Key="ICON_FanCurves"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
-                           Glyph="&#xE950;" />
+                           Glyph="&#xE9D9;"/>
 
         <controls:FontIcon x:Key="ICON_Graphics"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
@@ -53,33 +53,31 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="24"
                            Glyph="&#xE115;" />
-        
-        <controls:FontIcon x:Key="ICON_SpeedFast"
-                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="24"
-                           Glyph="&#xEC4A;" />
 
         <controls:FontIcon x:Key="ICON_Back"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="12"
                            Glyph="&#xE64E;" />
-
-        <controls:FontIcon x:Key="ICON_SpeedSlow"
+        
+        <controls:FontIcon x:Key="ICON_Processor16x"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="18"
-                           Glyph="&#xEC48;" />
-
-        <controls:FontIcon x:Key="ICON_SpeedMedium"
+                           FontSize="16"
+                           Glyph="&#xE950;" />
+        
+        <controls:FontIcon x:Key="ICON_Processor64x"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="18"
-                           Glyph="&#xEC49;" />
-
-
-
-        <controls:FontIcon x:Key="ICON_Thermometer"
+                           FontSize="64"
+                           Glyph="&#xE950;" />
+        
+        <controls:FontIcon x:Key="ICON_Graphics16x"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="18"
-                           Glyph="&#xE9CA;" />
+                           FontSize="16"
+                           Glyph="&#xF211;" />
+        
+        <controls:FontIcon x:Key="ICON_Graphics64x"
+                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
+                           FontSize="64"
+                           Glyph="&#xF211;" />
 
         <controls:FontIcon x:Key="ICON_GitHub"
                            FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"

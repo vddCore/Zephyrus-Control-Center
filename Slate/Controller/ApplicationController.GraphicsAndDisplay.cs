@@ -11,12 +11,6 @@ namespace Slate.Controller
 
         private void SubscribeToGraphicsAndDisplaySettings()
         {
-            Message.Subscribe<GpuFanCurveUpdatedMessage>(this, OnGpuFanCurveUpdated);
-        }
-
-        private void OnGpuFanCurveUpdated(GpuFanCurveUpdatedMessage msg)
-        {
-            _asusHalService.WriteGpuFanCurve(msg.Curve);
         }
     }
 }

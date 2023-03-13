@@ -41,15 +41,8 @@
       <Compile Update="View\Page\MainMenuPage.axaml.cs">
         <DependentUpon>MainMenuPage.axaml</DependentUpon>
       </Compile>
-      <Compile Update="View\Page\ProcessorPage.axaml.cs">
-        <DependentUpon>ProcessorPage.axaml</DependentUpon>
-      </Compile>
-      <Compile Update="View\Control\ProcessorStatisticsDisplay.axaml.cs">
+      <Compile Update="View\Control\CoreStatisticsDisplay.axaml.cs">
         <DependentUpon>CpuStatsDisplay.axaml</DependentUpon>
-      </Compile>
-      <Compile Update="View\Control\GraphicsStatisticsDisplay.axaml.cs">
-        <DependentUpon>GraphicsStatisticsDisplay.axaml</DependentUpon>
-        <SubType>Code</SubType>
       </Compile>
       <Compile Update="View\Page\GraphicsAndDisplayPage.axaml.cs">
         <DependentUpon>GraphicsPage.axaml</DependentUpon>
@@ -81,6 +74,10 @@
       </Compile>
       <Compile Update="View\Control\EditableChart.axaml.cs">
         <DependentUpon>EditableChart.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Page\FansPage.axaml.cs">
+        <DependentUpon>FansPage.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

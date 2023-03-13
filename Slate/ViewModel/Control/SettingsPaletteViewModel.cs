@@ -13,8 +13,8 @@ namespace Slate.ViewModel.Control
                 .Broadcast();
         }
 
-        public void ActivateProcessorPage()
-            => ActivatePage(Pages.Processor);
+        public void ActivateFansPage()
+            => ActivatePage(Pages.Fans);
 
         public void ActivateGraphicsAndDisplayPage()
             => ActivatePage(Pages.GraphicsAndDisplay);

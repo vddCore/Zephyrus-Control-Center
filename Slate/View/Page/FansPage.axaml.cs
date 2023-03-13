@@ -4,9 +4,9 @@ using PropertyChanged;
 namespace Slate.View.Page
 {
     [DoNotNotify]
-    public partial class ProcessorPage : UserControl
+    public partial class FansPage : UserControl
     {
-        public ProcessorPage()
+        public FansPage()
         {
             InitializeComponent();
         }

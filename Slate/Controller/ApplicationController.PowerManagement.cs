@@ -7,17 +7,11 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private ProcessorSettings ProcessorSettings => _settingsService.ControlCenter!.Processor;
-
-        private void SubscribeToProcessorSettings()
+        private PowerManagementSettings PowerManagementSettings => _settingsService.ControlCenter!.PowerManagement;
+        
+        private void SubscribeToPowerManagementSettings()
         {
-            Message.Subscribe<CpuFanCurveUpdatedMessage>(this, OnCpuFanCurveUpdated);
             Message.Subscribe<CpuBoostModeChangedMessage>(this, OnCpuBoostModeChanged);
-        }
-
-        private void OnCpuFanCurveUpdated(CpuFanCurveUpdatedMessage msg)
-        {
-            _asusHalService.WriteCpuFanCurve(msg.Curve);
         }
         
         private void OnCpuBoostModeChanged(CpuBoostModeChangedMessage msg)

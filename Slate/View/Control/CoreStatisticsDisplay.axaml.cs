@@ -4,9 +4,9 @@ using PropertyChanged;
 namespace Slate.View.Control
 {
     [DoNotNotify]
-    public partial class ProcessorStatisticsDisplay : UserControl
+    public partial class CoreStatisticsDisplay : UserControl
     {
-        public ProcessorStatisticsDisplay()
+        public CoreStatisticsDisplay()
         {
             InitializeComponent();
         }

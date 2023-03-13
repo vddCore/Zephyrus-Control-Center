@@ -3,7 +3,7 @@
     public abstract record PageMarker;
     
     public sealed record MainMenuPageMarker : PageMarker;
-    public sealed record ProcessorPageMarker : PageMarker;
+    public sealed record FansPageMarker : PageMarker;
     public sealed record GraphicsAndDisplayPageMarker : PageMarker;
     public sealed record PowerManagementPageMarker : PageMarker;
     public sealed record KeyboardPageMarker : PageMarker;
@@ -13,7 +13,7 @@
     public static class Pages
     {
         public static MainMenuPageMarker MainMenu = new();
-        public static ProcessorPageMarker Processor = new();
+        public static FansPageMarker Fans = new();
         public static GraphicsAndDisplayPageMarker GraphicsAndDisplay = new();
         public static PowerManagementPageMarker PowerManagement = new();
         public static KeyboardPageMarker Keyboard = new();

@@ -64,6 +64,13 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public void SetGpuFanDutyCycle(byte dutyCycle)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetGpuFanDutyCycle(dutyCycle);
+        }
+
+        [RequiresAcpiSession]
         public FanCurve ReadBuiltInCpuFanCurve(PerformancePreset performancePreset)
         {
             ThrowIfProxyNull();

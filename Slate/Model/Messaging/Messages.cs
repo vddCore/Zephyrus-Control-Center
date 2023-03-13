@@ -34,14 +34,20 @@ namespace Slate.Model.Messaging
 
     public sealed record CpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
-
-    public sealed record CpuBoostModeChangedMessage(
-            bool EnableOnAC,
-            bool EnableOnDC
-    ) : Message;
     
     public sealed record GpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
+
+    public sealed record ManualFanOverrideUpdatedMessage(
+        bool IsOverrideEnabled,
+        byte CpuDutyCycle,
+        byte GpuDutyCycle
+    ) : Message;
+    
+    public sealed record CpuBoostModeChangedMessage(
+        bool EnableOnAC,
+        bool EnableOnDC
+    ) : Message;
 
     public sealed record SystemAccentColorChangedMessage(
         Color PrimaryAccentColor,

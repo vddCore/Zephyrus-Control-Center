@@ -4,10 +4,10 @@ namespace Slate.Infrastructure.Services
 {
     public interface IHardwareMonitorService : IService
     {
-        int ProcessorFanRPM { get; }
-        int ProcessorTemperature { get; }
+        int CpuFanRPM { get; }
+        int CpuTemperature { get; }
         
-        int GraphicsFanRPM { get; }
-        int GraphicsTemperature { get; }
+        int GpuFanRPM { get; }
+        int GpuTemperature { get; }
     }
 }
