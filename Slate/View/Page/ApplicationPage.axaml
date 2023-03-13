@@ -3,91 +3,94 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:icons="clr-namespace:Slate.View.Control.Icons"
              x:Class="Slate.View.Page.ApplicationPage"
              DataContext="{mvvm:DataContextSource vm:ApplicationPageViewModel}">
-    <Grid RowDefinitions="*,1,Auto"
-          Margin="5">
-        <Grid Grid.Row="0"
-              RowDefinitions="Auto,Auto,*"
-              HorizontalAlignment="Stretch">
+    <Grid RowDefinitions="Auto,*,1,Auto">
+        <StackPanel Grid.Row="0"
+                    Spacing="4"
+                    HorizontalAlignment="Stretch">
             <control:Card>
                 <ToggleSwitch Content="Launch on startup"
                               IsChecked="{Binding ApplicationSettings.RunOnStartup, Mode=TwoWay}" />
             </control:Card>
 
-            <control:Card Grid.Row="1"
-                          Margin="0,5,0,0">
+            <control:Card>
                 <ToggleSwitch Content="Check for updates"
                               IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
             </control:Card>
+        </StackPanel>
 
-            <Grid Grid.Row="2">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Center"
-                           TextWrapping="Wrap">
-                    <Run Text="This computer program is in no way"
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <Run Text="associated with ASUSTeK Computer Inc."
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="Don't get me wrong, their hardware is amazing"
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <Run Text="but their software is completely dogshit."
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="Also goes without saying but it's you who is"
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <Run Text="responsible for your own G14. So maybe don't"
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <Run Text="fuck it up. And if you do, it's all your fault."
-                         Foreground="#33FFFFFF" />
-                    <Run Text="❤️" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="Made with pure spite and Avalonia."
-                         Foreground="#33FFFFFF" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="🏳️‍⚧️" />
-                </TextBlock>
-            </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap">
+                <Run Text="This computer program is in no way"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="associated with ASUSTeK Computer Inc."
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Don't get me wrong, their hardware is amazing"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="but their software is completely dogshit."
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Also goes without saying but it's you who is"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="responsible for your own G14. So maybe don't"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="fuck it up. And if you do, it's all your fault."
+                     Foreground="#33FFFFFF" />
+                <Run Text="❤️" />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Made with pure spite and Avalonia."
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="🏳️‍⚧️" />
+            </TextBlock>
         </Grid>
 
-        <Border Grid.Row="1"
+        <Border Grid.Row="2"
                 BorderBrush="White"
                 BorderThickness="0,1,0,0"
-                Margin="4,6"
+                Margin="4,4"
                 Opacity="0.1" />
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="3"
               ColumnDefinitions="Auto,*"
               Margin="6,0">
-             <StackPanel Grid.Column="0"
-                         Orientation="Horizontal"
-                         Spacing="4">
-                  <Button Grid.Column="0"
-                          Classes="LinkIcon"
-                          Content="{DynamicResource ICON_GitHub}"
-                          Command="{Binding OpenPage}"
-                          CommandParameter="https://github.com/vddCore/Zephyrus-Control-Center"
-                          ToolTip.Tip="i'm open source."
-                          ToolTip.Placement="Right" />
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal"
+                        Spacing="4">
+                <Button Grid.Column="0"
+                        Classes="LinkIcon"
+                        Command="{Binding OpenPage}"
+                        CommandParameter="https://github.com/vddCore/Zephyrus-Control-Center"
+                        ToolTip.Tip="i'm open source."
+                        ToolTip.Placement="Right">
+                    <icons:FAIcon FontSize="16"
+                                  Glyph="&#xF09B;" />
+                </Button>
 
-                  <Button Grid.Column="1"
-                          Classes="LinkIcon"
-                          Content="{DynamicResource ICON_FortAwesome}"
-                          Command="{Binding OpenPage}"
-                          CommandParameter="https://fontawesome.com"
-                          ToolTip.Tip="i use fontawesome."
-                          ToolTip.Placement="Right" />
-             </StackPanel>
+                <Button Grid.Column="1"
+                        Classes="LinkIcon"
+                        Command="{Binding OpenPage}"
+                        CommandParameter="https://fontawesome.com"
+                        ToolTip.Tip="i use fontawesome."
+                        ToolTip.Placement="Right">
+                    <icons:FAIcon FontSize="16"
+                                  Glyph="&#xF3A3;" />
+                </Button>
+            </StackPanel>
 
             <TextBlock Grid.Column="1"
                        Text="{Binding VersionString}"

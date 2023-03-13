@@ -23,12 +23,7 @@
         </TrayIcons>
     </TrayIcon.Icons>
 
-    <Application.Resources>     
-        <controls:FontIcon x:Key="ICON_Processor16x"
-                           FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
-                           FontSize="16"
-                           Glyph="&#xE950;" />
-        
+    <Application.Resources>            
         <controls:FontIcon x:Key="ICON_Processor64x"
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="64"
@@ -38,16 +33,6 @@
                            FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                            FontSize="64"
                            Glyph="&#xF211;" />
-
-        <controls:FontIcon x:Key="ICON_GitHub"
-                           FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"
-                           FontSize="16"
-                           Glyph="&#xF09B;" />
-        
-        <controls:FontIcon x:Key="ICON_FortAwesome"
-                           FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"
-                           FontSize="16"
-                           Glyph="&#xF3A3;" />
     </Application.Resources>
 
     <Application.Styles>

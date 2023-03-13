@@ -11,7 +11,7 @@
         <Setter Property="Transitions">
             <Transitions>
                 <BrushTransition Property="Foreground"
-                                 Duration="0:0:0.1" />
+                                 Duration="0:0:0.05" />
             </Transitions>
         </Setter>
     </Style>
