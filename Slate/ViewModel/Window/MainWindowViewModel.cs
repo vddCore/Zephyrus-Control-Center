@@ -17,6 +17,7 @@ namespace Slate.ViewModel.Window
         private readonly ApplicationController _applicationController;
 
         public PageMarker? CurrentPage { get; private set; }
+        public bool BackButtonEnabled { get; private set; } = true;
 
         public MainWindowViewModel(
             IAsusHalService asusHalService,
@@ -35,7 +36,15 @@ namespace Slate.ViewModel.Window
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
             Message.Subscribe<SettingsModifiedMessage>(this, OnSettingsModified);
             Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
+            Message.Subscribe<EcoModeTransitionStartedMessage>(this, OnEcoModeTransitionStarted);
+            Message.Subscribe<EcoModeTransitionFinishedMessage>(this, OnEcoModeTransitionFinished);
         }
+
+        private void OnEcoModeTransitionStarted(EcoModeTransitionStartedMessage _) 
+            => BackButtonEnabled = false;
+        
+        private void OnEcoModeTransitionFinished(EcoModeTransitionFinishedMessage _)
+            => BackButtonEnabled = true;
 
         public void NavigateBack()
         {
@@ -48,6 +57,7 @@ namespace Slate.ViewModel.Window
                 SetCurrentPage(Pages.MainMenu);
             }
         }
+        
         private void SetCurrentPage(PageMarker? page)
         {
             new PageSwitchedMessage(page)

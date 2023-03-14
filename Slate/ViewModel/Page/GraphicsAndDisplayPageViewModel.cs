@@ -2,8 +2,10 @@
 using Avalonia;
 using Glitonea.Extensions;
 using Glitonea.Mvvm;
+using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure;
 using Slate.Infrastructure.Services;
+using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;
 using Slate.View.Window;
 using Slate.ViewModel.Window;
@@ -67,17 +69,22 @@ namespace Slate.ViewModel.Page
             ShowDecisionBox();
         }
 
+        /**
+         * Transition to eco-mode takes some time for the EC
+         * to facilitate, so we run this asynchronously.
+         **/
         public async Task BeginEcoModeTransition()
         {
             await Task.Run(() =>
             {
+                Message.Broadcast<EcoModeTransitionStartedMessage>();
                 EcoModeSwitchText = "Waiting for embedded controller...";
                 IsSwitchingEcoModes = true;
                 GraphicsAndDisplaySettings.IsEcoModeEnabled = !GraphicsAndDisplaySettings.IsEcoModeEnabled;
                 OnPropertyChanged(nameof(IsEcoModeEnabled));
                 IsSwitchingEcoModes = false;
                 EcoModeSwitchText = "Prioritize power saving";
-
+                Message.Broadcast<EcoModeTransitionFinishedMessage>();
             });
         }
 

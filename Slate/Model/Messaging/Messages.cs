@@ -53,6 +53,12 @@ namespace Slate.Model.Messaging
 
     public sealed record EcoModeChangedMessage(bool Enabled)
         : Message;
+
+    public sealed record EcoModeTransitionStartedMessage
+        : Message;
+
+    public sealed record EcoModeTransitionFinishedMessage
+        : Message;
     
     public sealed record CpuBoostModeChangedMessage(
         bool EnableOnAC,

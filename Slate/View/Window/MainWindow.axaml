@@ -39,7 +39,6 @@
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   RowDefinitions="36,*">
-
                 <Grid Grid.Row="0"
                       Grid.ColumnDefinitions="Auto,*,Auto"
                       VerticalAlignment="Stretch"
@@ -53,7 +52,8 @@
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Center"
                             VerticalContentAlignment="Center"
-                            Command="{Binding NavigateBack}">
+                            Command="{Binding NavigateBack}"
+                            IsEnabled="{Binding BackButtonEnabled}">
                         <Button.Styles>
                             <Style Selector="Button icons|SFIcon">
                                 <Setter Property="Transitions">
