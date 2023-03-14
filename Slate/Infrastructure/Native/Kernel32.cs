@@ -41,8 +41,5 @@ namespace Slate.Infrastructure.Native
 
         [DllImport(LibraryName)]
         public static extern bool CloseHandle(nint hObject);
-        
-        [DllImport(LibraryName)]
-        public static extern nint GetModuleHandle(string moduleName);
     }
 }
