@@ -13,6 +13,7 @@ namespace Slate.Controller
         {
             Message.Subscribe<MuxSwitchModeChangedMessage>(this, OnGraphicsModeChanged);
             Message.Subscribe<EcoModeChangedMessage>(this, OnGraphicsPowerSavingModeChanged);
+            Message.Subscribe<DisplayOverdriveChangedMessage>(this, OnGraphicsOverdriveChanged);
         }
 
         private void OnGraphicsModeChanged(MuxSwitchModeChangedMessage msg)
@@ -22,7 +23,12 @@ namespace Slate.Controller
         
         private void OnGraphicsPowerSavingModeChanged(EcoModeChangedMessage msg)
         {
-            _asusHalService.SetSwitchedGraphicsPowerSaving(msg.Enabled);
+            _asusHalService.SetEcoMode(msg.Enabled);
+        }
+        
+        private void OnGraphicsOverdriveChanged(DisplayOverdriveChangedMessage msg)
+        {
+            _asusHalService.SetDisplayOverdrive(msg.Enabled);
         }
     }
 }

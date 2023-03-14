@@ -114,7 +114,7 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
-        public void SetSwitchedGraphicsPowerSaving(bool enable)
+        public void SetEcoMode(bool enable)
         {
             ThrowIfProxyNull();
 
@@ -125,10 +125,24 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
-        public bool GetSwitchedGraphicsPowerSaving()
+        public bool GetEcoMode()
         {
             ThrowIfProxyNull();
             return _proxy!.DSTS.IsGraphicsPowerSavingEnabled;
+        }
+
+        [RequiresAcpiSession]
+        public bool GetDisplayOverdrive()
+        {
+            ThrowIfProxyNull();
+            return _proxy!.DSTS.IsDisplayOverdriveEnabled;
+        }
+
+        [RequiresAcpiSession]
+        public void SetDisplayOverdrive(bool enable)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetDisplayOverdrive(enable);
         }
 
         [RequiresAcpiSession]

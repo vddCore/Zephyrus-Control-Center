@@ -8,9 +8,9 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              x:Class="Slate.View.Page.GraphicsAndDisplayPage"
              DataContext="{mvvm:DataContextSource vm:GraphicsAndDisplayPageViewModel}">
-    <StackPanel Spacing="4">
-        <control:Card Padding="0,0,0,10"
-                      IsEnabled="{Binding !IsSwitchingEcoModes}">
+    <StackPanel Spacing="4" 
+                IsEnabled="{Binding !IsSwitchingEcoModes}">
+        <control:Card Padding="0,0,0,10">
             <Grid>
                 <Grid RowDefinitions="*,Auto">
                     <StackPanel Grid.Row="0">
@@ -64,6 +64,11 @@
                     </Grid>
                 </Border>
             </Grid>
+        </control:Card>
+        
+        <control:Card>
+            <ToggleSwitch Content="Built-in display overdrive"
+                          IsChecked="{Binding GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled, Mode=TwoWay}" />
         </control:Card>
     </StackPanel>
 </UserControl>

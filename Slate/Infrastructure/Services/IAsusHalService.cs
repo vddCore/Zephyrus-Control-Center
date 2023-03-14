@@ -21,8 +21,10 @@ namespace Slate.Infrastructure.Services
         void WriteGpuFanCurve(FanCurve curve);
         void SetGraphicsMode(MuxSwitchMode mode);
         MuxSwitchMode GetGraphicsMode();
-        void SetSwitchedGraphicsPowerSaving(bool enable);
-        bool GetSwitchedGraphicsPowerSaving();
+        void SetEcoMode(bool enable);
+        bool GetEcoMode();
+        void SetDisplayOverdrive(bool enable);
+        bool GetDisplayOverdrive();
         void CloseAcpiSession();
 
     }

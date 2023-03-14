@@ -31,8 +31,9 @@ namespace Slate.Controller
 
             /**
              * We read these before subscribing to settings-broadcast
-             * messages to avoid causing system instability.
-             */
+             * messages to avoid causing system instability. And maybe
+             * improve reporting reliability. Who knows.
+             **/
             ReadVolatileSettingsFromFirmware();
 
             SubscribeToApplicationSettings();
@@ -45,7 +46,8 @@ namespace Slate.Controller
         private void ReadVolatileSettingsFromFirmware()
         {
             GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
-            GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetSwitchedGraphicsPowerSaving();
+            GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetEcoMode();
+            GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled = _asusHalService.GetDisplayOverdrive();
         }
 
         private void ApplyInitialValues()

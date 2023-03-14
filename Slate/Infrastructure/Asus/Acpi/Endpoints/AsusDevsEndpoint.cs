@@ -63,5 +63,13 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
                 enable ? (byte)1 : (byte)0
             );
         }
+
+        public void SetDisplayOverdrive(bool enable)
+        {
+            _ = ReadInt32(
+                DevsMethod.SetDisplayOverdrive,
+                enable ? (byte)1 : (byte)0
+            );
+        }
     }
 }

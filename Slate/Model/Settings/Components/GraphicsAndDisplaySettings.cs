@@ -7,6 +7,8 @@ namespace Slate.Model.Settings.Components
     public class GraphicsAndDisplaySettings : SettingsComponent
     {
         public bool? IsEcoModeEnabled { get; set; }
+        public bool? IsDisplayOverdriveEnabled { get; set; }
+
         public MuxSwitchMode? MuxSwitchMode { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
@@ -15,8 +17,18 @@ namespace Slate.Model.Settings.Components
             {
                 case nameof(IsEcoModeEnabled):
                 {
-                    new EcoModeChangedMessage(IsEcoModeEnabled!.Value)
-                        .Broadcast();
+                    new EcoModeChangedMessage(
+                        IsEcoModeEnabled!.Value
+                    ).Broadcast();
+
+                    break;
+                }
+
+                case nameof(IsDisplayOverdriveEnabled):
+                {
+                    new DisplayOverdriveChangedMessage(
+                        IsDisplayOverdriveEnabled!.Value
+                    ).Broadcast();
 
                     break;
                 }
