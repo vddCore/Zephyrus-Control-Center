@@ -1,6 +1,6 @@
 ﻿namespace Slate.Infrastructure.Asus.Acpi
 {
-    public enum EmbeddedControllerRequest : byte
+    public enum KeyPressRequest : byte
     {
         DecreaseScreenBrightness = 0x10,
         IncreaseScreenBrightness = 0x20,

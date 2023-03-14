@@ -1,4 +1,5 @@
 ﻿using Glitonea.Mvvm.Messaging;
+using Slate.Infrastructure;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
@@ -13,9 +14,9 @@ namespace Slate.Controller
         private readonly IAsusHalService _asusHalService;
         private readonly ISettingsService _settingsService;
         private readonly IPowerManagementService _powerManagementService;
-        
+
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
-        
+
         public ApplicationController(
             IAsusHalService asusHalService,
             ISettingsService settingsService,
@@ -27,12 +28,24 @@ namespace Slate.Controller
 
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
-            
+
+            /**
+             * We read these before subscribing to settings-broadcast
+             * messages to avoid causing system instability.
+             */
+            ReadVolatileSettingsFromFirmware();
+
             SubscribeToApplicationSettings();
             SubscribeToFansSettings();
             SubscribeToGraphicsAndDisplaySettings();
-            
+
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
+        }
+
+        private void ReadVolatileSettingsFromFirmware()
+        {
+            GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
+            GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetSwitchedGraphicsPowerSaving();
         }
 
         private void ApplyInitialValues()
@@ -50,19 +63,19 @@ namespace Slate.Controller
                     PerformancePreset.Balanced
                 );
             }
-            
+
             new CpuFanCurveUpdatedMessage(FansSettings.CpuFanCurve)
                 .Broadcast();
-            
+
             new GpuFanCurveUpdatedMessage(FansSettings.GpuFanCurve)
                 .Broadcast();
-            
+
             new CpuBoostModeChangedMessage(
-                PowerManagementSettings.IsBoostActiveOnAC,
-                PowerManagementSettings.IsBoostActiveOnDC
+                PowerManagementSettings.IsProcessorBoostActiveOnAC,
+                PowerManagementSettings.IsProcessorBoostActiveOnAC
             );
         }
-        
+
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)
         {
             ApplyInitialValues();

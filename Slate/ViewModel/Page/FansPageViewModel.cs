@@ -96,6 +96,8 @@ namespace Slate.ViewModel.Page
 
             SetCpuSeriesToPreset(preset);
             SetGpuSeriesToPreset(preset);
+            
+            FansSettings.PerformancePreset = preset;
         }
 
         private void InitializeCpuSeries(SKColor curveColor)

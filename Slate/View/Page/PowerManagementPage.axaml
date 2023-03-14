@@ -1,16 +1,19 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:control="clr-namespace:Slate.View.Control"
-             x:Class="Slate.View.Page.PowerManagementPage">
-    <control:Card Margin="5">
-        <StackPanel>
-            <ToggleSwitch Content="Aggressive boost when plugged-in"
-                          IsChecked="{Binding ProcessorSettings.IsBoostActiveOnAC, Mode=TwoWay}" />
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:page="clr-namespace:Slate.ViewModel.Page"
+             x:Class="Slate.View.Page.PowerManagementPage"
+             DataContext="{mvvm:DataContextSource page:PowerManagementPageViewModel}">
+    <StackPanel Spacing="4">
+        <control:Card>
+            <StackPanel>
+                <ToggleSwitch Content="Aggressive CPU boost (plugged-in)"
+                              IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnAC, Mode=TwoWay}" />
 
-            <ToggleSwitch Content="Aggressive boost on battery"
-                          IsChecked="{Binding ProcessorSettings.IsBoostActiveOnDC, Mode=TwoWay}" />
-        </StackPanel>
-    </control:Card>
+                <ToggleSwitch Content="Aggressive CPU boost (on battery)"
+                              IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnDC, Mode=TwoWay}" />
+            </StackPanel>
+        </control:Card>
+    </StackPanel>
 </UserControl>

@@ -27,14 +27,14 @@ namespace Slate.Infrastructure.Services
             ThrowIfProxyNull();
             return _proxy!.DSTS.CpuFanSpeed;
         }
-        
+
         [RequiresAcpiSession]
         public float ReadCpuTemperatureCelsius()
         {
             ThrowIfProxyNull();
             return _proxy!.DSTS.CpuTemperatureCelsius;
         }
-        
+
         [RequiresAcpiSession]
         public int ReadGpuFanSpeed()
         {
@@ -100,6 +100,38 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public void SetGraphicsMode(MuxSwitchMode mode)
+        {
+            ThrowIfProxyNull();
+            _proxy!.DEVS.SetMuxSwitch(mode);
+        }
+
+        [RequiresAcpiSession]
+        public MuxSwitchMode GetGraphicsMode()
+        {
+            ThrowIfProxyNull();
+            return _proxy!.DSTS.MuxSwitchMode;
+        }
+
+        [RequiresAcpiSession]
+        public void SetSwitchedGraphicsPowerSaving(bool enable)
+        {
+            ThrowIfProxyNull();
+
+            if (GetGraphicsMode() == MuxSwitchMode.Discrete)
+                throw new InvalidOperationException("This operation is not supported for discrete graphics mode.");
+
+            _proxy!.DEVS.SetEcoMode(enable);
+        }
+
+        [RequiresAcpiSession]
+        public bool GetSwitchedGraphicsPowerSaving()
+        {
+            ThrowIfProxyNull();
+            return _proxy!.DSTS.IsGraphicsPowerSavingEnabled;
+        }
+
+        [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();
@@ -107,7 +139,7 @@ namespace Slate.Infrastructure.Services
         }
 
         private void ThrowIfProxyNull()
-        {   
+        {
             if (!IsAcpiSessionOpen)
             {
                 throw new InvalidOperationException("There is no ASUS ACPI session open at the moment.");

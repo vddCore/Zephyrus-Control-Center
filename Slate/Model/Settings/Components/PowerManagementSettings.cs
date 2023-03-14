@@ -4,7 +4,7 @@ namespace Slate.Model.Settings.Components
 {
     public class PowerManagementSettings : SettingsComponent
     {
-        public bool IsBoostActiveOnAC { get; set; }
-        public bool IsBoostActiveOnDC { get; set; }
+        public bool IsProcessorBoostActiveOnAC { get; set; }
+        public bool IsProcessorBoostActiveOnDC { get; set; }
     }
 }

@@ -88,6 +88,10 @@
         <DependentUpon>FAIcon.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\DualSwitch.axaml.cs">
+        <DependentUpon>DualSwitch.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

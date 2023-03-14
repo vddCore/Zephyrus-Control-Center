@@ -10,7 +10,10 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
         public int CpuTemperatureCelsius => ReadInt32(DstsMethod.GetCpuTemperature) & 0xFFFF;
         public int GpuTemperatureCelsius => ReadInt32(DstsMethod.GetGpuTemperature) & 0xFFFF;
 
-        public bool IsGraphicsOverdriveEnabled => (ReadInt32(DstsMethod.GetGraphicsOverdrive) & 0xFFFF) != 0;
+        public MuxSwitchMode MuxSwitchMode => (MuxSwitchMode)(ReadInt32(DstsMethod.GetMuxSwitchStatus) & 0xFFFF);
+
+        public bool IsGraphicsPowerSavingEnabled => (ReadInt32(DstsMethod.GetEcoModeStatus) & 0xFFFF) != 0;
+        public bool IsDisplayOverdriveEnabled => (ReadInt32(DstsMethod.GetDisplayOverdriveStatus) & 0xFFFF) != 0;
 
         internal AsusDstsEndpoint(AsusAcpiProxy proxy)
             : base(proxy, WmnbFunction.DSTS)
@@ -18,7 +21,7 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
         }
 
         public FanCurve ReadRawCpuFanCurve(PerformancePreset preset)
-            => new(ReadBytes(
+            => new(ReadBytes(   
                 DstsMethod.GetCpuFanCurve,
                 16,
                 MapPresetToDstsParameter(preset)

@@ -8,7 +8,62 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              x:Class="Slate.View.Page.GraphicsAndDisplayPage"
              DataContext="{mvvm:DataContextSource vm:GraphicsAndDisplayPageViewModel}">
-    <TextBlock Text="Graphics controls will be here one day."
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center" />
+    <StackPanel Spacing="4">
+        <control:Card Padding="0,0,0,10"
+                      IsEnabled="{Binding !IsSwitchingEcoModes}">
+            <Grid>
+                <Grid RowDefinitions="*,Auto">
+                    <StackPanel Grid.Row="0">
+                        <ToggleSwitch Content="{Binding EcoModeSwitchText}"
+                                      IsChecked="{Binding IsEcoModeEnabled, Mode=OneWay}"
+                                      IsEnabled="{Binding !IsDiscreteExclusiveMode, Mode=TwoWay}"
+                                      Command="{Binding BeginEcoModeTransition}" />
+                    </StackPanel>
+
+                    <control:DualSwitch Grid.Row="1"
+                                        LeftOptionContent="Switched"
+                                        RightOptionContent="Discrete-exclusive"
+                                        IsRightOptionChecked="{Binding IsDiscreteExclusiveMode}"
+                                        IsLeftOptionChecked="{Binding !IsDiscreteExclusiveMode}"
+                                        LeftOptionCommand="{Binding TryEnableSwitchedGraphicsMode}"
+                                        RightOptionCommand="{Binding TryEnableDiscreteGraphicsMode}" />
+                </Grid>
+
+                <Border HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        CornerRadius="6"
+                        Background="#333333"
+                        Opacity="{Binding DecisionBoxOpacity, Mode=OneWay}"
+                        IsHitTestVisible="{Binding IsDeciding, Mode=TwoWay}">
+                    <Border.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                        </Transitions>
+                    </Border.Transitions>
+                    <Grid RowDefinitions="Auto,Auto"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <TextBlock Grid.Row="0"
+                                   HorizontalAlignment="Center"
+                                   Text="This will restart your device."
+                                   Margin="0,4,0,2" />
+
+                        <StackPanel Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Margin="0,4,0,6"
+                                    Spacing="4">
+                            <Button Content="Do it"
+                                    Padding="8,4" 
+                                    Command="{Binding ProceedWithModeSwitch}" />
+                            
+                            <Button Content="Nope, not ready yet"
+                                    Padding="8,4" 
+                                    Command="{Binding AbandonModeSwitch}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </control:Card>
+    </StackPanel>
 </UserControl>

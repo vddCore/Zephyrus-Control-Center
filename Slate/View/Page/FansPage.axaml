@@ -16,7 +16,7 @@
                       IsEnabled="{Binding !FansSettings.IsManualOverrideEnabled}">
                     <Grid Grid.Row="0">
                         <ContentPresenter Content="{DynamicResource ICON_Processor64x}"
-                                          Opacity="0.34"
+                                          Opacity="0.14"
                                           Margin="0,24,24,0"
                                           HorizontalAlignment="Right"
                                           VerticalAlignment="Top" />
@@ -30,7 +30,7 @@
 
                     <Grid Grid.Row="1">
                         <ContentPresenter Content="{DynamicResource ICON_Graphics64x}"
-                                          Opacity="0.34"
+                                          Opacity="0.14"
                                           Margin="0,24,24,0"
                                           HorizontalAlignment="Right"
                                           VerticalAlignment="Top" />

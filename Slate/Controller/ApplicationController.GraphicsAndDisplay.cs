@@ -11,6 +11,18 @@ namespace Slate.Controller
 
         private void SubscribeToGraphicsAndDisplaySettings()
         {
+            Message.Subscribe<MuxSwitchModeChangedMessage>(this, OnGraphicsModeChanged);
+            Message.Subscribe<EcoModeChangedMessage>(this, OnGraphicsPowerSavingModeChanged);
+        }
+
+        private void OnGraphicsModeChanged(MuxSwitchModeChangedMessage msg)
+        {
+            _asusHalService.SetGraphicsMode(msg.MuxSwitchMode);
+        }
+        
+        private void OnGraphicsPowerSavingModeChanged(EcoModeChangedMessage msg)
+        {
+            _asusHalService.SetSwitchedGraphicsPowerSaving(msg.Enabled);
         }
     }
 }

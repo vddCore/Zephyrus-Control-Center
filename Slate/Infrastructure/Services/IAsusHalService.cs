@@ -19,6 +19,10 @@ namespace Slate.Infrastructure.Services
         FanCurve ReadBuiltInGpuFanCurve(PerformancePreset performancePreset);
         void WriteCpuFanCurve(FanCurve curve);
         void WriteGpuFanCurve(FanCurve curve);
+        void SetGraphicsMode(MuxSwitchMode mode);
+        MuxSwitchMode GetGraphicsMode();
+        void SetSwitchedGraphicsPowerSaving(bool enable);
+        bool GetSwitchedGraphicsPowerSaving();
         void CloseAcpiSession();
 
     }

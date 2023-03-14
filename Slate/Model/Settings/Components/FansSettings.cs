@@ -9,6 +9,7 @@ namespace Slate.Model.Settings.Components
         public FanCurve? CpuFanCurve { get; set; }
         public FanCurve? GpuFanCurve { get; set; }
 
+        public PerformancePreset PerformancePreset { get; set; } = PerformancePreset.Balanced;
         public bool IsManualOverrideEnabled { get; set; } = false;
         public byte ManualCpuFanDutyCycle { get; set; } = 64;
         public byte ManualGpuFanDutyCycle { get; set; } = 64;
@@ -17,6 +18,14 @@ namespace Slate.Model.Settings.Components
         {
             switch (propertyName)
             {
+                case nameof(PerformancePreset):
+                {
+                    new PerformancePresetUpdatedMessage(PerformancePreset)
+                        .Broadcast();
+                    
+                    break;
+                }
+                    
                 case nameof(CpuFanCurve):
                 {
                     new CpuFanCurveUpdatedMessage(CpuFanCurve!)

@@ -27,6 +27,7 @@ namespace Slate.Controller
             }
             else
             {
+                _asusHalService.SetPerformancePreset(FansSettings.PerformancePreset);
                 _asusHalService.WriteCpuFanCurve(FansSettings.CpuFanCurve!);
                 _asusHalService.WriteGpuFanCurve(FansSettings.GpuFanCurve!);
             }
