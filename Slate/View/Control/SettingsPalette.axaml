@@ -61,11 +61,6 @@
                     <icons:SFIcon FontSize="24" Glyph="&#xE115;" />
                 </control:MainMenuButton.ImageContent>
             </control:MainMenuButton>
-
-            <TextBlock Text="imagine useful content here."
-                       Opacity="0.6"
-                       Margin="0,64,0,0"
-                       HorizontalAlignment="Center" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

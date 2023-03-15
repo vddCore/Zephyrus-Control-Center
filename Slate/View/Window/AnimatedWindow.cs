@@ -14,11 +14,13 @@ namespace Slate.View.Window
     {
         private readonly Easing _slideOutEasing = Easing.Parse("CubicEaseIn");
         private readonly Easing _slideInEasing = Easing.Parse("CubicEaseOut");
+        private readonly Easing _resizeEasing = Easing.Parse("CubicEaseOut");
 
         private const int SideMargin = 12;
 
         private double _slideInStep = 0.038;
         private double _slideOutStep = 0.038;
+        private double _resizeStep = 0.038;
 
         protected bool Animating { get; private set; }
 
@@ -36,7 +38,7 @@ namespace Slate.View.Window
                         workAreaSize.Width - (int)Width - SideMargin,
                         workAreaSize.Height - (int)Height - SideMargin
                     ),
-                    
+
                     _ => throw new NotImplementedException(
                         "Not implemented yet. Want it NOW? Do it yourself. No handouts <3"
                     )
@@ -56,12 +58,57 @@ namespace Slate.View.Window
                         workAreaSize.Width - (int)Width - SideMargin,
                         workAreaSize.Height + SideMargin
                     ),
-                    
+
                     _ => throw new NotImplementedException(
                         "Not implemented yet. Want it NOW? Do it yourself. No handouts <3"
                     )
                 };
             }
+        }
+
+        internal void ResizeTo(double targetHeight)
+        {
+            var target = Math.Abs(Height - targetHeight);
+            var sizingDown = Height > targetHeight;
+            var amount = 0.0;
+
+            var sh = Height;
+            var sy = Position.Y;
+
+            Animate(
+                (progress) =>
+                {
+                    Dispatcher.UIThread.Post(() =>
+                    {
+                        if (sizingDown)
+                        {
+                            Height = sh - amount;
+                            Position = new PixelPoint(Position.X, (int)(sy + amount));
+                        }
+                        else
+                        {
+                            Height = sh + amount;
+                            Position = new PixelPoint(Position.X, (int)(sy - amount));
+                        }
+                        amount = target * _resizeEasing.Ease(progress);
+                    });
+
+                    return _resizeStep;
+                },
+                after: () =>
+                {
+                    if (sizingDown)
+                    {
+                        Height = sh - target;
+                        Position = new PixelPoint(Position.X, (int)(sy + target));
+                    }
+                    else
+                    {
+                        Height = sh + target;
+                        Position = new PixelPoint(Position.X, (int)(sy - target));
+                    }
+                }
+            );
         }
 
         /**
@@ -79,15 +126,17 @@ namespace Slate.View.Window
          **/
         internal void SlideOut()
         {
-            var vy = VisibleDesktopPosition.Y;
-            var tx = HiddenDesktopPosition.X;
-            var ty = HiddenDesktopPosition.Y;
+            var target = Math.Abs(Position.Y - HiddenDesktopPosition.Y);
+            var amount = 0.0;
+            var sy = Position.Y;
+            var tx = VisibleDesktopPosition.X;
 
             Animate(
                 (progress) =>
                 {
-                    int y = (int)(vy + ty * _slideOutEasing.Ease(progress));
-                    Position = new PixelPoint(tx, y);
+                    Position = new PixelPoint(tx, (int)(sy + amount));
+
+                    amount = target * _slideOutEasing.Ease(progress);
                     return _slideOutStep;
                 },
                 () => Topmost = true,
@@ -104,16 +153,18 @@ namespace Slate.View.Window
 
         internal void SlideIn()
         {
-            var vy = SystemParameters.WorkingAreaSize.Height - SideMargin;
+            var target = Math.Abs(Position.Y - VisibleDesktopPosition.Y);
+            var amount = 0.0;
+
+            var sy = Position.Y;
             var tx = VisibleDesktopPosition.X;
-            var ty = VisibleDesktopPosition.Y;
 
             Animate(
                 (progress) =>
                 {
-                    int y = (int)(vy - ty * _slideInEasing.Ease(progress));
+                    Position = new PixelPoint(tx, (int)(sy - amount));
 
-                    Position = new PixelPoint(tx, y);
+                    amount = target * _slideInEasing.Ease(progress);
                     return _slideInStep;
                 },
                 () =>

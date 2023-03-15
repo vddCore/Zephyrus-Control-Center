@@ -1,14 +1,14 @@
 ﻿namespace Slate.View
 {
-    public abstract record PageMarker;
-    
-    public sealed record MainMenuPageMarker : PageMarker;
-    public sealed record FansPageMarker : PageMarker;
-    public sealed record GraphicsAndDisplayPageMarker : PageMarker;
-    public sealed record PowerManagementPageMarker : PageMarker;
-    public sealed record KeyboardPageMarker : PageMarker;
-    public sealed record AniMeMatrixPageMarker : PageMarker;
-    public sealed record ApplicationPageMarker : PageMarker;
+    public abstract record PageMarker(double ViewHeight);
+
+    public sealed record MainMenuPageMarker() : PageMarker(462.0);
+    public sealed record FansPageMarker() : PageMarker(571.0);
+    public sealed record GraphicsAndDisplayPageMarker() : PageMarker(180.0);
+    public sealed record PowerManagementPageMarker() : PageMarker(571.0);
+    public sealed record KeyboardPageMarker() : PageMarker(571.0);
+    public sealed record AniMeMatrixPageMarker() : PageMarker(571.0);
+    public sealed record ApplicationPageMarker() : PageMarker(571.0);
 
     public static class Pages
     {

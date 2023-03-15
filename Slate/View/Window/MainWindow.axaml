@@ -22,7 +22,7 @@
                        ShowInTaskbar="False"
                        CanResize="False"
                        Width="336"
-                       Height="571"
+                       Height="462"
                        DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
                        Deactivated="Window_OnDeactivated">
     <Panel>

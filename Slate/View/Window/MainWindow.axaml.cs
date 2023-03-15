@@ -33,6 +33,8 @@ namespace Slate.View.Window
             {
                 BackButton.Classes.Set("OnMainPage", false);
             }
+
+            ResizeTo(msg.PageMarker!.ViewHeight);
         }
 
         protected override void OnLoaded()
