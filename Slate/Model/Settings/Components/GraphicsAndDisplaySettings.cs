@@ -8,6 +8,7 @@ namespace Slate.Model.Settings.Components
     {
         public bool? IsEcoModeEnabled { get; set; }
         public bool? IsDisplayOverdriveEnabled { get; set; }
+        public uint DisplayRefreshRate { get; set; } = 144;
 
         public MuxSwitchMode? MuxSwitchMode { get; set; }
 
@@ -28,6 +29,15 @@ namespace Slate.Model.Settings.Components
                 {
                     new DisplayOverdriveChangedMessage(
                         IsDisplayOverdriveEnabled!.Value
+                    ).Broadcast();
+
+                    break;
+                }
+
+                case nameof(DisplayRefreshRate):
+                {
+                    new DisplayRefreshRateChangedMessage(
+                        DisplayRefreshRate
                     ).Broadcast();
 
                     break;

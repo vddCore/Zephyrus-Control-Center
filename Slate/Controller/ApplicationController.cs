@@ -14,18 +14,21 @@ namespace Slate.Controller
         private readonly IAsusHalService _asusHalService;
         private readonly ISettingsService _settingsService;
         private readonly IPowerManagementService _powerManagementService;
+        private readonly IDisplayManagementService _displayManagementService;
 
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
 
         public ApplicationController(
             IAsusHalService asusHalService,
             ISettingsService settingsService,
-            IPowerManagementService powerManagementService)
+            IPowerManagementService powerManagementService,
+            IDisplayManagementService displayManagementService)
         {
             _asusHalService = asusHalService;
             _settingsService = settingsService;
             _powerManagementService = powerManagementService;
-
+            _displayManagementService = displayManagementService;
+            
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
 
@@ -34,7 +37,7 @@ namespace Slate.Controller
              * messages to avoid causing system instability. And maybe
              * improve reporting reliability. Who knows.
              **/
-            ReadVolatileSettingsFromFirmware();
+            ReadCurrentHardwareSettings();
 
             SubscribeToApplicationSettings();
             SubscribeToFansSettings();
@@ -43,11 +46,12 @@ namespace Slate.Controller
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }
 
-        private void ReadVolatileSettingsFromFirmware()
+        private void ReadCurrentHardwareSettings()
         {
             GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
             GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetEcoMode();
             GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled = _asusHalService.GetDisplayOverdrive();
+            GraphicsAndDisplaySettings.DisplayRefreshRate = _displayManagementService.GetInternalDisplayRefreshRate();
         }
 
         private void ApplyInitialValues()

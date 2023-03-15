@@ -40,6 +40,12 @@ namespace Slate.ViewModel.Page
         public bool IsSwitchingEcoModes { get; private set; }
         public string EcoModeSwitchText { get; private set; } = "Prioritize power saving";
 
+        public bool Is60HzSelected => GraphicsAndDisplaySettings.DisplayRefreshRate == 60;
+        public bool Is75HzSelected => GraphicsAndDisplaySettings.DisplayRefreshRate == 75;
+        public bool Is100HzSelected => GraphicsAndDisplaySettings.DisplayRefreshRate == 100;
+        public bool Is120HzSelected => GraphicsAndDisplaySettings.DisplayRefreshRate == 120;
+        public bool Is144HzSelected => GraphicsAndDisplaySettings.DisplayRefreshRate == 144;
+
         public GraphicsAndDisplaySettings GraphicsAndDisplaySettings =>
             _settingsService.ControlCenter!.GraphicsAndDisplay;
 
@@ -99,6 +105,20 @@ namespace Slate.ViewModel.Page
 #if !DEBUG
             _shutdownService.RequestSystemReboot("Zephyrus Control Center: graphics mode switch.");
 #endif
+        }
+
+        public void SetDisplayRefreshRate(object? parameter)
+        {
+            if (parameter is string str && uint.TryParse(str, out var refreshRate))
+            {
+                GraphicsAndDisplaySettings.DisplayRefreshRate = refreshRate;
+            }
+            
+            OnPropertyChanged(nameof(Is60HzSelected));
+            OnPropertyChanged(nameof(Is75HzSelected));
+            OnPropertyChanged(nameof(Is100HzSelected));
+            OnPropertyChanged(nameof(Is120HzSelected));
+            OnPropertyChanged(nameof(Is144HzSelected));
         }
 
         public void AbandonModeSwitch()

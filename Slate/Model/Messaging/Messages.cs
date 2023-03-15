@@ -62,6 +62,9 @@ namespace Slate.Model.Messaging
 
     public sealed record DisplayOverdriveChangedMessage(bool Enabled)
         : Message;
+
+    public sealed record DisplayRefreshRateChangedMessage(uint RefreshRate)
+        : Message;
     
     public sealed record CpuBoostModeChangedMessage(
         bool EnableOnAC,

@@ -108,4 +108,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Glitonea\Glitonea.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Resources\Templates\SwitchBar.axaml" />
+    </ItemGroup>
 </Project>

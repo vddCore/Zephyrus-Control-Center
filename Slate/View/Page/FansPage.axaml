@@ -15,11 +15,12 @@
                 <Grid RowDefinitions="Auto,Auto,Auto"
                       IsEnabled="{Binding !FansSettings.IsManualOverrideEnabled}">
                     <Grid Grid.Row="0">
-                        <ContentPresenter Content="{DynamicResource ICON_Processor64x}"
-                                          Opacity="0.14"
-                                          Margin="0,24,24,0"
-                                          HorizontalAlignment="Right"
-                                          VerticalAlignment="Top" />
+                        <icons:SFIcon Opacity="0.14"
+                                      Margin="0,24,24,0"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Top"
+                                      Glyph="&#xE950;"
+                                      FontSize="64" />
 
                         <control:EditableChart Series="{Binding CpuSeries}"
                                                HorizontalAlignment="Stretch"
@@ -29,11 +30,12 @@
                     </Grid>
 
                     <Grid Grid.Row="1">
-                        <ContentPresenter Content="{DynamicResource ICON_Graphics64x}"
-                                          Opacity="0.14"
-                                          Margin="0,24,24,0"
-                                          HorizontalAlignment="Right"
-                                          VerticalAlignment="Top" />
+                        <icons:SFIcon Opacity="0.14"
+                                      Margin="0,24,24,0"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Top"
+                                      Glyph="&#xF211;"
+                                      FontSize="64" />
 
                         <control:EditableChart Series="{Binding GpuSeries}"
                                                HorizontalAlignment="Stretch"

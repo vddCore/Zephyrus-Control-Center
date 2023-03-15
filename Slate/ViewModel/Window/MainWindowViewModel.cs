@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Glitonea.Extensions;
 using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
@@ -22,14 +21,16 @@ namespace Slate.ViewModel.Window
         public MainWindowViewModel(
             IAsusHalService asusHalService,
             ISettingsService settingsService,
-            IPowerManagementService powerManagementService)
+            IPowerManagementService powerManagementService,
+            IDisplayManagementService displayManagementService)
         {
             _settingsService = settingsService;
             
             _applicationController = new ApplicationController(
                 asusHalService, 
                 settingsService,
-                powerManagementService
+                powerManagementService,
+                displayManagementService
             );
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
