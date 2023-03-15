@@ -10,6 +10,8 @@ namespace Slate.Infrastructure.Native
         public const int SM_CXSCREEN = 0;
         public const int SM_CYSCREEN = 1;
 
+        public const int SPI_GETWORKAREA = 0x0030;
+
         public const int GWL_EX_STYLE = -20;
         public const int WS_EX_APPWINDOW = 0x0004000;
         public const int WS_EX_TOOLWINDOW = 0x00000080;
@@ -274,6 +276,14 @@ namespace Slate.Infrastructure.Native
             public RECT DesktopImageRegion;
             public RECT DesktopImageClip;
         }
+
+        [DllImport(LibraryName, ExactSpelling = true, CharSet = CharSet.Unicode)]
+        public static extern bool SystemParametersInfoW(
+            uint uiAction,
+            uint uiParam,
+            ref RECT pvParam,
+            uint fWinIni
+        );
 
         [DllImport(LibraryName)]
         public static extern int GetSystemMetrics(int nIndex);

@@ -1,29 +1,30 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
-        xmlns:vm="clr-namespace:Slate.ViewModel.Window"
-        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-        xmlns:view="clr-namespace:Slate.View"
-        xmlns:page="clr-namespace:Slate.View.Page"
-        xmlns:icons="clr-namespace:Slate.View.Control.Icons"
-        x:Class="Slate.View.Window.MainWindow"
-        SystemDecorations="None"
-        TransparencyLevelHint="AcrylicBlur"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome"
-        Background="Transparent"
-        Title="Zephyrus Control Center"
-        IsVisible="False"
-        WindowStartupLocation="Manual"
-        Position="-9999,-9999"
-        ShowActivated="False"
-        Topmost="False"
-        ShowInTaskbar="False"
-        CanResize="False"
-        Width="336"
-        Height="571"
-        DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
-        Deactivated="Window_OnDeactivated">
+<window:AnimatedWindow xmlns="https://github.com/avaloniaui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+                       xmlns:vm="clr-namespace:Slate.ViewModel.Window"
+                       xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+                       xmlns:view="clr-namespace:Slate.View"
+                       xmlns:page="clr-namespace:Slate.View.Page"
+                       xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+                       xmlns:window="clr-namespace:Slate.View.Window"
+                       x:Class="Slate.View.Window.MainWindow"
+                       SystemDecorations="None"
+                       TransparencyLevelHint="AcrylicBlur"
+                       ExtendClientAreaToDecorationsHint="True"
+                       ExtendClientAreaChromeHints="NoChrome"
+                       Background="Transparent"
+                       Title="Zephyrus Control Center"
+                       IsVisible="False"
+                       WindowStartupLocation="Manual"
+                       Position="-9999,-9999"
+                       ShowActivated="False"
+                       Topmost="False"
+                       ShowInTaskbar="False"
+                       CanResize="False"
+                       Width="336"
+                       Height="571"
+                       DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
+                       Deactivated="Window_OnDeactivated">
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="True">
             <ExperimentalAcrylicBorder.Material>
@@ -69,7 +70,7 @@
                                 <Setter Property="RenderTransform" Value="rotate(-90deg)" />
                             </Style>
                         </Button.Styles>
-                        
+
                         <icons:SFIcon FontSize="11"
                                       Margin="1,1,0,0"
                                       Glyph="&#xE64E;" />
@@ -126,4 +127,4 @@
             </Grid>
         </Border>
     </Panel>
-</Window>
+</window:AnimatedWindow>
