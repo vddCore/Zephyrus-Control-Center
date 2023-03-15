@@ -39,15 +39,15 @@ namespace Slate.View.Window
 
         protected override void OnLoaded()
         {
-            var hwnd =  PlatformImpl!.Handle.Handle;
-            
+            var hwnd = PlatformImpl!.Handle.Handle;
+
             ConfigureAsToolWindow(hwnd);
-            
+
             IsVisible = false;
             Position = HiddenDesktopPosition;
 
             base.OnLoaded();
-            
+
             new MainWindowLoadedMessage().Broadcast();
         }
 
@@ -90,6 +90,5 @@ namespace Slate.View.Window
             SlideOut();
 #endif
         }
-
     }
 }
