@@ -1,4 +1,4 @@
-﻿namespace Slate.Infrastructure
+﻿namespace Slate.Infrastructure.Asus
 {
     public enum MuxSwitchMode : byte
     {

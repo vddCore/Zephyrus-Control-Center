@@ -61,6 +61,7 @@
                     Grid.Column="0"
                     Margin="0,0,-1,0"
                     CornerRadius="0,0,0,6"
+                    BorderThickness="1,1,1,0"
                     Content="{Binding $parent[control:DualSwitch].LeftOptionContent}"
                     Command="{Binding $parent[control:DualSwitch].LeftOptionCommand}"
                     HorizontalAlignment="Stretch" />
@@ -68,6 +69,7 @@
             <Button Name="RightOptionButton"
                     Grid.Column="1"
                     CornerRadius="0,0,6,0"
+                    BorderThickness="1,1,1,0"
                     Content="{Binding $parent[control:DualSwitch].RightOptionContent}"
                     Command="{Binding $parent[control:DualSwitch].RightOptionCommand}"
                     HorizontalAlignment="Stretch" />

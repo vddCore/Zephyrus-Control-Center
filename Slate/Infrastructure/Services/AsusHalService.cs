@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Asus.Acpi;
 
@@ -168,7 +169,30 @@ namespace Slate.Infrastructure.Services
 
                     try
                     {
-                        value = $"{_proxy!.DSTS.ReadInt32((DstsMethod)Enum.Parse(typeof(DstsMethod), name)):X8}";
+                        var key = (DstsMethod)Enum.Parse(typeof(DstsMethod), name);
+
+                        switch (key)
+                        {
+                            case DstsMethod.Unk_0x00060024:
+                            case DstsMethod.GetCpuFanCurve:
+                            case DstsMethod.GetGpuFanCurve:
+                            case DstsMethod.Unk_0x00110026:
+                            case DstsMethod.Unk_0x00110027:
+                            {
+                                var bytes = _proxy!.DSTS.ReadBytes(key, 40);
+                                var sb = new StringBuilder();
+                                
+                                foreach (var b in bytes)
+                                    sb.Append($"{b:X2} ");
+
+                                value = sb.ToString().Trim();
+                                break;
+                            }
+
+                            default:
+                                value = $"{_proxy!.DSTS.ReadInt32(key):X8}";
+                                break;
+                        }
                     }
                     catch
                     {

@@ -13,6 +13,7 @@
         SetGpuFanSpeedDirect = 0x00110023,
         SetBatteryChargingThreshold = 0x00120057,
         SetPerformancePreset = 0x00120075,
-        SetApsc = 0x00130022,
+        Unk_0x00130022 = 0x00130022,
+        
     }
 }
