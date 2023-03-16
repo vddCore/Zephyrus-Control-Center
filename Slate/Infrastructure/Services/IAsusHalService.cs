@@ -1,4 +1,5 @@
-﻿using Glitonea.Mvvm;
+﻿using System.IO;
+using Glitonea.Mvvm;
 using Slate.Infrastructure.Asus;
 
 namespace Slate.Infrastructure.Services
@@ -25,6 +26,7 @@ namespace Slate.Infrastructure.Services
         bool GetEcoMode();
         void SetDisplayOverdrive(bool enable);
         bool GetDisplayOverdrive();
+        void DumpAcpiRegisters(Stream outStream);
         void CloseAcpiSession();
 
     }

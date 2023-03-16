@@ -11,14 +11,17 @@ namespace Slate.Infrastructure.Services
         private const string AppSettingsDirectoryName = "ZephyrusControlCenter";
         private const string SettingsFileName = "zcc_settings.json";
 
+        public string BaseDirectory { get; }
         private string SettingsFilePath { get; }
 
         public ControlCenterSettings? ControlCenter { get; private set; }
 
         public SettingsService()
         {
+            BaseDirectory = GetOrCreateUserDataDirectory();
+            
             SettingsFilePath = Path.Combine(
-                GetOrCreateUserDataDirectory(),
+                BaseDirectory,
                 SettingsFileName
             );
 

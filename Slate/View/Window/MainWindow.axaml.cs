@@ -1,20 +1,31 @@
 using System;
-using System.Threading.Tasks;
-using Avalonia;
-using Avalonia.Animation.Easings;
-using Avalonia.Platform;
-using Avalonia.Threading;
+using Avalonia.Input;
 using Glitonea.Mvvm.Messaging;
 using PropertyChanged;
-using Slate.Infrastructure;
 using Slate.Infrastructure.Native;
 using Slate.Model.Messaging;
+using Slate.ViewModel.Window;
 
 namespace Slate.View.Window
 {
     [DoNotNotify]
     public partial class MainWindow : AnimatedWindow
     {
+        private bool _elevated;
+
+        private bool IsOnMainMenu => (DataContext as MainWindowViewModel)!.CurrentPage == Pages.MainMenu;
+
+        public bool Elevated
+        {
+            get => _elevated;
+            set
+            {
+                _elevated = value;
+                BackButton.Classes.Set("Elevated", value);
+            }
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +59,8 @@ namespace Slate.View.Window
 
             base.OnLoaded();
 
-            new MainWindowLoadedMessage().Broadcast();
+            new MainWindowLoadedMessage()
+                .Broadcast();
         }
 
         private void ConfigureAsToolWindow(nint hwnd)
@@ -83,12 +95,30 @@ namespace Slate.View.Window
 
         private void Window_OnDeactivated(object? sender, EventArgs e)
         {
+            Elevated = false;
+
             if (Animating || !IsVisible)
                 return;
 
 #if !DEBUG
             SlideOut();
 #endif
+        }
+
+        private void MainWindow_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (IsOnMainMenu && e.Key == Key.LeftShift)
+            {
+                Elevated = true;
+            }
+        }
+
+        private void MainWindow_KeyUp(object? sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftShift)
+            {
+                Elevated = false;
+            }
         }
     }
 }

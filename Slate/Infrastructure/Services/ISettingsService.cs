@@ -6,6 +6,7 @@ namespace Slate.Infrastructure.Services
 {
     public interface ISettingsService : IService
     {
+        string BaseDirectory { get; }
         ControlCenterSettings? ControlCenter { get; }
 
         Task Save();

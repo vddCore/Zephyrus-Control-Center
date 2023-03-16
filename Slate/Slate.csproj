@@ -92,6 +92,10 @@
         <DependentUpon>DualSwitch.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Page\DebugPage.axaml.cs">
+        <DependentUpon>DebugPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

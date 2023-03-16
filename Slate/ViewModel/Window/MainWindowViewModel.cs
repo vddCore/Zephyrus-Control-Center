@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Input;
 using Glitonea.Extensions;
 using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
@@ -25,9 +26,9 @@ namespace Slate.ViewModel.Window
             IDisplayManagementService displayManagementService)
         {
             _settingsService = settingsService;
-            
+
             _applicationController = new ApplicationController(
-                asusHalService, 
+                asusHalService,
                 settingsService,
                 powerManagementService,
                 displayManagementService
@@ -41,9 +42,9 @@ namespace Slate.ViewModel.Window
             Message.Subscribe<EcoModeTransitionFinishedMessage>(this, OnEcoModeTransitionFinished);
         }
 
-        private void OnEcoModeTransitionStarted(EcoModeTransitionStartedMessage _) 
+        private void OnEcoModeTransitionStarted(EcoModeTransitionStartedMessage _)
             => BackButtonEnabled = false;
-        
+
         private void OnEcoModeTransitionFinished(EcoModeTransitionFinishedMessage _)
             => BackButtonEnabled = true;
 
@@ -51,14 +52,23 @@ namespace Slate.ViewModel.Window
         {
             if (CurrentPage == Pages.MainMenu)
             {
-                (Application.Current.GetDesktopLifetime().MainWindow as MainWindow)!.SlideOut();
+                var window = (Application.Current.GetDesktopLifetime().MainWindow as MainWindow)!;
+                
+                if (window.Elevated)
+                {
+                    SetCurrentPage(Pages.Debug);
+                }
+                else
+                {
+                    window.SlideOut();
+                }
             }
             else
             {
                 SetCurrentPage(Pages.MainMenu);
             }
         }
-        
+
         private void SetCurrentPage(PageMarker? page)
         {
             new PageSwitchedMessage(page)
@@ -69,7 +79,7 @@ namespace Slate.ViewModel.Window
         {
             SetCurrentPage(Pages.MainMenu);
         }
-        
+
         private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
         {
             if (!msg.WasSlidingIn)

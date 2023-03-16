@@ -9,6 +9,7 @@
     public sealed record KeyboardPageMarker() : PageMarker(462.0);
     public sealed record AniMeMatrixPageMarker() : PageMarker(462.0);
     public sealed record ApplicationPageMarker() : PageMarker(462.0);
+    public sealed record DebugPageMarker() : PageMarker(462.0);
 
     public static class Pages
     {
@@ -19,5 +20,6 @@
         public static KeyboardPageMarker Keyboard = new();  
         public static AniMeMatrixPageMarker AniMeMatrix = new();
         public static ApplicationPageMarker Application = new();
+        public static DebugPageMarker Debug = new();
     }
 }

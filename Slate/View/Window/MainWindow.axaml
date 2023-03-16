@@ -24,6 +24,8 @@
                        Width="336"
                        Height="462"
                        DataContext="{mvvm:DataContextSource vm:MainWindowViewModel}"
+                       KeyDown="MainWindow_KeyDown"
+                       KeyUp="MainWindow_KeyUp"
                        Deactivated="Window_OnDeactivated">
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="True">
@@ -59,21 +61,43 @@
                             <Style Selector="Button icons|SFIcon">
                                 <Setter Property="Transitions">
                                     <Transitions>
+                                        <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                                        
                                         <TransformOperationsTransition Property="RenderTransform"
                                                                        Duration="0:0:0.4"
                                                                        Easing="CircularEaseInOut" />
                                     </Transitions>
                                 </Setter>
                             </Style>
+                            
+                            <Style Selector="Button icons|SFIcon#Bug">
+                                <Setter Property="Opacity" Value="0" />
+                            </Style>
 
-                            <Style Selector="Button.OnMainPage icons|SFIcon">
+                            <Style Selector="Button.OnMainPage icons|SFIcon#BackArrow">
                                 <Setter Property="RenderTransform" Value="rotate(-90deg)" />
+                            </Style>
+                            
+                            <Style Selector="Button.Elevated icons|SFIcon#BackArrow">
+                                <Setter Property="Opacity" Value="0.0" />
+                            </Style>
+                            
+                            <Style Selector="Button.Elevated icons|SFIcon#Bug">
+                                <Setter Property="Opacity" Value="1.0" />
                             </Style>
                         </Button.Styles>
 
-                        <icons:SFIcon FontSize="11"
-                                      Margin="1,1,0,0"
-                                      Glyph="&#xE64E;" />
+                        <Grid>
+                            <icons:SFIcon Name="BackArrow"
+                                          FontSize="11"
+                                          Margin="1,1,0,0"
+                                          Glyph="&#xE64E;" />
+
+                            <icons:SFIcon Name="Bug"
+                                          FontSize="11"
+                                          Margin="1,1,0,0"
+                                          Glyph="&#xEBE8;"  />
+                        </Grid>
                     </Button>
 
                     <TextBlock Grid.ColumnSpan="2"
@@ -121,6 +145,10 @@
 
                         <DataTemplate DataType="{x:Type view:ApplicationPageMarker}">
                             <page:ApplicationPage />
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type view:DebugPageMarker}">
+                            <page:DebugPage />
                         </DataTemplate>
                     </TransitioningContentControl.DataTemplates>
                 </TransitioningContentControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Asus.Acpi;
 
@@ -150,6 +151,35 @@ namespace Slate.Infrastructure.Services
         {
             ThrowIfProxyNull();
             _proxy!.Dispose();
+        }
+
+        [RequiresAcpiSession]
+        public void DumpAcpiRegisters(Stream outStream)
+        {
+            ThrowIfProxyNull();
+
+            var names = Enum.GetNames(typeof(DstsMethod));
+
+            using (var sw = new StreamWriter(outStream, leaveOpen: true))
+            {
+                foreach (var name in names)
+                {
+                    string value = "[failed to retrieve -- probably requires arguments]";
+
+                    try
+                    {
+                        value = $"{_proxy!.DSTS.ReadInt32((DstsMethod)Enum.Parse(typeof(DstsMethod), name)):X8}";
+                    }
+                    catch
+                    {
+                        // Ignore.
+                    }
+
+                    sw.WriteLine(
+                        $"{name}: {value}"
+                    );
+                }
+            }
         }
 
         private void ThrowIfProxyNull()

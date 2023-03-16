@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:page="clr-namespace:Slate.ViewModel.Page"
+             x:Class="Slate.View.Page.DebugPage"
+             DataContext="{mvvm:DataContextSource page:DebugPageViewModel}">
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </UserControl.Styles>
+    <control:Card Margin="0,0,0,1">
+        <Grid RowDefinitions="Auto,*">
+            <StackPanel Grid.Row="0"
+                        Spacing="4"
+                        Margin="4">
+                <Button Content="Dump all known ACPI registers"
+                        Command="{Binding DumpAcpiRegisters}" />
+
+                <Button Content="Open configuration directory"
+                        Command="{Binding OpenAppDataDirectory}" />
+
+                <Button Content="Open application directory"
+                        Command="{Binding OpenAppBaseDirectory}" />
+            </StackPanel>
+            
+            <TextBlock Grid.Row="1"
+                       Foreground="#99FFFFFF"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center">
+                <Run Text="Well-- good job, Stanley." />
+                <LineBreak />
+                <Run Text="You've found The Switchboard." />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Feel free to mess around." />
+                <LineBreak />
+                <Run Text="Just don't break anything." />
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Love, V." />
+            </TextBlock>
+        </Grid>
+
+    </control:Card>
+</UserControl>
