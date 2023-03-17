@@ -11,6 +11,32 @@ namespace Slate.ViewModel.Page
         public PowerManagementSettings PowerManagementSettings =>
             _settingsService.ControlCenter!.PowerManagement;
 
+        public byte TotalSystemPPT
+        {
+            get => PowerManagementSettings.TotalSystemPPT;
+            set
+            {
+                if (ProcessorPPT > value)
+                    ProcessorPPT = value;
+
+                PowerManagementSettings.TotalSystemPPT = value;
+                OnPropertyChanged(nameof(TotalSystemPPT));
+            }
+        }
+
+        public byte ProcessorPPT
+        {
+            get => PowerManagementSettings.ProcessorPPT;
+            set
+            {
+                if (value > PowerManagementSettings.TotalSystemPPT)
+                    value = PowerManagementSettings.TotalSystemPPT;
+
+                PowerManagementSettings.ProcessorPPT = value;
+                OnPropertyChanged(nameof(ProcessorPPT));
+            }
+        }
+
         public PowerManagementPageViewModel(ISettingsService settingsService)
         {
             _settingsService = settingsService;

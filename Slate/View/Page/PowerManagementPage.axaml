@@ -8,33 +8,63 @@
              x:Class="Slate.View.Page.PowerManagementPage"
              DataContext="{mvvm:DataContextSource vm:PowerManagementPageViewModel}">
     <UserControl.Styles>
-        <Style Selector="TextBlock#SliderValue">
+        <Style Selector="TextBlock">
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
                 </Transitions>
             </Setter>
         </Style>
-        
-        <Style Selector="icons|SFIcon#WarningIcon">
-            <Setter Property="Opacity" Value="0" />
-            
+
+        <Style Selector="icons|SFIcon">
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
                 </Transitions>
             </Setter>
         </Style>
-        
-        <Style Selector="page|PowerManagementPage.LowBatteryLimit TextBlock#SliderValue">
+
+        <Style Selector="icons|SFIcon#LowBatteryLimitWarningIcon">
             <Setter Property="Opacity" Value="0" />
-        </Style>    
-        
-        <Style Selector="page|PowerManagementPage.LowBatteryLimit icons|SFIcon#WarningIcon">
+        </Style>
+
+        <Style Selector="page|PowerManagementPage.LowBatteryLimit TextBlock#BatteryChargeValueText">
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+
+        <Style Selector="page|PowerManagementPage.LowBatteryLimit icons|SFIcon#LowBatteryLimitWarningIcon">
+            <Setter Property="IsVisible" Value="True" />
             <Setter Property="Opacity" Value="1" />
-        </Style>    
+        </Style>
+
+        <Style Selector="icons|SFIcon#HighTotalSystemPptWarningIcon">
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+
+        <Style Selector="page|PowerManagementPage.HighSystemPPT TextBlock#TotalSystemPptValueText">
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+
+        <Style Selector="page|PowerManagementPage.HighSystemPPT icons|SFIcon#HighTotalSystemPptWarningIcon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+
+        <Style Selector="icons|SFIcon#HighProcessorPptWarningIcon">
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+        <Style Selector="page|PowerManagementPage.HighProcessorPPT TextBlock#ProcessorPptValueText">
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+
+        <Style Selector="page|PowerManagementPage.HighProcessorPPT icons|SFIcon#HighProcessorPptWarningIcon">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
     </UserControl.Styles>
-    
+
     <Grid RowDefinitions="Auto,*">
         <StackPanel Grid.Row="0"
                     Spacing="4">
@@ -57,31 +87,103 @@
                             Maximum="100"
                             Value="{Binding PowerManagementSettings.BatteryChargeLimit, Mode=TwoWay}"
                             HorizontalAlignment="Stretch"
-                            PropertyChanged="OnSliderValueChanged" />
+                            PropertyChanged="BatteryChargeLimitSlider_PropertyChanged" />
 
                     <Grid Grid.Column="1">
-                        <TextBlock Name="SliderValue"
+                        <TextBlock Name="BatteryChargeValueText"
                                    Text="{Binding PowerManagementSettings.BatteryChargeLimit, StringFormat='{}{0}%'}"
-                                   VerticalAlignment="Center" 
-                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
                                    Width="36"
-                                   Margin="6,0,0,0"/>
-                        
-                        <icons:SFIcon Name="WarningIcon"
+                                   Margin="6,0,0,0" />
+
+                        <icons:SFIcon Name="LowBatteryLimitWarningIcon"
                                       Foreground="Yellow"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Center"
                                       Glyph="&#xE7BA;"
-                                      FontSize="16" 
-                                      ToolTip.Tip="You probably don't want to do this." />
+                                      FontSize="16"
+                                      ToolTip.Tip="You probably don't want to do this" />
+                    </Grid>
+                </Grid>
+            </control:Card>
+
+            <control:Card ShowHeader="True"
+                          HeaderContent="Platform power targets">
+                <StackPanel Spacing="4">
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          HorizontalAlignment="Stretch"
+                          Margin="9,-4,6,0">
+                        <icons:SFIcon Grid.Column="0"
+                                      Glyph="&#xEBD2;"
+                                      FontSize="16"
+                                      ToolTip.Tip="Total system PPT"
+                                      VerticalAlignment="Center" />
+
+                        <Slider Grid.Column="1"
+                                Minimum="15"
+                                Maximum="150"
+                                Value="{Binding TotalSystemPPT, Mode=TwoWay}"
+                                HorizontalAlignment="Stretch"
+                                Margin="6,0"
+                                PropertyChanged="TotalPlatformPptSlider_PropertyChanged" />
+
+                        <Grid Grid.Column="2"
+                              Width="36">
+                            <TextBlock Name="TotalSystemPptValueText"
+                                       Text="{Binding TotalSystemPPT, StringFormat='{}{0}W'}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+
+                            <icons:SFIcon Name="HighTotalSystemPptWarningIcon"
+                                          Foreground="Orange"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          Glyph="&#xECAD;"
+                                          FontSize="16"
+                                          ToolTip.Tip="Too high power targets may result in system shutdowns" />
+                        </Grid>
+
                     </Grid>
 
-                </Grid>
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          HorizontalAlignment="Stretch"
+                          Margin="9,-4,6,0">
+                        <icons:SFIcon Grid.Column="0"
+                                      Glyph="&#xE950;"
+                                      FontSize="16"
+                                      ToolTip.Tip="Processor PPT"
+                                      VerticalAlignment="Center" />
 
+                        <Slider Grid.Column="1"
+                                Minimum="15"
+                                Maximum="90"
+                                Value="{Binding ProcessorPPT, Mode=TwoWay}"
+                                HorizontalAlignment="Stretch"
+                                Margin="6,0"
+                                PropertyChanged="ProcessorPptSlider_PropertyChanged" />
+
+                        <Grid Grid.Column="2"
+                              Width="36">
+                            <TextBlock Name="ProcessorPptValueText"
+                                       Text="{Binding ProcessorPPT, StringFormat='{}{0}W'}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                            
+                            <icons:SFIcon Name="HighProcessorPptWarningIcon"
+                                          Foreground="Orange"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          Glyph="&#xECAD;"
+                                          FontSize="16"
+                                          ToolTip.Tip="Too high power targets may result in system shutdowns" />
+                        </Grid>
+                    </Grid>
+                </StackPanel>
             </control:Card>
         </StackPanel>
 
-        <icons:SFIcon Grid.Row="1"
+        <icons:SFIcon Grid.RowSpan="2"
                       Glyph="&#xE945;"
                       FontSize="196"
                       Foreground="#09FFFFFF"

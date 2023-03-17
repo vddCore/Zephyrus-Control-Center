@@ -13,7 +13,7 @@ namespace Slate.View.Page
             InitializeComponent();
         }
 
-        private void OnSliderValueChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        private void BatteryChargeLimitSlider_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (sender is not RangeBase)
                 return;
@@ -23,6 +23,34 @@ namespace Slate.View.Page
                 if (e.NewValue is double d)
                 {
                     Classes.Set("LowBatteryLimit", d < 20);
+                }
+            }
+        }
+
+        private void TotalPlatformPptSlider_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (sender is not RangeBase)
+                return;
+            
+            if (e.Property == RangeBase.ValueProperty)
+            {
+                if (e.NewValue is double d)
+                {
+                    Classes.Set("HighSystemPPT", d > 135);
+                }
+            }
+        }
+
+        private void ProcessorPptSlider_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (sender is not RangeBase)
+                return;
+            
+            if (e.Property == RangeBase.ValueProperty)
+            {
+                if (e.NewValue is double d)
+                {
+                    Classes.Set("HighProcessorPPT", d > 75);
                 }
             }
         }

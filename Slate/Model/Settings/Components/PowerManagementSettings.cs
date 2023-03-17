@@ -7,7 +7,10 @@ namespace Slate.Model.Settings.Components
     {
         public bool IsProcessorBoostActiveOnAC { get; set; } = true;
         public bool IsProcessorBoostActiveOnDC { get; set; } = false;
+        
         public int BatteryChargeLimit { get; set; } = 85; /* percent of course */
+        public byte TotalSystemPPT { get; set; } = 30;
+        public byte ProcessorPPT { get; set; }
 
         protected override void OnSettingsModified(string? propertyName)
         {
