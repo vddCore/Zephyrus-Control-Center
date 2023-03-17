@@ -15,7 +15,7 @@
                         Background="{TemplateBinding Background}">
                     <Grid RowDefinitions="Auto,*">
                         <ContentPresenter Grid.Row="0"
-                                          Margin="10,5"
+                                          Margin="9,4"
                                           Content="{TemplateBinding HeaderContent}"
                                           IsVisible="{TemplateBinding ShowHeader}" />
 

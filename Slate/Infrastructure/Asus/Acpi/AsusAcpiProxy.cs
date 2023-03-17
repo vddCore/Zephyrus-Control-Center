@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using Slate.Infrastructure.Asus.Acpi.Endpoints;
 using Slate.Infrastructure.Asus.Acpi.FunctionSets;
 using Slate.Infrastructure.Native;

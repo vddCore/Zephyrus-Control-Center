@@ -16,7 +16,7 @@
                        Title="Zephyrus Control Center"
                        IsVisible="False"
                        WindowStartupLocation="Manual"
-                       Position="-9999,-9999"
+                       Position="2000,1500"
                        ShowActivated="False"
                        Topmost="False"
                        ShowInTaskbar="False"

@@ -70,6 +70,9 @@ namespace Slate.Model.Messaging
         bool EnableOnAC,
         bool EnableOnDC
     ) : Message;
+    
+    public sealed record BatteryChargeLimitChangedMessage(int Value) 
+        : Message;
 
     public sealed record SystemAccentColorChangedMessage(
         Color PrimaryAccentColor,

@@ -26,6 +26,7 @@ namespace Slate.Infrastructure.Services
         bool GetEcoMode();
         void SetDisplayOverdrive(bool enable);
         bool GetDisplayOverdrive();
+        void SetBatteryChargeTarget(int value);
         void DumpAcpiRegisters(Stream outStream);
         void CloseAcpiSession();
 

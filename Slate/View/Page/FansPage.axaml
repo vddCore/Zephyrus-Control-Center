@@ -100,12 +100,8 @@
                                 Maximum="255"
                                 Value="{Binding FansSettings.ManualCpuFanDutyCycle, Mode=TwoWay}"
                                 HorizontalAlignment="Stretch"
-                                IsEnabled="{Binding FansSettings.IsManualOverrideEnabled}">
-                            <Slider.Resources>
-                                <x:Double x:Key="SliderPreContentMargin">0</x:Double>
-                                <x:Double x:Key="SliderPostContentMargin">0</x:Double>
-                            </Slider.Resources>
-                        </Slider>
+                                IsEnabled="{Binding FansSettings.IsManualOverrideEnabled}" />
+
                     </Grid>
 
                     <Grid ColumnDefinitions="Auto,*"
@@ -120,12 +116,7 @@
                                 Maximum="255"
                                 Value="{Binding FansSettings.ManualGpuFanDutyCycle, Mode=TwoWay}"
                                 HorizontalAlignment="Stretch"
-                                IsEnabled="{Binding FansSettings.IsManualOverrideEnabled}">
-                            <Slider.Resources>
-                                <x:Double x:Key="SliderPreContentMargin">0</x:Double>
-                                <x:Double x:Key="SliderPostContentMargin">0</x:Double>
-                            </Slider.Resources>
-                        </Slider>
+                                IsEnabled="{Binding FansSettings.IsManualOverrideEnabled}" />
                     </Grid>
                 </StackPanel>
             </control:Card>
@@ -138,7 +129,7 @@
                         Orientation="Horizontal">
                 <icons:SFIcon FontSize="16"
                               Glyph="&#xE950;"
-                              Margin="0,2,0,0"/>
+                              Margin="0,2,0,0" />
 
                 <StackPanel Orientation="Horizontal"
                             Margin="4,0,0,0">
@@ -163,7 +154,7 @@
                         HorizontalAlignment="Right">
                 <icons:SFIcon FontSize="16"
                               Glyph="&#xF211;"
-                              Margin="0,2,0,0"/>
+                              Margin="0,2,0,0" />
 
                 <StackPanel Orientation="Horizontal"
                             Margin="4,0,0,0">

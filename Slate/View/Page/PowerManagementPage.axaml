@@ -2,18 +2,91 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
-             xmlns:page="clr-namespace:Slate.ViewModel.Page"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+             xmlns:page="clr-namespace:Slate.View.Page"
              x:Class="Slate.View.Page.PowerManagementPage"
-             DataContext="{mvvm:DataContextSource page:PowerManagementPageViewModel}">
-    <StackPanel Spacing="4">
-        <control:Card>
-            <StackPanel>
-                <ToggleSwitch Content="Aggressive CPU boost (plugged-in)"
-                              IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnAC, Mode=TwoWay}" />
+             DataContext="{mvvm:DataContextSource vm:PowerManagementPageViewModel}">
+    <UserControl.Styles>
+        <Style Selector="TextBlock#SliderValue">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="icons|SFIcon#WarningIcon">
+            <Setter Property="Opacity" Value="0" />
+            
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="page|PowerManagementPage.LowBatteryLimit TextBlock#SliderValue">
+            <Setter Property="Opacity" Value="0" />
+        </Style>    
+        
+        <Style Selector="page|PowerManagementPage.LowBatteryLimit icons|SFIcon#WarningIcon">
+            <Setter Property="Opacity" Value="1" />
+        </Style>    
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="Auto,*">
+        <StackPanel Grid.Row="0"
+                    Spacing="4">
+            <control:Card>
+                <StackPanel>
+                    <ToggleSwitch Content="Aggressive CPU boost (plugged-in)"
+                                  IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnAC, Mode=TwoWay}" />
 
-                <ToggleSwitch Content="Aggressive CPU boost (on battery)"
-                              IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnDC, Mode=TwoWay}" />
-            </StackPanel>
-        </control:Card>
-    </StackPanel>
+                    <ToggleSwitch Content="Aggressive CPU boost (on battery)"
+                                  IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnDC, Mode=TwoWay}" />
+                </StackPanel>
+            </control:Card>
+
+            <control:Card ShowHeader="True"
+                          HeaderContent="Battery charge limit">
+                <Grid ColumnDefinitions="*,Auto"
+                      Margin="6,-4,0,0">
+                    <Slider Grid.Column="0"
+                            Minimum="1"
+                            Maximum="100"
+                            Value="{Binding PowerManagementSettings.BatteryChargeLimit, Mode=TwoWay}"
+                            HorizontalAlignment="Stretch"
+                            PropertyChanged="OnSliderValueChanged" />
+
+                    <Grid Grid.Column="1">
+                        <TextBlock Name="SliderValue"
+                                   Text="{Binding PowerManagementSettings.BatteryChargeLimit, StringFormat='{}{0}%'}"
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Right" 
+                                   Width="36"
+                                   Margin="6,0,0,0"/>
+                        
+                        <icons:SFIcon Name="WarningIcon"
+                                      Foreground="Yellow"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"
+                                      Glyph="&#xE7BA;"
+                                      FontSize="16" 
+                                      ToolTip.Tip="You probably don't want to do this." />
+                    </Grid>
+
+                </Grid>
+
+            </control:Card>
+        </StackPanel>
+
+        <icons:SFIcon Grid.Row="1"
+                      Glyph="&#xE945;"
+                      FontSize="196"
+                      Foreground="#09FFFFFF"
+                      Margin="0,0,-16,16"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom" />
+    </Grid>
 </UserControl>

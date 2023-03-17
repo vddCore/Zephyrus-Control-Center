@@ -11,7 +11,7 @@
         SetGpuFanCurve = 0x00110025,
         SetCpuFanSpeedDirect = 0x00110022,
         SetGpuFanSpeedDirect = 0x00110023,
-        SetBatteryChargingThreshold = 0x00120057,
+        SetBatteryChargeTarget = 0x00120057,
         SetPerformancePreset = 0x00120075,
         Unk_0x00130022 = 0x00130022,
         

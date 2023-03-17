@@ -42,19 +42,12 @@ namespace Slate.Controller
             SubscribeToApplicationSettings();
             SubscribeToFansSettings();
             SubscribeToGraphicsAndDisplaySettings();
-
+            SubscribeToPowerManagementSettings();
+            
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }
 
         private void ReadCurrentHardwareSettings()
-        {
-            GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
-            GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetEcoMode();
-            GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled = _asusHalService.GetDisplayOverdrive();
-            GraphicsAndDisplaySettings.DisplayRefreshRate = _displayManagementService.GetInternalDisplayRefreshRate();
-        }
-
-        private void ApplyInitialValues()
         {
             if (FansSettings.CpuFanCurve == null)
             {
@@ -69,17 +62,29 @@ namespace Slate.Controller
                     PerformancePreset.Balanced
                 );
             }
+            
+            GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
+            GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetEcoMode();
+            GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled = _asusHalService.GetDisplayOverdrive();
+            GraphicsAndDisplaySettings.DisplayRefreshRate = _displayManagementService.GetInternalDisplayRefreshRate();
+        }
 
-            new CpuFanCurveUpdatedMessage(FansSettings.CpuFanCurve)
+        private void ApplyInitialValues()
+        {
+            new CpuFanCurveUpdatedMessage(FansSettings.CpuFanCurve!)
                 .Broadcast();
 
-            new GpuFanCurveUpdatedMessage(FansSettings.GpuFanCurve)
+            new GpuFanCurveUpdatedMessage(FansSettings.GpuFanCurve!)
                 .Broadcast();
 
             new CpuBoostModeChangedMessage(
                 PowerManagementSettings.IsProcessorBoostActiveOnAC,
                 PowerManagementSettings.IsProcessorBoostActiveOnAC
-            );
+            ).Broadcast();
+
+            new BatteryChargeLimitChangedMessage(
+                PowerManagementSettings.BatteryChargeLimit
+            ).Broadcast();
         }
 
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)

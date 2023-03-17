@@ -148,6 +148,22 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public void SetBatteryChargeTarget(int value)
+        {
+            ThrowIfProxyNull();
+
+            if (value > 100 || value < 0)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(value),
+                    "Battery charge target must be a number between 0-100."
+                );
+            }
+
+            _proxy!.DEVS.SetBatteryChargeTarget((byte)value);
+        }
+
+        [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();

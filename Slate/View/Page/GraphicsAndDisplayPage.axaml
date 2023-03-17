@@ -3,131 +3,144 @@
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             xmlns:icons="clr-namespace:Slate.View.Control.Icons"
              x:Class="Slate.View.Page.GraphicsAndDisplayPage"
              DataContext="{mvvm:DataContextSource vm:GraphicsAndDisplayPageViewModel}">
-    <StackPanel Spacing="4"
-                IsEnabled="{Binding !IsSwitchingEcoModes}">
-        <control:Card Padding="0,0,0,10">
-            <Grid>
-                <Grid RowDefinitions="*,Auto">
-                    <StackPanel Grid.Row="0">
-                        <ToggleSwitch Content="{Binding EcoModeSwitchText}"
-                                      IsChecked="{Binding IsEcoModeEnabled, Mode=OneWay}"
-                                      IsEnabled="{Binding !IsDiscreteExclusiveMode, Mode=TwoWay}"
-                                      Command="{Binding BeginEcoModeTransition}" />
-                    </StackPanel>
-
-                    <control:DualSwitch Grid.Row="1"
-                                        LeftOptionContent="Switched"
-                                        RightOptionContent="Discrete-exclusive"
-                                        IsRightOptionChecked="{Binding IsDiscreteExclusiveMode}"
-                                        IsLeftOptionChecked="{Binding !IsDiscreteExclusiveMode}"
-                                        LeftOptionCommand="{Binding TryEnableSwitchedGraphicsMode}"
-                                        RightOptionCommand="{Binding TryEnableDiscreteGraphicsMode}" />
-                </Grid>
-
-                <Border HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        CornerRadius="6"
-                        Background="#333333"
-                        Opacity="{Binding DecisionBoxOpacity, Mode=OneWay}"
-                        IsHitTestVisible="{Binding IsDeciding, Mode=TwoWay}">
-                    <Border.Transitions>
-                        <Transitions>
-                            <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
-                        </Transitions>
-                    </Border.Transitions>
-                    <Grid RowDefinitions="Auto,Auto"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
-                        <TextBlock Grid.Row="0"
-                                   HorizontalAlignment="Center"
-                                   Text="This will restart your device."
-                                   Margin="0,4,0,2" />
-
-                        <StackPanel Grid.Row="1"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Margin="0,4,0,6"
-                                    Spacing="4">
-                            <Button Content="Do it"
-                                    Padding="8,4"
-                                    Command="{Binding ProceedWithModeSwitch}" />
-
-                            <Button Content="Nope, not ready yet"
-                                    Padding="8,4"
-                                    Command="{Binding AbandonModeSwitch}" />
+    <Grid RowDefinitions="Auto,*">
+        <StackPanel Grid.Row="0"
+                    Spacing="4"
+                    IsEnabled="{Binding !IsSwitchingEcoModes}">
+            <control:Card Padding="0,0,0,10">
+                <Grid>
+                    <Grid RowDefinitions="*,Auto">
+                        <StackPanel Grid.Row="0">
+                            <ToggleSwitch Content="{Binding EcoModeSwitchText}"
+                                          IsChecked="{Binding IsEcoModeEnabled, Mode=OneWay}"
+                                          IsEnabled="{Binding !IsDiscreteExclusiveMode, Mode=TwoWay}"
+                                          Command="{Binding BeginEcoModeTransition}" />
                         </StackPanel>
+
+                        <control:DualSwitch Grid.Row="1"
+                                            LeftOptionContent="Switched"
+                                            RightOptionContent="Discrete-exclusive"
+                                            IsRightOptionChecked="{Binding IsDiscreteExclusiveMode}"
+                                            IsLeftOptionChecked="{Binding !IsDiscreteExclusiveMode}"
+                                            LeftOptionCommand="{Binding TryEnableSwitchedGraphicsMode}"
+                                            RightOptionCommand="{Binding TryEnableDiscreteGraphicsMode}" />
                     </Grid>
-                </Border>
-            </Grid>
-        </control:Card>
 
-        <control:Card>
-            <StackPanel Spacing="4">
-                <ToggleSwitch Content="Built-in display overdrive"
-                              IsChecked="{Binding GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled, Mode=TwoWay}" />
+                    <Border HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            CornerRadius="6"
+                            Background="#333333"
+                            Opacity="{Binding DecisionBoxOpacity, Mode=OneWay}"
+                            IsHitTestVisible="{Binding IsDeciding, Mode=TwoWay}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <Grid RowDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                            <TextBlock Grid.Row="0"
+                                       HorizontalAlignment="Center"
+                                       Text="This will restart your device."
+                                       Margin="0,4,0,2" />
 
-                <Grid HorizontalAlignment="Stretch"
-                      ColumnDefinitions="*,*,*,*,*"
-                      Margin="0,-2,0,0">
-                    <!-- TODO: fix manual bindings with a converter -->
-                    <RadioButton Grid.Column="0"
-                                 Margin="-1,0,0,0"
-                                 CornerRadius="0,0,0,6"
-                                 BorderThickness="0,1,1,0"
-                                 Classes="SwitchRadioButton"
-                                 IsChecked="{Binding Is60HzSelected, Mode=OneWay}"
-                                 Command="{Binding SetDisplayRefreshRate}"
-                                 CommandParameter="60"
-                                 GroupName="RefreshRates"
-                                 Content="60Hz" />
+                            <StackPanel Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Margin="0,4,0,6"
+                                        Spacing="4">
+                                <Button Content="Do it"
+                                        Padding="8,4"
+                                        Command="{Binding ProceedWithModeSwitch}" />
 
-                    <RadioButton Grid.Column="1"
-                                 CornerRadius="0"
-                                 Margin="-1,0,0,0"
-                                 BorderThickness="1,1,1,0"
-                                 Classes="SwitchRadioButton"
-                                 IsChecked="{Binding Is75HzSelected, Mode=OneWay}"
-                                 GroupName="RefreshRates"
-                                 Command="{Binding SetDisplayRefreshRate}"
-                                 CommandParameter="75"
-                                 Content="75Hz" />
-
-                    <RadioButton Grid.Column="2"
-                                 CornerRadius="0"
-                                 Margin="-1,0,0,0"
-                                 BorderThickness="1,1,1,0"
-                                 Classes="SwitchRadioButton"
-                                 IsChecked="{Binding Is100HzSelected, Mode=OneWay}"
-                                 GroupName="RefreshRates"
-                                 Command="{Binding SetDisplayRefreshRate}"
-                                 CommandParameter="100"
-                                 Content="100Hz" />
-
-                    <RadioButton Grid.Column="3"
-                                 CornerRadius="0"
-                                 Margin="-1,0,0,0"
-                                 BorderThickness="1,1,1,0"
-                                 Classes="SwitchRadioButton"
-                                 IsChecked="{Binding Is120HzSelected, Mode=OneWay}"
-                                 GroupName="RefreshRates"
-                                 Command="{Binding SetDisplayRefreshRate}"
-                                 CommandParameter="120"
-                                 Content="120Hz" />
-
-                    <RadioButton Grid.Column="4"
-                                 CornerRadius="0,0,6,0"
-                                 Margin="-1,0,0,0"
-                                 BorderThickness="1,1,0,0"
-                                 Classes="SwitchRadioButton"
-                                 IsChecked="{Binding Is144HzSelected, Mode=OneWay}"
-                                 GroupName="RefreshRates"
-                                 Command="{Binding SetDisplayRefreshRate}"
-                                 CommandParameter="144"
-                                 Content="144Hz" />
+                                <Button Content="Nope, not ready yet"
+                                        Padding="8,4"
+                                        Command="{Binding AbandonModeSwitch}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </Grid>
-            </StackPanel>
-        </control:Card>
-    </StackPanel>
+            </control:Card>
+
+            <control:Card>
+                <StackPanel Spacing="4">
+                    <ToggleSwitch Content="Built-in display overdrive"
+                                  IsChecked="{Binding GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled, Mode=TwoWay}" />
+
+                    <Grid HorizontalAlignment="Stretch"
+                          ColumnDefinitions="*,*,*,*,*"
+                          Margin="0,-2,0,0">
+                        <!-- TODO: fix manual bindings with a converter.
+                         let's be real. i'm not gonna do that like ever. -->
+                        <RadioButton Grid.Column="0"
+                                     Margin="-1,0,0,0"
+                                     CornerRadius="0,0,0,6"
+                                     BorderThickness="0,1,1,0"
+                                     Classes="SwitchRadioButton"
+                                     IsChecked="{Binding Is60HzSelected, Mode=OneWay}"
+                                     Command="{Binding SetDisplayRefreshRate}"
+                                     CommandParameter="60"
+                                     GroupName="RefreshRates"
+                                     Content="60Hz" />
+
+                        <RadioButton Grid.Column="1"
+                                     CornerRadius="0"
+                                     Margin="-1,0,0,0"
+                                     BorderThickness="1,1,1,0"
+                                     Classes="SwitchRadioButton"
+                                     IsChecked="{Binding Is75HzSelected, Mode=OneWay}"
+                                     GroupName="RefreshRates"
+                                     Command="{Binding SetDisplayRefreshRate}"
+                                     CommandParameter="75"
+                                     Content="75Hz" />
+
+                        <RadioButton Grid.Column="2"
+                                     CornerRadius="0"
+                                     Margin="-1,0,0,0"
+                                     BorderThickness="1,1,1,0"
+                                     Classes="SwitchRadioButton"
+                                     IsChecked="{Binding Is100HzSelected, Mode=OneWay}"
+                                     GroupName="RefreshRates"
+                                     Command="{Binding SetDisplayRefreshRate}"
+                                     CommandParameter="100"
+                                     Content="100Hz" />
+
+                        <RadioButton Grid.Column="3"
+                                     CornerRadius="0"
+                                     Margin="-1,0,0,0"
+                                     BorderThickness="1,1,1,0"
+                                     Classes="SwitchRadioButton"
+                                     IsChecked="{Binding Is120HzSelected, Mode=OneWay}"
+                                     GroupName="RefreshRates"
+                                     Command="{Binding SetDisplayRefreshRate}"
+                                     CommandParameter="120"
+                                     Content="120Hz" />
+
+                        <RadioButton Grid.Column="4"
+                                     CornerRadius="0,0,6,0"
+                                     Margin="-1,0,0,0"
+                                     BorderThickness="1,1,0,0"
+                                     Classes="SwitchRadioButton"
+                                     IsChecked="{Binding Is144HzSelected, Mode=OneWay}"
+                                     GroupName="RefreshRates"
+                                     Command="{Binding SetDisplayRefreshRate}"
+                                     CommandParameter="144"
+                                     Content="144Hz" />
+                    </Grid>
+                </StackPanel>
+            </control:Card>
+        </StackPanel>
+
+        <icons:SFIcon Grid.Row="1"
+                      Glyph="&#xF211;"
+                      FontSize="196"
+                      Foreground="#09FFFFFF"
+                      Margin="0,0,16,8"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom" />
+    </Grid>
 </UserControl>

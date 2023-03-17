@@ -71,5 +71,13 @@ namespace Slate.Infrastructure.Asus.Acpi.Endpoints
                 enable ? (byte)1 : (byte)0
             );
         }
+
+        public void SetBatteryChargeTarget(byte value)
+        {
+            _ = ReadInt32(
+                DevsMethod.SetBatteryChargeTarget,
+                value
+            );
+        }
     }
 }

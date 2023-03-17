@@ -12,8 +12,9 @@ namespace Slate.Controller
         private void SubscribeToPowerManagementSettings()
         {
             Message.Subscribe<CpuBoostModeChangedMessage>(this, OnCpuBoostModeChanged);
+            Message.Subscribe<BatteryChargeLimitChangedMessage>(this, OnBatteryChargeLimitChanged);
         }
-        
+
         private void OnCpuBoostModeChanged(CpuBoostModeChangedMessage msg)
         {
             _powerManagementService.WriteProcessorBoostState(
@@ -27,6 +28,11 @@ namespace Slate.Controller
             );
 
             _powerManagementService.CommitCurrentPowerSchemeChanges();
+        }
+        
+        private void OnBatteryChargeLimitChanged(BatteryChargeLimitChangedMessage msg)
+        {
+            _asusHalService.SetBatteryChargeTarget(msg.Value);
         }
     }
 }
