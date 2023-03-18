@@ -164,6 +164,23 @@ namespace Slate.Infrastructure.Services
         }
 
         [RequiresAcpiSession]
+        public void SetPlatformPowerTargets(byte totalSystemPpt, byte cpuPpt)
+        {
+            ThrowIfProxyNull();
+
+            if (cpuPpt > totalSystemPpt)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(cpuPpt),
+                    "CPU PPT must be less than or equal to total system PPT."
+                );
+            }
+
+            _proxy!.DEVS.SetTotalPPT(totalSystemPpt);
+            _proxy!.DEVS.SetCpuPPT(cpuPpt);
+        }
+
+        [RequiresAcpiSession]
         public void CloseAcpiSession()
         {
             ThrowIfProxyNull();

@@ -85,6 +85,11 @@ namespace Slate.Controller
             new BatteryChargeLimitChangedMessage(
                 PowerManagementSettings.BatteryChargeLimit
             ).Broadcast();
+
+            new PowerTargetsChangedMessage(
+                PowerManagementSettings.TotalSystemPPT,
+                PowerManagementSettings.ProcessorPPT
+            ).Broadcast();
         }
 
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)

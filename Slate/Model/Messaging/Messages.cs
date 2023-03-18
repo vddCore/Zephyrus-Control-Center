@@ -74,6 +74,11 @@ namespace Slate.Model.Messaging
     public sealed record BatteryChargeLimitChangedMessage(int Value) 
         : Message;
 
+    public sealed record PowerTargetsChangedMessage(
+        byte TotalSystemPPT,
+        byte CpuPPT
+    ) : Message;
+
     public sealed record SystemAccentColorChangedMessage(
         Color PrimaryAccentColor,
         Color SecondaryAccentColor,

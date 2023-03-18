@@ -38,7 +38,7 @@ namespace Slate.Infrastructure.Native
 
         [DllImport(LibraryName)]
         public static extern nint GetLastError();
-
+        
         [DllImport(LibraryName)]
         public static extern bool CloseHandle(nint hObject);
     }

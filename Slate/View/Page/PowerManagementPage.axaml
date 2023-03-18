@@ -83,6 +83,7 @@
                 <Grid ColumnDefinitions="*,Auto"
                       Margin="6,-4,0,0">
                     <Slider Grid.Column="0"
+                            Name="BatteryChargeLimitSlider" 
                             Minimum="1"
                             Maximum="100"
                             Value="{Binding PowerManagementSettings.BatteryChargeLimit, Mode=TwoWay}"
@@ -121,12 +122,13 @@
                                       VerticalAlignment="Center" />
 
                         <Slider Grid.Column="1"
+                                Name="TotalSystemPptSlider"
                                 Minimum="15"
                                 Maximum="150"
                                 Value="{Binding TotalSystemPPT, Mode=TwoWay}"
                                 HorizontalAlignment="Stretch"
                                 Margin="6,0"
-                                PropertyChanged="TotalPlatformPptSlider_PropertyChanged" />
+                                PropertyChanged="TotalSystemPptSlider_PropertyChanged" />
 
                         <Grid Grid.Column="2"
                               Width="36">
@@ -156,6 +158,7 @@
                                       VerticalAlignment="Center" />
 
                         <Slider Grid.Column="1"
+                                Name="ProcessorPptSlider"
                                 Minimum="15"
                                 Maximum="90"
                                 Value="{Binding ProcessorPPT, Mode=TwoWay}"

@@ -25,8 +25,10 @@ namespace Slate.ViewModel.Page
         private readonly IAsusHalService _asusHalService;
         
         public IHardwareMonitorService HardwareMonitor { get; set; }
+        
         public FansSettings FansSettings => _settingsService.ControlCenter!.Fans;
-
+        public PowerManagementSettings PowerManagementSettings => _settingsService.ControlCenter!.PowerManagement;
+        
         public ISeries[] CpuSeries { get; set; } = new ISeries[]
         {
             new LineSeries<ObservablePoint>
@@ -98,6 +100,24 @@ namespace Slate.ViewModel.Page
             SetGpuSeriesToPreset(preset);
             
             FansSettings.PerformancePreset = preset;
+
+            switch (preset)
+            {
+                case PerformancePreset.Silent:
+                    PowerManagementSettings.ProcessorPPT = 45;
+                    PowerManagementSettings.TotalSystemPPT = 70;
+                    break;
+                
+                case PerformancePreset.Balanced:
+                    PowerManagementSettings.ProcessorPPT = 45;
+                    PowerManagementSettings.TotalSystemPPT = 100;
+                    break;
+                
+                case PerformancePreset.Performance:
+                    PowerManagementSettings.TotalSystemPPT = 125;
+                    PowerManagementSettings.ProcessorPPT = 80;
+                    break;
+            }
         }
 
         private void InitializeCpuSeries(SKColor curveColor)

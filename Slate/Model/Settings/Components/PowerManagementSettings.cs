@@ -9,8 +9,8 @@ namespace Slate.Model.Settings.Components
         public bool IsProcessorBoostActiveOnDC { get; set; } = false;
         
         public int BatteryChargeLimit { get; set; } = 85; /* percent of course */
-        public byte TotalSystemPPT { get; set; } = 30;
-        public byte ProcessorPPT { get; set; }
+        public byte TotalSystemPPT { get; set; } = 90;
+        public byte ProcessorPPT { get; set; } = 60;
 
         protected override void OnSettingsModified(string? propertyName)
         {
@@ -31,6 +31,17 @@ namespace Slate.Model.Settings.Components
                 {
                     new BatteryChargeLimitChangedMessage(
                         BatteryChargeLimit
+                    ).Broadcast();
+                    
+                    break;
+                }
+
+                case nameof(TotalSystemPPT):
+                case nameof(ProcessorPPT):
+                {
+                    new PowerTargetsChangedMessage(
+                        TotalSystemPPT,
+                        ProcessorPPT
                     ).Broadcast();
                     
                     break;
