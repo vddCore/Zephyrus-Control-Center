@@ -37,8 +37,25 @@ namespace Slate.Infrastructure.Native
         );
 
         [DllImport(LibraryName)]
+        public static extern uint GetSystemFirmwareTable(
+            int FirmwareTableProviderSignature,
+            int FirmwareTableID,
+            [In, Out, MarshalAs(UnmanagedType.LPArray)]
+            byte[] pFirmwareBuffer,
+            int BufferSize
+        );
+
+        [DllImport(LibraryName)]
+        public static extern uint EnumSystemFirmwareTables(
+            [In] int FirmwareTableProviderSignature,
+            [In, Out, MarshalAs(UnmanagedType.LPArray)]
+            byte[] pFirmwareBuffer,
+            int BufferSize
+        );
+
+        [DllImport(LibraryName)]
         public static extern nint GetLastError();
-        
+
         [DllImport(LibraryName)]
         public static extern bool CloseHandle(nint hObject);
     }
