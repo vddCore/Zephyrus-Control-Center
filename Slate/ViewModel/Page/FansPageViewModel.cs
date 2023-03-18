@@ -19,7 +19,7 @@ using Slate.Model.Settings.Components;
 
 namespace Slate.ViewModel.Page
 {
-    public class FansPageViewModel : ViewModelBase
+    public class FansPageViewModel : SingleInstanceViewModelBase
     {
         private readonly ISettingsService _settingsService;
         private readonly IAsusHalService _asusHalService;

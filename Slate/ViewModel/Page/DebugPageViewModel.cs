@@ -6,7 +6,7 @@ using Slate.Infrastructure.Services;
 
 namespace Slate.ViewModel.Page
 {
-    public class DebugPageViewModel : ViewModelBase
+    public class DebugPageViewModel : SingleInstanceViewModelBase
     {
         private const string AcpiRegistersOutputFileName = "acpi_registers";
 

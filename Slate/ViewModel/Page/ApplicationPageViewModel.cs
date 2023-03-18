@@ -6,7 +6,7 @@ using Slate.Model.Settings.Components;
 
 namespace Slate.ViewModel.Page
 {
-    public class ApplicationPageViewModel : ViewModelBase
+    public class ApplicationPageViewModel : SingleInstanceViewModelBase
     {
         private readonly ISettingsService _settingsService;
 

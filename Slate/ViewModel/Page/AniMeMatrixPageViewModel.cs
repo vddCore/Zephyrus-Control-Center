@@ -2,7 +2,7 @@
 
 namespace Slate.ViewModel.Page
 {
-    public class AniMeMatrixPageViewModel : ViewModelBase
+    public class AniMeMatrixPageViewModel : SingleInstanceViewModelBase
     {
     }
 }

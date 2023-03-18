@@ -4,7 +4,7 @@ using Slate.Model.Settings.Components;
 
 namespace Slate.ViewModel.Page
 {
-    public class PowerManagementPageViewModel : ViewModelBase
+    public class PowerManagementPageViewModel : SingleInstanceViewModelBase
     {
         private readonly ISettingsService _settingsService;
         

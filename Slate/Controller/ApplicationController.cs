@@ -1,4 +1,5 @@
-﻿using Glitonea.Mvvm.Messaging;
+﻿using Avalonia.Input;
+using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
@@ -14,6 +15,7 @@ namespace Slate.Controller
         private readonly ISettingsService _settingsService;
         private readonly IPowerManagementService _powerManagementService;
         private readonly IDisplayManagementService _displayManagementService;
+        private readonly IAsusAuraService _asusAuraService;
 
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
 
@@ -21,12 +23,14 @@ namespace Slate.Controller
             IAsusHalService asusHalService,
             ISettingsService settingsService,
             IPowerManagementService powerManagementService,
-            IDisplayManagementService displayManagementService)
+            IDisplayManagementService displayManagementService,
+            IAsusAuraService asusAuraService)
         {
             _asusHalService = asusHalService;
             _settingsService = settingsService;
             _powerManagementService = powerManagementService;
             _displayManagementService = displayManagementService;
+            _asusAuraService = asusAuraService;
             
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
@@ -42,6 +46,7 @@ namespace Slate.Controller
             SubscribeToFansSettings();
             SubscribeToGraphicsAndDisplaySettings();
             SubscribeToPowerManagementSettings();
+            SubscribeToKeyboardSettings();
             
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }
@@ -94,6 +99,13 @@ namespace Slate.Controller
             new PowerTargetsChangedMessage(
                 PowerManagementSettings.TotalSystemPPT,
                 PowerManagementSettings.ProcessorPPT
+            ).Broadcast();
+
+            new AuraSettingsChangedMessage(
+                KeyboardSettings.Animation,
+                KeyboardSettings.PrimaryColor.HardwareColor,
+                KeyboardSettings.SecondaryColor.HardwareColor,
+                KeyboardSettings.AnimationSpeed
             ).Broadcast();
         }
 

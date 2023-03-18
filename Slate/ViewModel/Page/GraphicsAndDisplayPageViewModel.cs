@@ -12,7 +12,7 @@ using Slate.ViewModel.Window;
 
 namespace Slate.ViewModel.Page
 {
-    public class GraphicsAndDisplayPageViewModel : ViewModelBase
+    public class GraphicsAndDisplayPageViewModel : SingleInstanceViewModelBase
     {
         private readonly ISettingsService _settingsService;
         private readonly IShutdownService _shutdownService;

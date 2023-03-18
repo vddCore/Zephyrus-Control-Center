@@ -23,7 +23,8 @@ namespace Slate.ViewModel.Window
             IAsusHalService asusHalService,
             ISettingsService settingsService,
             IPowerManagementService powerManagementService,
-            IDisplayManagementService displayManagementService)
+            IDisplayManagementService displayManagementService,
+            IAsusAuraService asusAuraService)
         {
             _settingsService = settingsService;
 
@@ -31,7 +32,8 @@ namespace Slate.ViewModel.Window
                 asusHalService,
                 settingsService,
                 powerManagementService,
-                displayManagementService
+                displayManagementService,
+                asusAuraService
             );
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
