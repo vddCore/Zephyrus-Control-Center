@@ -1,3 +1,6 @@
 [submodule "Glitonea"]
 	path = Glitonea
 	url = https://github.com/vddcore/Glitonea.git
+[submodule "Starlight"]
+	path = Starlight
+	url = https://github.com/vddCore/Starlight.git

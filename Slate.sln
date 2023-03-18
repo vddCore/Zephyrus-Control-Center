@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate", "Slate\Slate.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitonea", "Glitonea\Glitonea.csproj", "{11F333ED-ECDD-4191-A48C-55C68C1D8634}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starlight", "Starlight\Starlight\Starlight.csproj", "{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,5 +25,11 @@ Global
 		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.AcpiTesting|Any CPU.ActiveCfg = AcpiTesting|Any CPU
 		{11F333ED-ECDD-4191-A48C-55C68C1D8634}.AcpiTesting|Any CPU.Build.0 = AcpiTesting|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
