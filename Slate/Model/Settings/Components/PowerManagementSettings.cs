@@ -39,6 +39,12 @@ namespace Slate.Model.Settings.Components
                 case nameof(TotalSystemPPT):
                 case nameof(ProcessorPPT):
                 {
+                    WithEventSuppressed(() =>
+                    {
+                        if (ProcessorPPT > TotalSystemPPT)
+                            ProcessorPPT = TotalSystemPPT;
+                    });
+                    
                     new PowerTargetsChangedMessage(
                         TotalSystemPPT,
                         ProcessorPPT

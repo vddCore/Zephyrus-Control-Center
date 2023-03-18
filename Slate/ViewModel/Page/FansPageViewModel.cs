@@ -104,13 +104,13 @@ namespace Slate.ViewModel.Page
             switch (preset)
             {
                 case PerformancePreset.Silent:
-                    PowerManagementSettings.ProcessorPPT = 45;
                     PowerManagementSettings.TotalSystemPPT = 70;
+                    PowerManagementSettings.ProcessorPPT = 45;
                     break;
                 
                 case PerformancePreset.Balanced:
-                    PowerManagementSettings.ProcessorPPT = 45;
                     PowerManagementSettings.TotalSystemPPT = 100;
+                    PowerManagementSettings.ProcessorPPT = 45;
                     break;
                 
                 case PerformancePreset.Performance:

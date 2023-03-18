@@ -11,7 +11,7 @@ namespace Slate.View.Page
         private const int LowBatteryLimitValue = 20;
         private const int HighSystemPptValue = 135;
         private const int HighProcessorPptValue = 85;
-        
+
         public PowerManagementPage()
         {
             InitializeComponent();
@@ -37,29 +37,23 @@ namespace Slate.View.Page
 
         private void TotalSystemPptSlider_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
         {
-            if (sender is not RangeBase)
+            if (sender is not RangeBase slider)
                 return;
 
             if (e.Property == RangeBase.ValueProperty)
             {
-                if (e.NewValue is double d)
-                {
-                    Classes.Set("HighSystemPPT", d >= HighSystemPptValue);
-                }
+                Classes.Set("HighSystemPPT", slider.Value >= HighSystemPptValue);
             }
         }
 
         private void ProcessorPptSlider_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
         {
-            if (sender is not RangeBase)
+            if (sender is not RangeBase slider)
                 return;
 
             if (e.Property == RangeBase.ValueProperty)
             {
-                if (e.NewValue is double d)
-                {
-                    Classes.Set("HighProcessorPPT", d >= HighProcessorPptValue);
-                }
+                Classes.Set("HighProcessorPPT", slider.Value >= HighProcessorPptValue);
             }
         }
     }

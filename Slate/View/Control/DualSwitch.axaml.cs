@@ -3,7 +3,6 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using PropertyChanged;
 
 namespace Slate.View.Control

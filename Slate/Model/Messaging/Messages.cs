@@ -1,6 +1,5 @@
 ﻿using Avalonia.Media;
 using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Settings;
 using Slate.View;

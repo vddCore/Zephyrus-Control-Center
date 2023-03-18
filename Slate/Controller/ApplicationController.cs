@@ -1,5 +1,4 @@
 ﻿using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
@@ -77,6 +76,12 @@ namespace Slate.Controller
             new GpuFanCurveUpdatedMessage(FansSettings.GpuFanCurve!)
                 .Broadcast();
 
+            new ManualFanOverrideUpdatedMessage(
+                FansSettings.IsManualOverrideEnabled,
+                FansSettings.ManualCpuFanDutyCycle,
+                FansSettings.ManualGpuFanDutyCycle
+            ).Broadcast();
+            
             new CpuBoostModeChangedMessage(
                 PowerManagementSettings.IsProcessorBoostActiveOnAC,
                 PowerManagementSettings.IsProcessorBoostActiveOnAC

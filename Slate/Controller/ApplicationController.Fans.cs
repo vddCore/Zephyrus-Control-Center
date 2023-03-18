@@ -1,5 +1,4 @@
 ﻿using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure.Asus;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;
 
@@ -18,16 +17,15 @@ namespace Slate.Controller
 
         private void OnManualFanOverrideUpdated(ManualFanOverrideUpdatedMessage msg)
         {
+            _asusHalService.SetPerformancePreset(FansSettings.PerformancePreset);
+            
             if (msg.IsOverrideEnabled)
             {
-                _asusHalService.SetPerformancePreset(PerformancePreset.Performance);
-
                 _asusHalService.SetCpuFanDutyCycle(msg.CpuDutyCycle);
                 _asusHalService.SetGpuFanDutyCycle(msg.GpuDutyCycle);
             }
             else
             {
-                _asusHalService.SetPerformancePreset(FansSettings.PerformancePreset);
                 _asusHalService.WriteCpuFanCurve(FansSettings.CpuFanCurve!);
                 _asusHalService.WriteGpuFanCurve(FansSettings.GpuFanCurve!);
             }
