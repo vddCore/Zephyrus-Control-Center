@@ -28,7 +28,9 @@ namespace Slate.Infrastructure.Services
         bool GetDisplayOverdrive();
         void SetBatteryChargeTarget(int value);
         void SetPlatformPowerTargets(byte totalSystemPpt, byte cpuPpt);
-        void DumpAcpiRegisters(Stream outStream);
+        void DumpWmiRegisters(Stream outStream);
+        int[] FetchAcpiTableList(bool makeRegistryFriendly);
+        void DumpAcpiTable(int tableId, Stream outStream);
         void CloseAcpiSession();
 
     }

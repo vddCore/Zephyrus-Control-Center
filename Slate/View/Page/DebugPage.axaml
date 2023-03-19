@@ -15,9 +15,12 @@
             <StackPanel Grid.Row="0"
                         Spacing="4"
                         Margin="4">
-                <Button Content="Dump all known ACPI registers"
-                        Command="{Binding DumpAcpiRegisters}" />
+                <Button Content="Dump all known WMI registers"
+                        Command="{Binding DumpWmiRegisters}" />
 
+                <Button Content="Dump firmware ACPI tables"
+                        Command="{Binding DumpAcpiTables}" />
+                
                 <Button Content="Open configuration directory"
                         Command="{Binding OpenAppDataDirectory}" />
 

@@ -82,5 +82,17 @@ namespace Slate.Infrastructure
 
             return (bestIndex, bestValue);
         }
+
+        public static string ToFourCharacterCode(this int value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+            return $"{(char)bytes[0]}{(char)bytes[1]}{(char)bytes[2]}{(char)bytes[3]}";
+        }
+
+        public static int ReverseBytes(this int value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+            return BitConverter.ToInt32(bytes.Reverse().ToArray());
+        }
     }
 }

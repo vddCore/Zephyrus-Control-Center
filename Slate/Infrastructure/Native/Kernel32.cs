@@ -41,16 +41,16 @@ namespace Slate.Infrastructure.Native
             int FirmwareTableProviderSignature,
             int FirmwareTableID,
             [In, Out, MarshalAs(UnmanagedType.LPArray)]
-            byte[] pFirmwareBuffer,
-            int BufferSize
+            byte[]? pFirmwareBuffer,
+            uint BufferSize
         );
 
         [DllImport(LibraryName)]
         public static extern uint EnumSystemFirmwareTables(
             [In] int FirmwareTableProviderSignature,
             [In, Out, MarshalAs(UnmanagedType.LPArray)]
-            byte[] pFirmwareBuffer,
-            int BufferSize
+            byte[]? pFirmwareBuffer,
+            uint BufferSize
         );
 
         [DllImport(LibraryName)]
