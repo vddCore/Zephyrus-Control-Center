@@ -35,16 +35,25 @@ namespace Slate.ViewModel.Page
 
         public void DumpAcpiTables()
         {
-            var tables = _asusHalService.FetchAcpiTableList(true);
-
             var dt = DateTime.Now.ToString("dd-MM-yy_hh_mm_ss");
-
-            foreach (var table in tables)
+            
+            var firmwareAcpiTableList = _asusHalService.FetchFirmwareAcpiTableList();
+            foreach (var table in firmwareAcpiTableList)
             {
                 var tableName = table.ToFourCharacterCode();
                 using (var fs = _storageService.CreateFile($"{AcpiTableDumpsDirectoryName}/{dt}/{tableName}.acpi"))
                 {
-                    _asusHalService.DumpAcpiTable(table, fs);
+                    _asusHalService.DumpFirmwareAcpiTable(table, fs);
+                }
+            }
+
+            var registryAcpiTableList = _asusHalService.FetchRegistryAcpiTableList();
+            foreach (var table in registryAcpiTableList)
+            {
+                var tableName = table.ToFourCharacterCode();
+                using (var fs = _storageService.CreateFile($"{AcpiTableDumpsDirectoryName}/{dt}/{tableName}.acpi"))
+                {
+                    _asusHalService.DumpRegistryAcpiTable(table, fs);
                 }
             }
         }

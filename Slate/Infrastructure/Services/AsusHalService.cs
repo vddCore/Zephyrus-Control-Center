@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Win32;
 using Slate.Infrastructure.Asus;
@@ -184,7 +185,7 @@ namespace Slate.Infrastructure.Services
             _proxy!.DEVS.SetTotalPPT(totalSystemPpt);
             _proxy!.DEVS.SetCpuPPT(cpuPpt);
         }
-        
+
         [RequiresAcpiSession]
         public void DumpWmiRegisters(Stream outStream)
         {
@@ -237,7 +238,7 @@ namespace Slate.Infrastructure.Services
             }
         }
 
-        public int[] FetchAcpiTableList(bool makeRegistryFriendly)
+        public int[] FetchFirmwareAcpiTableList(bool skipLicenseKeyTable = true)
         {
             var dataSize = Kernel32.EnumSystemFirmwareTables(AcpiId, null, 0);
             var data = new byte[dataSize];
@@ -249,80 +250,64 @@ namespace Slate.Infrastructure.Services
                     var ret = new int[dataSize / 4];
                     Buffer.BlockCopy(data, 0, ret, 0, (int)dataSize);
 
-                    if (makeRegistryFriendly)
-                    {
-                        MakeTableListRegistryFriendly(ret);
-                    }
-
-                    return ret;
+                    return ret.Where(
+                        x => x.ToFourCharacterCode() != "SSDT" 
+                             && (skipLicenseKeyTable && x.ToFourCharacterCode() != "MSDM")
+                    ).Distinct().ToArray();
                 }
             }
 
             return new int[0];
         }
 
-        private void MakeTableListRegistryFriendly(int[] tables)
+        public void DumpFirmwareAcpiTable(int tableId, Stream outStream)
         {
-            var ordinals = "123456789ABCDEFGHIJKLMN";
-            var ssdtId = 0;
+            var dataSize = Kernel32.GetSystemFirmwareTable(
+                AcpiId,
+                tableId,
+                null,
+                0
+            );
 
-            for (var i = 0; i < tables.Length; i++)
+            var data = new byte[dataSize];
+            Kernel32.GetSystemFirmwareTable(
+                AcpiId,
+                tableId,
+                data,
+                dataSize
+            );
+
+            outStream.Write(data);
+        }
+
+        public int[] FetchRegistryAcpiTableList(bool skipLicenseKeyTable)
+        {
+            using (var hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default))
             {
-                var fourcc = tables[i].ToFourCharacterCode();
-
-                if (fourcc == "SSDT")
+                using (var subKey = hklm.OpenSubKey($"HARDWARE\\ACPI"))
                 {
-                    // Leave one SSDT name intact because registry contains it as well.
-                    // Why is this more difficult than it has to be, what the fuck.
-                    if (ssdtId > 0)
-                    {
-                        var bytes = BitConverter.GetBytes(tables[i]);
-                        bytes[3] = (byte)ordinals[ssdtId - 1];
-                        tables[i] = BitConverter.ToInt32(bytes);
-                    }
-
-                    Debug.WriteLine(tables[i].ToFourCharacterCode());
-                    ssdtId++;
+                    return subKey!
+                        .GetSubKeyNames()
+                        .Select(x => x.ToFourCharacterCodeInteger())
+                        .Where(x => skipLicenseKeyTable && x.ToFourCharacterCode() != "MSDM")
+                        .ToArray();
                 }
             }
         }
 
-        public void DumpAcpiTable(int tableId, Stream outStream)
+        public void DumpRegistryAcpiTable(int tableId, Stream outStream)
         {
-            var fourcc = tableId.ToFourCharacterCode();
-
-            // We'll drill into the registry for SSDTs
-            // precisely because GetSystemFirmwareTable
-            // is absolute Dogshit. For fuck's sake, why
-            // couldn't it be an enumerator?
-            //
-            if (fourcc.StartsWith("SSD"))
-            {
-                outStream.Write(ReadAcpiTableFromRegistry(fourcc));
-            }
-            else
-            {
-                var dataSize = Kernel32.GetSystemFirmwareTable(
-                    AcpiId,
-                    tableId,
-                    null,
-                    0
-                );
-
-                var data = new byte[dataSize];
-                Kernel32.GetSystemFirmwareTable(
-                    AcpiId,
-                    tableId,
-                    data,
-                    dataSize
-                );
-
-                outStream.Write(data);
-            }
+            var data = ReadAcpiTableFromRegistry(tableId.ToFourCharacterCode());
+            outStream.Write(data);
         }
 
         private byte[] ReadAcpiTableFromRegistry(string fourcc)
         {
+            // We drill into the registry for SSDTs & co.
+            // precisely because GetSystemFirmwareTable
+            // is absolute Dogshit. For fuck's sake, why
+            // couldn't it be an enumerator?
+            //
             var disposeList = new List<RegistryKey>();
 
             using (var hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default))

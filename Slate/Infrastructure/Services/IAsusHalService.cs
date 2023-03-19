@@ -29,8 +29,10 @@ namespace Slate.Infrastructure.Services
         void SetBatteryChargeTarget(int value);
         void SetPlatformPowerTargets(byte totalSystemPpt, byte cpuPpt);
         void DumpWmiRegisters(Stream outStream);
-        int[] FetchAcpiTableList(bool makeRegistryFriendly);
-        void DumpAcpiTable(int tableId, Stream outStream);
+        int[] FetchFirmwareAcpiTableList(bool skipLicenseKeyTable = true);
+        void DumpFirmwareAcpiTable(int tableId, Stream outStream);
+        int[] FetchRegistryAcpiTableList(bool skipLicenseKeyTable = true);
+        void DumpRegistryAcpiTable(int tableId, Stream outStream);
         void CloseAcpiSession();
 
     }
