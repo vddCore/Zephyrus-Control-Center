@@ -24,6 +24,13 @@
         GetGpuFanCurve = 0x00110025,
         Unk_0x00110026 = 0x00110026,
         Unk_0x00110027 = 0x00110027,
+        /**
+         * & with 0x00010000 == IsSupported
+         * & with 0x00000010 == IsOverheating
+         * & with 0x00000001 == IsRunning
+         * Not present in G14 ACPI but...
+         **/
+        GetFanDustySupportedStatus = 0x0011001E, 
         Unk_0x00120057 = 0x00120057,
         Unk_0x00120061 = 0x00120061,
         GetFanCurveCount = 0x00120075,

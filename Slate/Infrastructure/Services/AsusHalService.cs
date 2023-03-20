@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
 using Microsoft.Win32;
 using Slate.Infrastructure.Asus;
@@ -14,11 +15,27 @@ namespace Slate.Infrastructure.Services
     public class AsusHalService : IAsusHalService
     {
         private const int AcpiId = 0x41435049; // 'A' 'C' 'P' 'I'
-
+        private const string AsusAtkWmiEventName = "AsusAtkWmiEvent";
+        private IWmiEventService _wmiEventService;
         private AsusAcpiProxy? _proxy;
 
         public bool IsAcpiSessionOpen => _proxy != null;
 
+        public AsusHalService(IWmiEventService wmiEventService)
+        {
+            _wmiEventService = wmiEventService;
+        }
+
+        public void SubscribeToWmiEvent(Action<ManagementBaseObject> handler)
+        {
+            _wmiEventService.SubscribeTo(AsusAtkWmiEventName, handler);
+        }
+
+        public void UnsubscribeFromWmiEvent(Action<ManagementBaseObject> handler)
+        {
+            _wmiEventService.UnsubscribeFrom(AsusAtkWmiEventName, handler);
+        }
+        
         public void OpenAcpiSession()
         {
             if (_proxy != null)

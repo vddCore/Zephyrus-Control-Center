@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Management;
 using Glitonea.Mvvm;
 using Slate.Infrastructure.Asus;
 
@@ -7,7 +9,9 @@ namespace Slate.Infrastructure.Services
     public interface IAsusHalService : IService
     {
         bool IsAcpiSessionOpen { get; }
-        
+
+        void SubscribeToWmiEvent(Action<ManagementBaseObject> handler);
+        void UnsubscribeFromWmiEvent(Action<ManagementBaseObject> handler);
         void OpenAcpiSession();
         int ReadCpuFanSpeed();
         int ReadGpuFanSpeed();

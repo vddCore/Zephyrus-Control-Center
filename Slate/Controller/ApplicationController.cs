@@ -47,6 +47,7 @@ namespace Slate.Controller
             SubscribeToGraphicsAndDisplaySettings();
             SubscribeToPowerManagementSettings();
             SubscribeToKeyboardSettings();
+            SubscribeToAsusEventProvider();
             
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }

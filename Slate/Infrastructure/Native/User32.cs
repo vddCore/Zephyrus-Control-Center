@@ -16,6 +16,13 @@ namespace Slate.Infrastructure.Native
         public const int WS_EX_APPWINDOW = 0x0004000;
         public const int WS_EX_TOOLWINDOW = 0x00000080;
 
+        public const int WH_KEYBOARD_LL = 13;
+
+        public const int WM_KEYDOWN = 0x0100;
+        public const int WM_KEYUP = 0x0101;
+        public const int WM_SYSKEYDOWN = 0x0104;
+        public const int WM_SYSKEYUP = 0x0105;
+
         public const nint HWND_BOTTOM = 1;
         public const nint HWND_NOTOPMOST = 2;
         public const nint HWND_TOP = 2;
@@ -277,6 +284,19 @@ namespace Slate.Infrastructure.Native
             public RECT DesktopImageClip;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KBDLLHOOKSTRUCT
+        {
+            public int vkCode;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public nint dwExtraInfo;
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        public delegate nint LowLevelKeyboardProc(int nCode, nint wParam, nint lParam);
+        
         [DllImport(LibraryName, ExactSpelling = true, CharSet = CharSet.Unicode)]
         public static extern bool SystemParametersInfoW(
             uint uiAction,
@@ -293,6 +313,25 @@ namespace Slate.Infrastructure.Native
 
         [DllImport(LibraryName)]
         public static extern int SetWindowLong(nint hWnd, int nIndex, int dwNewLong);
+
+        [DllImport(LibraryName)]
+        public static extern nint SetWindowsHookEx(
+            int idHook,
+            LowLevelKeyboardProc hookProc,
+            nint hMod,
+            int dwThreadId
+        );
+
+        [DllImport(LibraryName)]
+        public static extern bool UnhookWindowsHookEx(nint hhk);
+
+        [DllImport(LibraryName)]
+        public static extern nint CallNextHookEx(
+            nint hhk,
+            int nCode,
+            nint wParam,
+            nint lParam
+        );
 
         [DllImport(LibraryName, SetLastError = false, ExactSpelling = true)]
         private static extern int QueryDisplayConfig(
