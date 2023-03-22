@@ -33,6 +33,19 @@
                      Foreground="#33FFFFFF" />
                 <LineBreak />
                 <LineBreak />
+                <Run Text="The ASUS ROG Logo is a property of"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="ASUSTeK Computer Inc. and is used"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text="in this project purely to enhance the"
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <Run Text=" user experience and system integration."
+                     Foreground="#33FFFFFF" />
+                <LineBreak />
+                <LineBreak />
                 <Run Text="Don't get me wrong, their hardware is amazing"
                      Foreground="#33FFFFFF" />
                 <LineBreak />
@@ -53,9 +66,6 @@
                 <LineBreak />
                 <Run Text="Made with pure spite and Avalonia."
                      Foreground="#33FFFFFF" />
-                <LineBreak />
-                <LineBreak />
-                <Run Text="🏳️‍⚧️" />
             </TextBlock>
         </Grid>
 
@@ -92,10 +102,13 @@
                 </Button>
             </StackPanel>
 
-            <TextBlock Grid.Column="1"
-                       Text="{Binding VersionString}"
-                       HorizontalAlignment="Right"
-                       Opacity="0.2" />
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <TextBlock Text="🏳️‍⚧️" />
+                <TextBlock Text="{Binding VersionString}"
+                           Opacity="0.2" />
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

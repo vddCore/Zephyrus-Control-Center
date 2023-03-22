@@ -1,7 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
-             x:Class="Slate.View.Control.Icons.SFIcon">
+             x:Class="Slate.View.Control.Icons.SFIcon"
+             IsHitTestVisible="False">
     <TextBlock FontFamily="/Resources/Fonts/segoe_fluent.ttf#Segoe Fluent Icons"
                FontSize="{Binding $parent[icons:SFIcon].FontSize}"
                Text="{Binding $parent[icons:SFIcon].Glyph}" />

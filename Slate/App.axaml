@@ -22,8 +22,17 @@
             </TrayIcon>
         </TrayIcons>
     </TrayIcon.Icons>
-    
+
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Resources/Paths/RogLogo.axaml" />
+                <ResourceInclude Source="/Resources/Paths/MicrophoneIcon.axaml" />
+                <ResourceInclude Source="/Resources/Paths/AuraIcon.axaml" />
+                <ResourceInclude Source="/Resources/Paths/FanIcon.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
         <x:Double x:Key="SliderPreContentMargin">0</x:Double>
         <x:Double x:Key="SliderPostContentMargin">0</x:Double>
     </Application.Resources>
@@ -38,7 +47,7 @@
         <StyleInclude Source="/Resources/Styles/Card.axaml" />
         <StyleInclude Source="/Resources/Styles/LinkIcon.axaml" />
         <StyleInclude Source="/Resources/Styles/SwitchRadioButton.axaml" />
-        
+
         <Style Selector="Button ContentPresenter">
             <Setter Property="Transitions">
                 <Transitions>
@@ -48,7 +57,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        
+
         <Style Selector="Button:pointerover ContentPresenter">
             <Setter Property="Transitions">
                 <Transitions>
@@ -58,7 +67,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        
+
         <Style Selector="RadioButton ContentPresenter">
             <Setter Property="Transitions">
                 <Transitions>

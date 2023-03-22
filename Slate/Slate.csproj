@@ -92,6 +92,13 @@
         <DependentUpon>DebugPage.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\KeyBindingControl.axaml.cs">
+        <DependentUpon>KeyBindingControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\KeyBindingMode.cs">
+        <DependentUpon>KeyBindingControl.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

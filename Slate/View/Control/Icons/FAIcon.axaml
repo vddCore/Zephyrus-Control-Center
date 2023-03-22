@@ -1,7 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
-             x:Class="Slate.View.Control.Icons.FAIcon">
+             x:Class="Slate.View.Control.Icons.FAIcon"
+             IsHitTestVisible="False">
     <TextBlock FontFamily="/Resources/Fonts/fa5_brands.otf#Font Awesome 5 Brands"
                FontSize="{Binding $parent[icons:FAIcon].FontSize}"
                Text="{Binding $parent[icons:FAIcon].Glyph}" />

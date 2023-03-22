@@ -23,21 +23,20 @@ namespace Slate.Controller
 
         private void OnAsusWmiEventReceived(ManagementBaseObject managementObject)
         {
+            Debug.WriteLine("WMI event {");
+            Debug.WriteLine("  Properties: {");
+            foreach (var prop in managementObject.Properties)
+            {
+                Debug.WriteLine($"    {prop.Name}: {prop.Value}");
+            }
+            Debug.WriteLine("  }");
+            Debug.WriteLine("}");
+            
             if (int.TryParse(managementObject.Properties["EventID"].Value.ToString(), out var eventId))
             {
-                switch ((SpecialKeyWmiEvent)eventId)
+                switch ((AtkWmiEventID)eventId)
                 {
-                    case SpecialKeyWmiEvent.M3:
-                        break;
-                    
-                    case SpecialKeyWmiEvent.M4:
-                        break;
-                    
-                    case SpecialKeyWmiEvent.FnF4:
-                        break;
-                    
-                    case SpecialKeyWmiEvent.FnF5:
-                        break;
+                    default: break;
                 }
             }
         }

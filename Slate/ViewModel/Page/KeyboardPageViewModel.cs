@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Platform;
@@ -11,6 +12,8 @@ using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;
+using Slate.View.Control;
+using Slate.View.Page;
 using Starlight.Asus.Aura;
 
 namespace Slate.ViewModel.Page
@@ -102,6 +105,20 @@ namespace Slate.ViewModel.Page
         public bool IsPulseChecked => KeyboardSettings.Animation == AuraAnimation.Pulse;
         public bool IsRainbowChecked => KeyboardSettings.Animation == AuraAnimation.Rainbow;
 
+        public KeyMacroViewMarker KeyMacroViewMarkerM3 { get; set; } = KeyMacroViewMarkers.Empty;
+        public bool IsM3MuteChecked => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Empty;
+        public bool IsM3MediaChecked => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Media;
+        public bool IsM3CommandChecked => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Command;
+        public double BorderHeightM3 => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Empty ? 0 : 32;
+
+        public CornerRadius CornerRadiusM3_1 => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Empty
+            ? new(4, 0, 0, 4)
+            : new(4, 0, 0, 0);
+
+        public CornerRadius CornerRadiusM3_2 => KeyMacroViewMarkerM3 == KeyMacroViewMarkers.Empty
+            ? new(0, 6, 6, 0)
+            : new(0, 6, 0, 0);
+
         public KeyboardPageViewModel(ISettingsService settingsService)
         {
             _settingsService = settingsService;
@@ -122,6 +139,21 @@ namespace Slate.ViewModel.Page
             OnPropertyChanged(nameof(IsRainbowChecked));
             OnPropertyChanged(nameof(AnimationSupportsPrimaryColor));
             OnPropertyChanged(nameof(AnimationSupportsSecondaryColor));
+        }
+
+        public void SwitchM3MacroKeyView(object? parameter)
+        {
+            if (parameter is not KeyMacroViewMarker marker)
+                return;
+
+            KeyMacroViewMarkerM3 = marker;
+
+            OnPropertyChanged(nameof(BorderHeightM3));
+            OnPropertyChanged(nameof(CornerRadiusM3_1));
+            OnPropertyChanged(nameof(CornerRadiusM3_2));
+            OnPropertyChanged(nameof(IsM3MuteChecked));
+            OnPropertyChanged(nameof(IsM3MediaChecked));
+            OnPropertyChanged(nameof(IsM3CommandChecked));
         }
 
         private void OnSystemAccentColorChanged(SystemAccentColorChangedMessage msg)

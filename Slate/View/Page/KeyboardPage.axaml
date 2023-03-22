@@ -7,6 +7,7 @@
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:aura="clr-namespace:Starlight.Asus.Aura;assembly=Starlight"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+             xmlns:page="clr-namespace:Slate.View.Page"
              x:Class="Slate.View.Page.KeyboardPage"
              DataContext="{mvvm:DataContextSource vm:KeyboardPageViewModel}">
     <UserControl.Styles>
@@ -24,101 +25,151 @@
     </UserControl.Styles>
 
     <Grid RowDefinitions="*,Auto">
-        <StackPanel Spacing="4">
-            <control:Card>
-                <StackPanel Spacing="4">
-                    <ToggleSwitch Margin="-3,0,0,0"
-                                  Content="Follow system accent color"
-                                  IsChecked="{Binding FollowSystemAccentColor, Mode=TwoWay}" />
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="4">
+                <control:Card>
+                    <StackPanel Spacing="4">
+                        <ToggleSwitch Margin="-3,0,0,0"
+                                      Content="Follow system accent color"
+                                      IsChecked="{Binding FollowSystemAccentColor, Mode=TwoWay}" />
 
-                    <Grid IsEnabled="{Binding !FollowSystemAccentColor, Mode=OneWay}">
-                        <StackPanel Spacing="4">
-                            <StackPanel Spacing="4"
-                                        Margin="6,-4,6,0"
-                                        IsEnabled="{Binding AnimationSupportsPrimaryColor}">
-                                <TextBlock Text="Primary color"
-                                           Margin="1,0,0,0" />
+                        <Grid IsEnabled="{Binding !FollowSystemAccentColor, Mode=OneWay}">
+                            <StackPanel Spacing="4">
+                                <StackPanel Spacing="4"
+                                            Margin="6,-4,6,0"
+                                            IsEnabled="{Binding AnimationSupportsPrimaryColor}">
+                                    <TextBlock Text="Primary color"
+                                               Margin="1,0,0,0" />
 
-                                <ColorSlider Height="18"
-                                             ColorModel="Hsva"
-                                             ColorComponent="Component1"
-                                             HsvColor="{Binding PrimaryColor, Mode=TwoWay}" />
+                                    <ColorSlider Height="18"
+                                                 ColorModel="Hsva"
+                                                 ColorComponent="Component1"
+                                                 HsvColor="{Binding PrimaryColor, Mode=TwoWay}" />
 
-                                <ColorSlider Height="18"
-                                             ColorModel="Hsva"
-                                             ColorComponent="Component2"
-                                             HsvColor="{Binding PrimaryColor, Mode=TwoWay}" />
+                                    <ColorSlider Height="18"
+                                                 ColorModel="Hsva"
+                                                 ColorComponent="Component2"
+                                                 HsvColor="{Binding PrimaryColor, Mode=TwoWay}" />
+                                </StackPanel>
+
+                                <StackPanel Spacing="4"
+                                            Margin="6,4,6,4"
+                                            IsEnabled="{Binding AnimationSupportsSecondaryColor}">
+                                    <TextBlock Text="Secondary color"
+                                               Margin="1,0,0,0" />
+
+                                    <ColorSlider Height="18"
+                                                 ColorModel="Hsva"
+                                                 ColorComponent="Component1"
+                                                 HsvColor="{Binding SecondaryColor, Mode=TwoWay}" />
+
+                                    <ColorSlider Height="18"
+                                                 ColorModel="Hsva"
+                                                 ColorComponent="Component2"
+                                                 HsvColor="{Binding SecondaryColor, Mode=TwoWay}" />
+                                </StackPanel>
+
+                                <Grid ColumnDefinitions="*,*,*,*"
+                                      HorizontalAlignment="Stretch">
+                                    <RadioButton Grid.Column="0"
+                                                 Margin="-1,0,0,0"
+                                                 Classes="SwitchRadioButton"
+                                                 GroupName="AuraAnimation"
+                                                 CornerRadius="0,0,0,6"
+                                                 BorderThickness="1,1,1,0"
+                                                 Content="Static"
+                                                 IsChecked="{Binding IsStaticChecked, Mode=OneWay}"
+                                                 Command="{Binding SwitchAnimation}"
+                                                 CommandParameter="{x:Static aura:AuraAnimation.Static}" />
+
+                                    <RadioButton Grid.Column="1"
+                                                 Margin="-1,0,0,0"
+                                                 CornerRadius="0"
+                                                 BorderThickness="1,1,1,0"
+                                                 Classes="SwitchRadioButton"
+                                                 GroupName="AuraAnimation"
+                                                 Content="Breathe"
+                                                 IsChecked="{Binding IsBreatheChecked, Mode=OneWay}"
+                                                 Command="{Binding SwitchAnimation}"
+                                                 CommandParameter="{x:Static aura:AuraAnimation.Breathe}" />
+
+                                    <RadioButton Grid.Column="2"
+                                                 Margin="-1,0,0,0"
+                                                 CornerRadius="0"
+                                                 BorderThickness="1,1,1,0"
+                                                 Classes="SwitchRadioButton"
+                                                 GroupName="AuraAnimation"
+                                                 Content="Pulse"
+                                                 IsChecked="{Binding IsPulseChecked, Mode=OneWay}"
+                                                 Command="{Binding SwitchAnimation}"
+                                                 CommandParameter="{x:Static aura:AuraAnimation.Pulse}" />
+
+                                    <RadioButton Grid.Column="3"
+                                                 Margin="-1,0,0,0"
+                                                 CornerRadius="0,0,6,0"
+                                                 BorderThickness="1,1,1,0"
+                                                 Classes="SwitchRadioButton"
+                                                 GroupName="AuraAnimation"
+                                                 Content="Rainbow"
+                                                 IsChecked="{Binding IsAccentChecked, Mode=OneWay}"
+                                                 Command="{Binding SwitchAnimation}"
+                                                 CommandParameter="{x:Static aura:AuraAnimation.Rainbow}" />
+                                </Grid>
                             </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </control:Card>
 
-                            <StackPanel Spacing="4"
-                                        Margin="6,4,6,4"
-                                        IsEnabled="{Binding AnimationSupportsSecondaryColor}">
-                                <TextBlock Text="Secondary color"
-                                           Margin="1,0,0,0" />
+                <control:Card>
+                    <StackPanel Spacing="4"
+                                Margin="4">
+                        <control:KeyBindingControl KeyLabel="M4">
+                            <control:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource AsusRogLogo}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </control:KeyBindingControl.KeyIconContent>
+                        </control:KeyBindingControl>
 
-                                <ColorSlider Height="18"
-                                             ColorModel="Hsva"
-                                             ColorComponent="Component1"
-                                             HsvColor="{Binding SecondaryColor, Mode=TwoWay}" />
+                        <control:KeyBindingControl KeyLabel="M3">
+                            <control:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource MicrophoneIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.65" ScaleY="0.65" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </control:KeyBindingControl.KeyIconContent>
+                        </control:KeyBindingControl>
+                        
+                        <control:KeyBindingControl KeyLabel="F4"
+                                                   VerticalKeyLabelAlignment="Top">
+                            <control:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource AuraIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </control:KeyBindingControl.KeyIconContent>
+                        </control:KeyBindingControl>
+                        
+                        <control:KeyBindingControl KeyLabel="F5"
+                                                   VerticalKeyLabelAlignment="Top">
+                            <control:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource FanIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </control:KeyBindingControl.KeyIconContent>
+                        </control:KeyBindingControl>
+                    </StackPanel>
+                </control:Card>
+            </StackPanel>
+        </ScrollViewer>
 
-                                <ColorSlider Height="18"
-                                             ColorModel="Hsva"
-                                             ColorComponent="Component2"
-                                             HsvColor="{Binding SecondaryColor, Mode=TwoWay}" />
-                            </StackPanel>
-
-                            <Grid ColumnDefinitions="*,*,*,*"
-                                  HorizontalAlignment="Stretch">
-                                <RadioButton Grid.Column="0"
-                                             Margin="-1,0,0,0"
-                                             Classes="SwitchRadioButton"
-                                             GroupName="AuraAnimation"
-                                             CornerRadius="0,0,0,6"
-                                             BorderThickness="1,1,1,0"
-                                             Content="Static"
-                                             IsChecked="{Binding IsStaticChecked, Mode=OneWay}"
-                                             Command="{Binding SwitchAnimation}"
-                                             CommandParameter="{x:Static aura:AuraAnimation.Static}" />
-
-                                <RadioButton Grid.Column="1"
-                                             Margin="-1,0,0,0"
-                                             CornerRadius="0"
-                                             BorderThickness="1,1,1,0"
-                                             Classes="SwitchRadioButton"
-                                             GroupName="AuraAnimation"
-                                             Content="Breathe"
-                                             IsChecked="{Binding IsBreatheChecked, Mode=OneWay}"
-                                             Command="{Binding SwitchAnimation}"
-                                             CommandParameter="{x:Static aura:AuraAnimation.Breathe}" />
-
-                                <RadioButton Grid.Column="2"
-                                             Margin="-1,0,0,0"
-                                             CornerRadius="0"
-                                             BorderThickness="1,1,1,0"
-                                             Classes="SwitchRadioButton"
-                                             GroupName="AuraAnimation"
-                                             Content="Pulse"
-                                             IsChecked="{Binding IsPulseChecked, Mode=OneWay}"
-                                             Command="{Binding SwitchAnimation}"
-                                             CommandParameter="{x:Static aura:AuraAnimation.Pulse}" />
-
-                                <RadioButton Grid.Column="3"
-                                             Margin="-1,0,0,0"
-                                             CornerRadius="0,0,6,0"
-                                             BorderThickness="1,1,1,0"
-                                             Classes="SwitchRadioButton"
-                                             GroupName="AuraAnimation"
-                                             Content="Rainbow"
-                                             IsChecked="{Binding IsAccentChecked, Mode=OneWay}"
-                                             Command="{Binding SwitchAnimation}"
-                                             CommandParameter="{x:Static aura:AuraAnimation.Rainbow}" />
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </control:Card>
-        </StackPanel>
-        
         <icons:SFIcon Grid.RowSpan="2"
                       Glyph="&#xE087;"
                       FontSize="196"
