@@ -1,14 +1,15 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:control="clr-namespace:Slate.View.Control">
-    <Style Selector="control|Card">
+        xmlns:control="clr-namespace:Slate.View.Control"
+        xmlns:primitives="clr-namespace:Slate.View.Control.Primitives">
+    <Style Selector="primitives|Card">
         <Setter Property="CornerRadius" Value="6" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="#10FFFFFF" />
         <Setter Property="Background" Value="#08FFFFFF" />
 
         <Setter Property="Template">
-            <ControlTemplate TargetType="{x:Type control:Card}">
+            <ControlTemplate TargetType="{x:Type primitives:Card}">
                 <Border CornerRadius="{TemplateBinding CornerRadius}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"

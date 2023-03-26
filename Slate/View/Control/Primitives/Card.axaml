@@ -3,4 +3,4 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Control"
              xmlns:control="clr-namespace:Slate.View.Control"
-             x:Class="Slate.View.Control.Card" />
+             x:Class="Slate.View.Control.Primitives.Card" />

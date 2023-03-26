@@ -12,12 +12,11 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Avalonia;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
-using LiveChartsCore.SkiaSharpView.VisualElements;
 using PropertyChanged;
 using SkiaSharp;
 using Slate.Infrastructure.Asus;
 
-namespace Slate.View.Control
+namespace Slate.View.Control.Primitives
 {
     [DoNotNotify]
     public partial class EditableChart : UserControl

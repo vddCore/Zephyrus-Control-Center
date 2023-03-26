@@ -2,16 +2,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:slate="clr-namespace:Slate"
              xmlns:control="clr-namespace:Slate.View.Control"
-             x:Class="Slate.View.Control.MainMenuButton">
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             x:Class="Slate.View.Control.Primitives.MainMenuButton">
     <UserControl.Styles>
-        <Style Selector="control|MainMenuButton">
+        <Style Selector="primitives|MainMenuButton">
             <Setter Property="Height" Value="66" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Styles>
     
-    <Button Command="{Binding $parent[control:MainMenuButton].Command}"
-            CommandParameter="{Binding $parent[control:MainMenuButton].CommandParameter}"
+    <Button Command="{Binding $parent[primitives:MainMenuButton].Command}"
+            CommandParameter="{Binding $parent[primitives:MainMenuButton].CommandParameter}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
@@ -25,7 +26,7 @@
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Left"
                                   Margin="0,0,12,0"
-                                  Content="{Binding $parent[control:MainMenuButton].ImageContent}" />
+                                  Content="{Binding $parent[primitives:MainMenuButton].ImageContent}" />
 
                 <Grid Grid.Column="1"
                       Grid.RowDefinitions="Auto,Auto"
@@ -33,17 +34,17 @@
                       HorizontalAlignment="Stretch">
                     <TextBlock Grid.Row="0" 
                                FontSize="13"
-                               Text="{Binding $parent[control:MainMenuButton].Header}" />
+                               Text="{Binding $parent[primitives:MainMenuButton].Header}" />
                     
                     <TextBlock Grid.Row="1"
                                Opacity="0.66"
                                FontSize="13"
-                               Text="{Binding $parent[control:MainMenuButton].Description}" />
+                               Text="{Binding $parent[primitives:MainMenuButton].Description}" />
                 </Grid>
                 
                 <ContentPresenter Grid.Column="2"
                                   VerticalAlignment="Center"
-                                  Content="{Binding $parent[control:MainMenuButton].GadgetContent}" />
+                                  Content="{Binding $parent[primitives:MainMenuButton].GadgetContent}" />
             </Grid>
         </Button.Content>
     </Button>

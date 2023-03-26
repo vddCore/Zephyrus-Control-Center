@@ -28,6 +28,13 @@ namespace Slate.Infrastructure.Native
         public const nint HWND_TOP = 2;
         public const nint HWND_TOPMOST = -1;
 
+        public const int VK_MEDIA_NEXT_TRACK = 0xB0;
+        public const int VK_MEDIA_PREV_TRACK = 0xB1;
+        public const int VK_MEDIA_STOP = 0xB2;
+        public const int VK_MEDIA_PLAY_PAUSE = 0xB3;
+
+        public const int MAPVK_VK_TO_VSC = 0;
+        
         public const uint ERROR_INSUFFICIENT_BUFFER = 122;
 
         [Flags]
@@ -132,6 +139,22 @@ namespace Slate.Infrastructure.Native
             INTERLACED_LOWERFIELDFIRST = 3,
         }
 
+        [Flags]
+        public enum KEYEVENTF
+        {
+            EXTENDEDKEY = 1 << 0,
+            KEYUP = 1 << 1,
+            UNICODE = 1 << 2,
+            SCANCODE = 1 << 3
+        }
+
+        public enum INPUT_TYPE : uint
+        {
+            MOUSE,
+            KEYBOARD,
+            HARDWARE
+        }
+        
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -294,9 +317,58 @@ namespace Slate.Infrastructure.Native
             public nint dwExtraInfo;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MOUSEINPUT
+        {
+            public nint dx;
+            public nint dy;
+            public uint mouseData;
+            public uint dwFlags;
+            public uint time;
+            public uint dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KEYBDINPUT
+        {
+            public ushort wVk;
+            public ushort wScan;
+            public KEYEVENTF dwFlags;
+            public uint time;
+            public uint dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct HARDWAREINPUT
+        {
+            public uint uMsg;
+            public short wParamL;
+            public short wParamH;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        public struct INPUTUNION
+        {
+            [FieldOffset(0)]
+            public MOUSEINPUT mi;
+
+            [FieldOffset(0)]
+            public KEYBDINPUT ki;
+
+            [FieldOffset(0)]
+            public HARDWAREINPUT hi;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct INPUT
+        {
+            public INPUT_TYPE type;
+            public INPUTUNION union;
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         public delegate nint LowLevelKeyboardProc(int nCode, nint wParam, nint lParam);
-        
+
         [DllImport(LibraryName, ExactSpelling = true, CharSet = CharSet.Unicode)]
         public static extern bool SystemParametersInfoW(
             uint uiAction,
@@ -422,5 +494,19 @@ namespace Slate.Infrastructure.Native
                 if (err == 0 || err != ERROR_INSUFFICIENT_BUFFER) return err;
             } while (true);
         }
+
+        [DllImport(LibraryName, SetLastError = true, ExactSpelling = true)]
+        public static extern uint SendInput(
+            uint cInputs,
+            [In, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)]
+            INPUT[] pInputs,
+            int cbSize
+        );
+
+        [DllImport(LibraryName)]
+        public static extern uint MapVirtualKey(
+            uint uCode,
+            uint uMapType
+        );
     }
 }

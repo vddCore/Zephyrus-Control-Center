@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using PropertyChanged;
 
-namespace Slate.View.Control
+namespace Slate.View.Control.Primitives
 {
     [DoNotNotify]
     public partial class Card : UserControl

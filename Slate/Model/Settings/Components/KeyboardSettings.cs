@@ -14,6 +14,11 @@ namespace Slate.Model.Settings.Components
         public ColorWrapper SecondaryColor { get; set; } = new(Color.White);
         public AuraAnimationSpeed AnimationSpeed { get; set; } = AuraAnimationSpeed.Medium;
 
+        public KeyBind BindM3 { get; set; } = new(KeyBindMode.Default);
+        public KeyBind BindM4 { get; set; } = new(KeyBindMode.Default);
+        public KeyBind BindF4 { get; set; } = new(KeyBindMode.Default);
+        public KeyBind BindF5 { get; set; } = new(KeyBindMode.Default);
+
         protected override void OnSettingsModified(string? propertyName)
         {
             switch (propertyName)

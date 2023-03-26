@@ -6,7 +6,8 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:painting="clr-namespace:LiveChartsCore.SkiaSharpView.Painting;assembly=LiveChartsCore.SkiaSharpView"
              xmlns:skiaSharp="clr-namespace:SkiaSharp;assembly=SkiaSharp"
-             x:Class="Slate.View.Control.EditableChart">
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             x:Class="Slate.View.Control.Primitives.EditableChart">
     <UserControl.Styles>
         <Style Selector="Grid#DisabledNoticeBox">
             <Setter Property="IsHitTestVisible" Value="False" />
@@ -43,10 +44,10 @@
 
     <Grid>
         <lvc:CartesianChart x:Name="CartesianChart"
-                            Series="{Binding $parent[control:EditableChart].Series}"
-                            Sections="{Binding $parent[control:EditableChart].Sections}"
-                            XAxes="{Binding $parent[control:EditableChart].XAxes}"
-                            YAxes="{Binding $parent[control:EditableChart].YAxes}"
+                            Series="{Binding $parent[primitives:EditableChart].Series}"
+                            Sections="{Binding $parent[primitives:EditableChart].Sections}"
+                            XAxes="{Binding $parent[primitives:EditableChart].XAxes}"
+                            YAxes="{Binding $parent[primitives:EditableChart].YAxes}"
                             FontFamily="Segoe UI"
                             ChartPointPointerDown="Chart_OnChartPointPointerDown"
                             PointerMoved="Chart_OnPointerMoved"

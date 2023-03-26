@@ -4,21 +4,22 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
              x:Class="Slate.View.Page.ApplicationPage"
              DataContext="{mvvm:DataContextSource vm:ApplicationPageViewModel}">
     <Grid RowDefinitions="Auto,*,1,Auto">
         <StackPanel Grid.Row="0"
                     Spacing="4"
                     HorizontalAlignment="Stretch">
-            <control:Card>
+            <primitives:Card>
                 <ToggleSwitch Content="Launch on startup"
                               IsChecked="{Binding ApplicationSettings.RunOnStartup, Mode=TwoWay}" />
-            </control:Card>
+            </primitives:Card>
 
-            <control:Card>
+            <primitives:Card>
                 <ToggleSwitch Content="Check for updates"
                               IsChecked="{Binding ApplicationSettings.CheckForUpdates, Mode=TwoWay}" />
-            </control:Card>
+            </primitives:Card>
         </StackPanel>
 
         <Grid Grid.Row="1">

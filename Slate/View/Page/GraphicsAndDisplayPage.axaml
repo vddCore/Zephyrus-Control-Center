@@ -4,13 +4,14 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
              x:Class="Slate.View.Page.GraphicsAndDisplayPage"
              DataContext="{mvvm:DataContextSource vm:GraphicsAndDisplayPageViewModel}">
     <Grid RowDefinitions="Auto,*">
         <StackPanel Grid.Row="0"
                     Spacing="4"
                     IsEnabled="{Binding !IsSwitchingEcoModes}">
-            <control:Card Padding="0,0,0,10">
+            <primitives:Card Padding="0,0,0,10">
                 <Grid>
                     <Grid RowDefinitions="*,Auto">
                         <StackPanel Grid.Row="0">
@@ -20,7 +21,7 @@
                                           Command="{Binding BeginEcoModeTransition}" />
                         </StackPanel>
 
-                        <control:DualSwitch Grid.Row="1"
+                        <primitives:DualSwitch Grid.Row="1"
                                             LeftOptionContent="Switched"
                                             RightOptionContent="Discrete-exclusive"
                                             IsRightOptionChecked="{Binding IsDiscreteExclusiveMode}"
@@ -64,9 +65,9 @@
                         </Grid>
                     </Border>
                 </Grid>
-            </control:Card>
+            </primitives:Card>
 
-            <control:Card>
+            <primitives:Card>
                 <StackPanel Spacing="4">
                     <ToggleSwitch Content="Built-in display overdrive"
                                   IsChecked="{Binding GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled, Mode=TwoWay}" />
@@ -132,7 +133,7 @@
                                      Content="144Hz" />
                     </Grid>
                 </StackPanel>
-            </control:Card>
+            </primitives:Card>
         </StackPanel>
 
         <icons:SFIcon Grid.Row="1"

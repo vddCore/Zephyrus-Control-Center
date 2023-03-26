@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
-using System.Management;
-using Glitonea.Mvvm.Messaging;
+﻿using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
+using Slate.Model;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;
 
@@ -16,28 +15,41 @@ namespace Slate.Controller
             Message.Subscribe<AuraSettingsChangedMessage>(this, OnAuraSettingsChanged);
         }
 
-        private void SubscribeToAsusEventProvider()
+        private void HandleSpecialKeyPress(AtkWmiEventID ev)
         {
-            _asusHalService.SubscribeToWmiEvent(OnAsusWmiEventReceived);
+            switch (ev)
+            {
+                case AtkWmiEventID.KeyPressM3:
+                    HandleKeyPress(KeyboardSettings.BindM3, ev);
+                    break;
+                
+                case AtkWmiEventID.KeyPressM4:
+                    HandleKeyPress(KeyboardSettings.BindM4, ev);
+                    break;
+                
+                case AtkWmiEventID.KeyPressFnF4:
+                    HandleKeyPress(KeyboardSettings.BindF4, ev);
+                    break;
+                
+                case AtkWmiEventID.KeyPressFnF5:
+                    HandleKeyPress(KeyboardSettings.BindF5, ev);
+                    break;
+            }
         }
 
-        private void OnAsusWmiEventReceived(ManagementBaseObject managementObject)
+        private void HandleKeyPress(KeyBind keyBind, AtkWmiEventID ev)
         {
-            Debug.WriteLine("WMI event {");
-            Debug.WriteLine("  Properties: {");
-            foreach (var prop in managementObject.Properties)
+            switch (keyBind.Mode)
             {
-                Debug.WriteLine($"    {prop.Name}: {prop.Value}");
-            }
-            Debug.WriteLine("  }");
-            Debug.WriteLine("}");
-            
-            if (int.TryParse(managementObject.Properties["EventID"].Value.ToString(), out var eventId))
-            {
-                switch ((AtkWmiEventID)eventId)
-                {
-                    default: break;
-                }
+                case KeyBindMode.Default:
+                    break;
+                
+                case KeyBindMode.Media:
+                    _inputInjectionService.SimulateMediaKeyPress(keyBind.MediaKey);
+                    break;
+                
+                case KeyBindMode.Command:
+                    break;
             }
         }
 

@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
              xmlns:page="clr-namespace:Slate.View.Page"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
              x:Class="Slate.View.Page.PowerManagementPage"
              DataContext="{mvvm:DataContextSource vm:PowerManagementPageViewModel}">
     <UserControl.Styles>
@@ -68,7 +69,7 @@
     <Grid RowDefinitions="Auto,*">
         <StackPanel Grid.Row="0"
                     Spacing="4">
-            <control:Card>
+            <primitives:Card>
                 <StackPanel>
                     <ToggleSwitch Content="Aggressive CPU boost (plugged-in)"
                                   IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnAC, Mode=TwoWay}" />
@@ -76,9 +77,9 @@
                     <ToggleSwitch Content="Aggressive CPU boost (on battery)"
                                   IsChecked="{Binding PowerManagementSettings.IsProcessorBoostActiveOnDC, Mode=TwoWay}" />
                 </StackPanel>
-            </control:Card>
+            </primitives:Card>
 
-            <control:Card ShowHeader="True"
+            <primitives:Card ShowHeader="True"
                           HeaderContent="Battery charge limit">
                 <Grid ColumnDefinitions="*,Auto"
                       Margin="6,-4,0,0">
@@ -107,9 +108,9 @@
                                       ToolTip.Tip="You probably don't want to do this" />
                     </Grid>
                 </Grid>
-            </control:Card>
+            </primitives:Card>
 
-            <control:Card ShowHeader="True"
+            <primitives:Card ShowHeader="True"
                           HeaderContent="Platform power targets">
                 <StackPanel Spacing="4">
                     <Grid ColumnDefinitions="Auto,*,Auto"
@@ -183,7 +184,7 @@
                         </Grid>
                     </Grid>
                 </StackPanel>
-            </control:Card>
+            </primitives:Card>
         </StackPanel>
 
         <icons:SFIcon Grid.RowSpan="2"

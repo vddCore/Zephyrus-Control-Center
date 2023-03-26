@@ -35,6 +35,8 @@
 
         <x:Double x:Key="SliderPreContentMargin">0</x:Double>
         <x:Double x:Key="SliderPostContentMargin">0</x:Double>
+        
+        <Color x:Key="TextControlButtonBackgroundPointerOver">Transparent</Color>
     </Application.Resources>
 
     <Application.Styles>
@@ -47,6 +49,7 @@
         <StyleInclude Source="/Resources/Styles/Card.axaml" />
         <StyleInclude Source="/Resources/Styles/LinkIcon.axaml" />
         <StyleInclude Source="/Resources/Styles/SwitchRadioButton.axaml" />
+        <StyleInclude Source="/Resources/Styles/MediaPanelRadioButton.axaml" />
 
         <Style Selector="Button ContentPresenter">
             <Setter Property="Transitions">
@@ -86,6 +89,41 @@
                     <BrushTransition Property="Foreground" Duration="0:0:0.1" />
                 </Transitions>
             </Setter>
+        </Style>
+        
+        <Style Selector="TextBox /template/ Border#PART_BorderElement">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+                    <BrushTransition Property="Background" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderThickness" Value="0,0,0,2" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        
+        <Style Selector="StackPanel">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="StackPanel:disabled">
+            <Setter Property="Opacity" Value="0.3" />
         </Style>
     </Application.Styles>
 </Application>

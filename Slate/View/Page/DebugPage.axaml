@@ -3,6 +3,7 @@
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:page="clr-namespace:Slate.ViewModel.Page"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
              x:Class="Slate.View.Page.DebugPage"
              DataContext="{mvvm:DataContextSource page:DebugPageViewModel}">
     <UserControl.Styles>
@@ -10,7 +11,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Styles>
-    <control:Card Margin="0,0,0,1">
+    <primitives:Card Margin="0,0,0,1">
         <Grid RowDefinitions="Auto,*">
             <StackPanel Grid.Row="0"
                         Spacing="4"
@@ -47,5 +48,5 @@
             </TextBlock>
         </Grid>
 
-    </control:Card>
+    </primitives:Card>
 </UserControl>

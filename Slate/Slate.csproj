@@ -37,9 +37,6 @@
       <Compile Update="View\Page\MainMenuPage.axaml.cs">
         <DependentUpon>MainMenuPage.axaml</DependentUpon>
       </Compile>
-      <Compile Update="View\Control\CoreStatisticsDisplay.axaml.cs">
-        <DependentUpon>CpuStatsDisplay.axaml</DependentUpon>
-      </Compile>
       <Compile Update="View\Page\GraphicsAndDisplayPage.axaml.cs">
         <DependentUpon>GraphicsPage.axaml</DependentUpon>
         <SubType>Code</SubType>
@@ -60,18 +57,6 @@
         <DependentUpon>PowerManagementPage.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="View\Control\SettingsPalette.axaml.cs">
-        <DependentUpon>SettingsPalette.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="View\Control\Card.axaml.cs">
-        <DependentUpon>Card.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="View\Control\EditableChart.axaml.cs">
-        <DependentUpon>EditableChart.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="View\Page\FansPage.axaml.cs">
         <DependentUpon>FansPage.axaml</DependentUpon>
         <SubType>Code</SubType>
@@ -84,20 +69,41 @@
         <DependentUpon>FAIcon.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="View\Control\DualSwitch.axaml.cs">
-        <DependentUpon>DualSwitch.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="View\Page\DebugPage.axaml.cs">
         <DependentUpon>DebugPage.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="View\Control\KeyBindingControl.axaml.cs">
-        <DependentUpon>KeyBindingControl.axaml</DependentUpon>
+      <Compile Update="View\Control\Primitives\DualSwitch.axaml.cs">
+        <DependentUpon>DualSwitch.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="View\Control\KeyBindingMode.cs">
+      <Compile Update="View\Control\Primitives\EditableChart.axaml.cs">
+        <DependentUpon>EditableChart.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\Primitives\CoreStatisticsDisplay.axaml.cs">
+        <DependentUpon>CoreStatisticsDisplay.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\Primitives\Card.axaml.cs">
+        <DependentUpon>Card.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\Primitives\MainMenuButton.axaml.cs">
+        <DependentUpon>MainMenuButton.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\PageElements\SettingsPalette.axaml.cs">
+        <DependentUpon>SettingsPalette.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\PageElements\AuraColorControl.axaml.cs">
+        <DependentUpon>AuraColorControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Control\Primitives\KeyBindingControl.axaml.cs">
         <DependentUpon>KeyBindingControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
 

@@ -1,4 +1,6 @@
-﻿using Avalonia.Input;
+﻿using System.Diagnostics;
+using System.Management;
+using Avalonia.Input;
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
@@ -16,6 +18,7 @@ namespace Slate.Controller
         private readonly IPowerManagementService _powerManagementService;
         private readonly IDisplayManagementService _displayManagementService;
         private readonly IAsusAuraService _asusAuraService;
+        private readonly IInputInjectionService _inputInjectionService;
 
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
 
@@ -24,14 +27,16 @@ namespace Slate.Controller
             ISettingsService settingsService,
             IPowerManagementService powerManagementService,
             IDisplayManagementService displayManagementService,
-            IAsusAuraService asusAuraService)
+            IAsusAuraService asusAuraService,
+            IInputInjectionService inputInjectionService)
         {
             _asusHalService = asusHalService;
             _settingsService = settingsService;
             _powerManagementService = powerManagementService;
             _displayManagementService = displayManagementService;
             _asusAuraService = asusAuraService;
-            
+            _inputInjectionService = inputInjectionService;
+
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
 
@@ -48,8 +53,13 @@ namespace Slate.Controller
             SubscribeToPowerManagementSettings();
             SubscribeToKeyboardSettings();
             SubscribeToAsusEventProvider();
-            
+
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
+        }
+
+        private void SubscribeToAsusEventProvider()
+        {
+            _asusHalService.SubscribeToWmiEvent(OnAsusWmiEventReceived);
         }
 
         private void ReadCurrentHardwareSettings()
@@ -67,7 +77,7 @@ namespace Slate.Controller
                     PerformancePreset.Balanced
                 );
             }
-            
+
             GraphicsAndDisplaySettings.MuxSwitchMode = _asusHalService.GetGraphicsMode();
             GraphicsAndDisplaySettings.IsEcoModeEnabled = _asusHalService.GetEcoMode();
             GraphicsAndDisplaySettings.IsDisplayOverdriveEnabled = _asusHalService.GetDisplayOverdrive();
@@ -87,7 +97,7 @@ namespace Slate.Controller
                 FansSettings.ManualCpuFanDutyCycle,
                 FansSettings.ManualGpuFanDutyCycle
             ).Broadcast();
-            
+
             new CpuBoostModeChangedMessage(
                 PowerManagementSettings.IsProcessorBoostActiveOnAC,
                 PowerManagementSettings.IsProcessorBoostActiveOnAC
@@ -108,6 +118,33 @@ namespace Slate.Controller
                 KeyboardSettings.SecondaryColor.HardwareColor,
                 KeyboardSettings.AnimationSpeed
             ).Broadcast();
+        }
+
+        private void OnAsusWmiEventReceived(ManagementBaseObject managementObject)
+        {
+            // Debug.WriteLine("WMI event {");
+            // Debug.WriteLine("  Properties: {");
+            // foreach (var prop in managementObject.Properties)
+            // {
+            //     Debug.WriteLine($"    {prop.Name}: {prop.Value}");
+            // }
+            // Debug.WriteLine("  }");
+            // Debug.WriteLine("}");
+            //
+            if (int.TryParse(managementObject.Properties["EventID"].Value.ToString(), out var eventId))
+            {
+                var ev = (AtkWmiEventID)eventId;
+                
+                switch (ev)
+                {
+                    case AtkWmiEventID.KeyPressM3:
+                    case AtkWmiEventID.KeyPressM4:
+                    case AtkWmiEventID.KeyPressFnF4:
+                    case AtkWmiEventID.KeyPressFnF5:
+                        HandleSpecialKeyPress(ev);
+                        break;
+                }
+            }
         }
 
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)

@@ -3,51 +3,52 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Control"
              xmlns:control="clr-namespace:Slate.View.Control"
-             x:Class="Slate.View.Control.DualSwitch">
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             x:Class="Slate.View.Control.Primitives.DualSwitch">
     <UserControl.Styles>
-        <Style Selector="control|DualSwitch.left-checked Button#LeftOptionButton /template/ ContentPresenter#PART_ContentPresenter">
+        <Style Selector="primitives|DualSwitch.left-checked Button#LeftOptionButton /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundChecked}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushChecked}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundChecked}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.left-checked Button#LeftOptionButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Style Selector="primitives|DualSwitch.left-checked Button#LeftOptionButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPointerOver}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedPointerOver}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPointerOver}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.left-checked Button#LeftOptionButton:pressed /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.left-checked Button#LeftOptionButton:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPressed}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedPressed}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPressed}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.left-checked Button#LeftOptionButton:disabled /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.left-checked Button#LeftOptionButton:disabled /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedDisabled}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedDisabled}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedDisabled}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.right-checked Button#RightOptionButton /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.right-checked Button#RightOptionButton /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundChecked}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushChecked}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundChecked}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.right-checked Button#RightOptionButton:pointerover /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.right-checked Button#RightOptionButton:pointerover /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPointerOver}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedPointerOver}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPointerOver}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.right-checked Button#RightOptionButton:pressed /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.right-checked Button#RightOptionButton:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPressed}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedPressed}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPressed}" />
         </Style>
 
-        <Style Selector="control|DualSwitch.right-checked Button#RightOptionButton:disabled /template/ ContentPresenter">
+        <Style Selector="primitives|DualSwitch.right-checked Button#RightOptionButton:disabled /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedDisabled}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrushCheckedDisabled}" />
             <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedDisabled}" />
@@ -62,16 +63,16 @@
                     Margin="0,0,-1,0"
                     CornerRadius="0,0,0,6"
                     BorderThickness="1,1,1,0"
-                    Content="{Binding $parent[control:DualSwitch].LeftOptionContent}"
-                    Command="{Binding $parent[control:DualSwitch].LeftOptionCommand}"
+                    Content="{Binding $parent[primitives:DualSwitch].LeftOptionContent}"
+                    Command="{Binding $parent[primitives:DualSwitch].LeftOptionCommand}"
                     HorizontalAlignment="Stretch" />
 
             <Button Name="RightOptionButton"
                     Grid.Column="1"
                     CornerRadius="0,0,6,0"
                     BorderThickness="1,1,1,0"
-                    Content="{Binding $parent[control:DualSwitch].RightOptionContent}"
-                    Command="{Binding $parent[control:DualSwitch].RightOptionCommand}"
+                    Content="{Binding $parent[primitives:DualSwitch].RightOptionContent}"
+                    Command="{Binding $parent[primitives:DualSwitch].RightOptionCommand}"
                     HorizontalAlignment="Stretch" />
         </Grid>
     </Grid>

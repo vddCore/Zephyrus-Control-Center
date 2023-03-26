@@ -8,7 +8,7 @@ namespace Slate.View.Control.Icons
     public partial class SFIcon : UserControl
     {
         public static readonly StyledProperty<char> GlyphProperty
-            = AvaloniaProperty.Register<Card, char>(nameof(Glyph));
+            = AvaloniaProperty.Register<Primitives.Card, char>(nameof(Glyph));
 
         public char Glyph
         {

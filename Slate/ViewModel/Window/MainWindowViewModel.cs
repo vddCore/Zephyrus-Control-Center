@@ -24,7 +24,8 @@ namespace Slate.ViewModel.Window
             ISettingsService settingsService,
             IPowerManagementService powerManagementService,
             IDisplayManagementService displayManagementService,
-            IAsusAuraService asusAuraService)
+            IAsusAuraService asusAuraService,
+            IInputInjectionService inputInjectionService)
         {
             _settingsService = settingsService;
 
@@ -33,7 +34,8 @@ namespace Slate.ViewModel.Window
                 settingsService,
                 powerManagementService,
                 displayManagementService,
-                asusAuraService
+                asusAuraService,
+                inputInjectionService
             );
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);

@@ -3,7 +3,7 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Control"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
-             x:Class="Slate.View.Control.CoreStatisticsDisplay"
+             x:Class="Slate.View.Control.Primitives.CoreStatisticsDisplay"
              DataContext="{mvvm:DataContextSource vm:CoreStatisticsDisplayViewModel}">
     <Grid RowDefinitions="Auto,Auto">
         <Grid Grid.Row="0"
