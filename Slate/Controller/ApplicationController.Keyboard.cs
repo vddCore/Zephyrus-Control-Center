@@ -1,13 +1,11 @@
 ﻿using System.Diagnostics;
-using Avalonia;
+using System.IO;
 using Avalonia.Threading;
-using Glitonea.Extensions;
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Model;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;
-using Slate.View.Window;
 
 namespace Slate.Controller
 {
@@ -65,6 +63,9 @@ namespace Slate.Controller
                     new Process
                     {
                         StartInfo = new ProcessStartInfo(keyBind.Command ?? string.Empty)
+                        {
+                            WorkingDirectory = Path.GetDirectoryName(keyBind.Command)
+                        }
                     }.Start();
                     
                     break;
