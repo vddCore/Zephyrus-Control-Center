@@ -24,6 +24,7 @@
                     <StackPanel Spacing="4"
                                 Margin="4">
                         <primitives:KeyBindingControl KeyLabel="M4"
+                                                      DefaultFunctionButtonContent="ZCC"
                                                       KeyBind="{Binding KeyboardSettings.BindM4, Mode=TwoWay}">
                             <primitives:KeyBindingControl.KeyIconContent>
                                 <Image Source="{DynamicResource AsusRogLogo}">
@@ -35,6 +36,7 @@
                         </primitives:KeyBindingControl>
 
                         <primitives:KeyBindingControl KeyLabel="M3"
+                                                      DefaultFunctionButtonContent="ZCC"
                                                       KeyBind="{Binding KeyboardSettings.BindM3, Mode=TwoWay}">
                             <primitives:KeyBindingControl.KeyIconContent>
                                 <Image Source="{DynamicResource MicrophoneIcon}">
@@ -46,6 +48,7 @@
                         </primitives:KeyBindingControl>
 
                         <primitives:KeyBindingControl KeyLabel="F4"
+                                                      DefaultFunctionButtonContent="ZCC"
                                                       KeyBind="{Binding KeyboardSettings.BindF4, Mode=TwoWay}"
                                                       VerticalKeyLabelAlignment="Top">
                             <primitives:KeyBindingControl.KeyIconContent>
@@ -58,6 +61,7 @@
                         </primitives:KeyBindingControl>
 
                         <primitives:KeyBindingControl KeyLabel="F5"
+                                                      DefaultFunctionButtonContent="ZCC"
                                                       KeyBind="{Binding KeyboardSettings.BindF5, Mode=TwoWay}"
                                                       VerticalKeyLabelAlignment="Top">
                             <primitives:KeyBindingControl.KeyIconContent>
