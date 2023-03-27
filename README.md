@@ -6,7 +6,7 @@ Made mostly out of frustration with having to choose between functionality and e
 
 # Features
 >## **Gorgeous UI**  
->Who said functional stuff can't look good? Thanks to AvaloniaUI, Zephyrus Control Center provides a rich, Windows 11-integrated user interface while letting the user covering most of proprietary ASUS functionality.
+>Who said functional stuff can't look good? Thanks to AvaloniaUI, Zephyrus Control Center provides a rich, Windows 11-integrated user interface while letting the user interact with most of the proprietary ASUS functionality.
 
 >## **Fan control**   
 >Select one of the 3 built-in performance profiles. They configure both power draw limits and fan curves, matching whatever's embedded in the firmware, thus staying within the safe, warranty-covered limits.
