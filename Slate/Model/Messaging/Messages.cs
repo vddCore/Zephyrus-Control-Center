@@ -3,6 +3,7 @@ using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Settings;
 using Slate.View;
+using Starlight.Asus;
 using Starlight.Asus.Aura;
 
 namespace Slate.Model.Messaging
@@ -88,6 +89,10 @@ namespace Slate.Model.Messaging
 
     public sealed record AuraFollowSystemAccentColorStateChangedMessage(
         bool Enabled
+    ) : Message;
+
+    public sealed record AniMeMatrixBrightnessChangedMessage(
+        BrightnessLevel BrightnessLevel
     ) : Message;
 
     public sealed record SystemAccentColorChangedMessage(

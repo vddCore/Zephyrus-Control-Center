@@ -10,5 +10,6 @@ namespace Slate.Model.Settings
         public GraphicsAndDisplaySettings GraphicsAndDisplay { get; set; } = new();
         public PowerManagementSettings PowerManagement { get; set; } = new();
         public KeyboardSettings Keyboard { get; set; } = new();
+        public AniMeMatrixSettings AniMeMatrix { get; set; } = new();
     }
 }

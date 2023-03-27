@@ -105,6 +105,10 @@
         <DependentUpon>KeyBindingControl.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\Primitives\BrightnessSelector.axaml.cs">
+        <DependentUpon>BrightnessSelector.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

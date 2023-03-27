@@ -9,7 +9,7 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private ApplicationSettings ApplicationSettings => _settingsService.ControlCenter!.Application;
+        private ApplicationSettings ApplicationSettings => ControlCenterSettings.Application;
 
         private void SubscribeToApplicationSettings()
         {

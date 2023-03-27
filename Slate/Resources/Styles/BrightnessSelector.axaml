@@ -1,0 +1,28 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:control="clr-namespace:Slate.View.Control"
+        xmlns:primitives="clr-namespace:Slate.View.Control.Primitives">
+    <Style Selector="primitives|BrightnessSelector RadioButton.SwitchRadioButton#OffButton">
+        <Setter Property="CornerRadius" Value="6,0,0,6" />
+    </Style>
+
+    <Style Selector="primitives|BrightnessSelector RadioButton.SwitchRadioButton#BrightButton">
+        <Setter Property="CornerRadius" Value="0,6,6,0" />
+    </Style>
+
+    <Style Selector="primitives|BrightnessSelector.SnapTop RadioButton.SwitchRadioButton#OffButton">
+        <Setter Property="CornerRadius" Value="6,0,0,0" />
+    </Style>
+
+    <Style Selector="primitives|BrightnessSelector.SnapTop RadioButton.SwitchRadioButton#BrightButton">
+        <Setter Property="CornerRadius" Value="0,6,0,0" />
+    </Style>
+
+    <Style Selector="primitives|BrightnessSelector.SnapBottom RadioButton.SwitchRadioButton#OffButton">
+        <Setter Property="CornerRadius" Value="0,0,0,6" />
+    </Style>
+
+    <Style Selector="primitives|BrightnessSelector.SnapBottom RadioButton.SwitchRadioButton#BrightButton">
+        <Setter Property="CornerRadius" Value="0,0,6,0" />
+    </Style>
+</Styles>

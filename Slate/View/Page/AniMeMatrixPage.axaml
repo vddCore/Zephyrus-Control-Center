@@ -2,8 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:Class="Slate.View.Page.AniMeMatrixPage">
-  <TextBlock HorizontalAlignment="Center"
-             VerticalAlignment="Center"
-             Text="AniMe Matrix settings will be here one day." />
+             xmlns:control="clr-namespace:Slate.View.Control.Primitives"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             x:Class="Slate.View.Page.AniMeMatrixPage"
+             DataContext="{mvvm:DataContextSource vm:AniMeMatrixPageViewModel}">
+    <control:Card>
+        <StackPanel Spacing="4">
+            <control:BrightnessSelector Classes="SnapTop"
+                                        BrightnessLevel="{Binding Brightness, Mode=TwoWay}" />
+        </StackPanel>
+    </control:Card>
 </UserControl>

@@ -6,7 +6,7 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private FansSettings FansSettings => _settingsService.ControlCenter!.Fans;
+        private FansSettings FansSettings => ControlCenterSettings.Fans;
 
         private void SubscribeToFansSettings()
         {

@@ -50,6 +50,7 @@
         <StyleInclude Source="/Resources/Styles/LinkIcon.axaml" />
         <StyleInclude Source="/Resources/Styles/SwitchRadioButton.axaml" />
         <StyleInclude Source="/Resources/Styles/MediaPanelRadioButton.axaml" />
+        <StyleInclude Source="/Resources/Styles/BrightnessSelector.axaml" />
 
         <Style Selector="Button ContentPresenter">
             <Setter Property="Transitions">

@@ -6,6 +6,7 @@ using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.Model.Settings;
+using Slate.Model.Settings.Components;
 
 namespace Slate.Controller
 {
@@ -19,6 +20,7 @@ namespace Slate.Controller
         private readonly IDisplayManagementService _displayManagementService;
         private readonly IAsusAuraService _asusAuraService;
         private readonly IInputInjectionService _inputInjectionService;
+        private readonly IAsusAnimeMatrixService _asusAnimeMatrixService;
 
         private ControlCenterSettings ControlCenterSettings => _settingsService.ControlCenter!;
 
@@ -28,7 +30,8 @@ namespace Slate.Controller
             IPowerManagementService powerManagementService,
             IDisplayManagementService displayManagementService,
             IAsusAuraService asusAuraService,
-            IInputInjectionService inputInjectionService)
+            IInputInjectionService inputInjectionService,
+            IAsusAnimeMatrixService asusAnimeMatrixService)
         {
             _asusHalService = asusHalService;
             _settingsService = settingsService;
@@ -36,6 +39,7 @@ namespace Slate.Controller
             _displayManagementService = displayManagementService;
             _asusAuraService = asusAuraService;
             _inputInjectionService = inputInjectionService;
+            _asusAnimeMatrixService = asusAnimeMatrixService;
 
             if (!_asusHalService.IsAcpiSessionOpen)
                 _asusHalService.OpenAcpiSession();
@@ -53,6 +57,7 @@ namespace Slate.Controller
             SubscribeToPowerManagementSettings();
             SubscribeToKeyboardSettings();
             SubscribeToAsusEventProvider();
+            SubscribeToAniMeMatrixSettings();
 
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
         }
@@ -118,6 +123,10 @@ namespace Slate.Controller
                 KeyboardSettings.SecondaryColor.HardwareColor,
                 KeyboardSettings.AnimationSpeed
             ).Broadcast();
+
+            new AniMeMatrixBrightnessChangedMessage(
+                AniMeMatrixSettings.Brightness
+            );
         }
 
         private void OnAsusWmiEventReceived(ManagementBaseObject managementObject)

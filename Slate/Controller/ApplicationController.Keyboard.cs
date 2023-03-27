@@ -11,7 +11,7 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private KeyboardSettings KeyboardSettings => _settingsService.ControlCenter!.Keyboard;
+        private KeyboardSettings KeyboardSettings => ControlCenterSettings.Keyboard;
 
         private void SubscribeToKeyboardSettings()
         {

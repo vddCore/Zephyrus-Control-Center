@@ -7,7 +7,7 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private PowerManagementSettings PowerManagementSettings => _settingsService.ControlCenter!.PowerManagement;
+        private PowerManagementSettings PowerManagementSettings => ControlCenterSettings.PowerManagement;
         
         private void SubscribeToPowerManagementSettings()
         {

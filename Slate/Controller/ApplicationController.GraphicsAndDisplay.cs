@@ -6,8 +6,7 @@ namespace Slate.Controller
 {
     public partial class ApplicationController
     {
-        private GraphicsAndDisplaySettings GraphicsAndDisplaySettings =>
-            _settingsService.ControlCenter!.GraphicsAndDisplay;
+        private GraphicsAndDisplaySettings GraphicsAndDisplaySettings => ControlCenterSettings.GraphicsAndDisplay;
 
         private void SubscribeToGraphicsAndDisplaySettings()
         {

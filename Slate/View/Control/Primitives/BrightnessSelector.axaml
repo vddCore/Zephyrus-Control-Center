@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             x:Class="Slate.View.Control.Primitives.BrightnessSelector">
+    <Grid ColumnDefinitions="*,*,*,*">
+        <RadioButton Grid.Column="0"
+                     Name="OffButton"
+                     Classes="SwitchRadioButton"
+                     Content="Off"
+                     Click="OffButton_Click" />
+
+        <RadioButton Grid.Column="1"
+                     Name="DimButton"
+                     Classes="SwitchRadioButton"
+                     Content="Dim"
+                     CornerRadius="0,0,0,0"
+                     Margin="-1,0,0,0"
+                     Click="DimButton_Click" />
+
+        <RadioButton Grid.Column="2"
+                     Name="MediumButton"
+                     Classes="SwitchRadioButton"
+                     Content="Medium"
+                     CornerRadius="0,0,0,0"
+                     Margin="-1,0,0,0"
+                     Click="MediumButton_Click" />
+
+        <RadioButton Grid.Column="3"
+                     Name="BrightButton"
+                     Classes="SwitchRadioButton"
+                     Content="Bright"
+                     Margin="-1,0,0,0"
+                     Click="BrightButton_Click" />
+    </Grid>
+</UserControl>
