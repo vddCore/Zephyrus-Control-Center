@@ -16,15 +16,21 @@
             <StackPanel Orientation="Horizontal"
                         Margin="4,0"
                         Spacing="4">
-                <Border CornerRadius="6"
-                        BorderThickness="1"
-                        BorderBrush="#99FFFFFF"
-                        Padding="1">
-                    <avaloniaGif:GifImage SourceUri="avares://Slate/Resources/Animations/running_binary.gif"
-                                          AutoStart="False"
-                                          Width="45"
-                                          Height="45" />
-                </Border>
+                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/running_binary.gif"
+                                        GifWidth="50"
+                                        GifHeight="50" />
+                
+                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/running_rogglitch.gif"
+                                        GifWidth="50"
+                                        GifHeight="50" />
+                
+                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/shutdown_glitchout.gif"
+                                        GifWidth="50"
+                                        GifHeight="50" />
+                
+                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/shutdown_seeya.gif"
+                                        GifWidth="50"
+                                        GifHeight="50" />
             </StackPanel>
         </StackPanel>
     </control:Card>

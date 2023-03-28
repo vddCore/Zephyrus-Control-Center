@@ -109,6 +109,10 @@
         <DependentUpon>BrightnessSelector.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\Primitives\GifRadioButton.axaml.cs">
+        <DependentUpon>GifRadioButton.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

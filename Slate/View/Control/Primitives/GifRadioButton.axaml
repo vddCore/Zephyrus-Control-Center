@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Control"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:avaloniaGif="clr-namespace:AvaloniaGif;assembly=AvaloniaGif"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             x:Class="Slate.View.Control.Primitives.GifRadioButton">
+    <RadioButton Classes="SwitchRadioButton"
+                 CornerRadius="6"
+                 Padding="2"
+                 Background="Transparent"
+                 GroupName="SelectedGif">
+        <Border CornerRadius="5"
+                Background="#FF000000"
+                BorderBrush="#FF000000"
+                BorderThickness="1"
+                Padding="1">
+            <avaloniaGif:GifImage Name="GifImageContainer"
+                                  SourceUri="{Binding $parent[primitives:GifRadioButton].GifSourceUri, Mode=TwoWay}"
+                                  AutoStart="False"
+                                  Width="{Binding $parent[primitives:GifRadioButton].GifWidth, Mode=TwoWay}"
+                                  Height="{Binding $parent[primitives:GifRadioButton].GifHeight, Mode=TwoWay}" />
+        </Border>
+    </RadioButton>
+</UserControl>
