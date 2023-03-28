@@ -4,3 +4,6 @@
 [submodule "Starlight"]
 	path = Starlight
 	url = https://github.com/vddCore/Starlight.git
+[submodule "Avalonia.GIF"]
+	path = Avalonia.GIF
+	url = https://github.com/vddCore/Avalonia.GIF

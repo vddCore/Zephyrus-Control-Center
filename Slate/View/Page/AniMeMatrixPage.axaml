@@ -5,12 +5,27 @@
              xmlns:control="clr-namespace:Slate.View.Control.Primitives"
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             xmlns:avaloniaGif="clr-namespace:AvaloniaGif;assembly=AvaloniaGif"
              x:Class="Slate.View.Page.AniMeMatrixPage"
              DataContext="{mvvm:DataContextSource vm:AniMeMatrixPageViewModel}">
     <control:Card>
         <StackPanel Spacing="4">
             <control:BrightnessSelector Classes="SnapTop"
                                         BrightnessLevel="{Binding Brightness, Mode=TwoWay}" />
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="4,0"
+                        Spacing="4">
+                <Border CornerRadius="6"
+                        BorderThickness="1"
+                        BorderBrush="#99FFFFFF"
+                        Padding="1">
+                    <avaloniaGif:GifImage SourceUri="avares://Slate/Resources/Animations/running_binary.gif"
+                                          AutoStart="False"
+                                          Width="45"
+                                          Height="45" />
+                </Border>
+            </StackPanel>
         </StackPanel>
     </control:Card>
 </UserControl>

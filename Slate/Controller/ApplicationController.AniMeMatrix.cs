@@ -7,10 +7,21 @@ namespace Slate.Controller
     public partial class ApplicationController
     {
         private AniMeMatrixSettings AniMeMatrixSettings => ControlCenterSettings.AniMeMatrix;
-        
+
         private void SubscribeToAniMeMatrixSettings()
         {
             Message.Subscribe<AniMeMatrixBrightnessChangedMessage>(this, OnAniMeMatrixBrightnessChanged);
+            Message.Subscribe<AniMeMatrixBuiltInsChangedMessage>(this, OnAniMeMatrixBuiltInsChanged);
+        }
+
+        private void OnAniMeMatrixBuiltInsChanged(AniMeMatrixBuiltInsChangedMessage msg)
+        {
+            _asusAnimeMatrixService.SetBuiltInAnimationStatus(msg.Enabled);
+
+            if (msg.Enabled)
+            {
+                _asusAnimeMatrixService.SetBuiltInAnimation(msg.BuiltInConfiguration);
+            }
         }
 
         private void OnAniMeMatrixBrightnessChanged(AniMeMatrixBrightnessChangedMessage msg)

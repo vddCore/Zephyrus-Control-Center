@@ -13,10 +13,14 @@ namespace Slate.Infrastructure.Services
             _device = new AnimeMatrixDevice();
         }
         
-        public void SetBrightness(BrightnessLevel level)
-        {
-            _device.SetBrightness(level);
-        }
+        public void SetBrightness(BrightnessLevel level) 
+            => _device.SetBrightness(level);
+
+        public void SetBuiltInAnimationStatus(bool enabled) 
+            => _device.SetBuiltInAnimation(enabled);
+
+        public void SetBuiltInAnimation(AnimeMatrixBuiltIn builtIn) 
+            => _device.SetBuiltInAnimation(true, builtIn);
 
         public void Dispose()
         {

@@ -4,6 +4,7 @@ using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Settings;
 using Slate.View;
 using Starlight.Asus;
+using Starlight.Asus.AnimeMatrix;
 using Starlight.Asus.Aura;
 
 namespace Slate.Model.Messaging
@@ -36,7 +37,7 @@ namespace Slate.Model.Messaging
 
     public sealed record CpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
-    
+
     public sealed record GpuFanCurveUpdatedMessage(FanCurve Curve)
         : Message;
 
@@ -66,13 +67,13 @@ namespace Slate.Model.Messaging
 
     public sealed record DisplayRefreshRateChangedMessage(uint RefreshRate)
         : Message;
-    
+
     public sealed record CpuBoostModeChangedMessage(
         bool EnableOnAC,
         bool EnableOnDC
     ) : Message;
-    
-    public sealed record BatteryChargeLimitChangedMessage(int Value) 
+
+    public sealed record BatteryChargeLimitChangedMessage(int Value)
         : Message;
 
     public sealed record PowerTargetsChangedMessage(
@@ -93,6 +94,11 @@ namespace Slate.Model.Messaging
 
     public sealed record AniMeMatrixBrightnessChangedMessage(
         BrightnessLevel BrightnessLevel
+    ) : Message;
+
+    public sealed record AniMeMatrixBuiltInsChangedMessage(
+        bool Enabled,
+        AnimeMatrixBuiltIn BuiltInConfiguration
     ) : Message;
 
     public sealed record SystemAccentColorChangedMessage(

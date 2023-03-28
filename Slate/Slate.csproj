@@ -120,9 +120,22 @@
       <None Remove="Resources\Fonts\fa5_brands.ttf" />
       <None Remove="Resources\Fonts\fa5_brands.otf" />
       <AvaloniaResource Include="Resources\Fonts\fa5_brands.otf" />
+      <None Remove="Resources\Animations\running_binary.gif" />
+      <AvaloniaResource Include="Resources\Animations\running_binary.gif" />
+      <None Remove="Resources\Animations\running_rogglitch.gif" />
+      <AvaloniaResource Include="Resources\Animations\running_rogglitch.gif" />
+      <None Remove="Resources\Animations\shutdown_glitchout.gif" />
+      <AvaloniaResource Include="Resources\Animations\shutdown_glitchout.gif" />
+      <None Remove="Resources\Animations\shutdown_seeya.gif" />
+      <AvaloniaResource Include="Resources\Animations\shutdown_seeya.gif" />
+      <None Remove="Resources\Animations\sleep_starfield.gif" />
+      <AvaloniaResource Include="Resources\Animations\sleep_starfield.gif" />
+      <None Remove="Resources\Animations\startup_staticemergence.gif" />
+      <AvaloniaResource Include="Resources\Animations\startup_staticemergence.gif" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj" />
       <ProjectReference Include="..\Glitonea\Glitonea.csproj" />
       <ProjectReference Include="..\Starlight\Starlight\Starlight.csproj" />
     </ItemGroup>

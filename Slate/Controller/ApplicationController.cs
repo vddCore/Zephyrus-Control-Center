@@ -1,12 +1,9 @@
-﻿using System.Diagnostics;
-using System.Management;
-using Avalonia.Input;
+﻿using System.Management;
 using Glitonea.Mvvm.Messaging;
 using Slate.Infrastructure.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.Model.Settings;
-using Slate.Model.Settings.Components;
 
 namespace Slate.Controller
 {
