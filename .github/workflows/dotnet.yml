@@ -26,6 +26,6 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: Zephyrus-Control-Center_DEBUG
-        path: Slate/Slate/bin/Debug/net7.0
+        path: Slate/bin/Debug/net7.0
         if-no-files-found: error
         retention-days: 30
