@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Glitonea.Mvvm;
+﻿using Glitonea.Mvvm;
 using Slate.Model.Messaging;
 using Slate.View;
 
@@ -9,7 +8,7 @@ namespace Slate.ViewModel.Control
     {
         public void ActivatePage(PageMarker page)
         {
-            new PageSwitchedMessage(page)
+            new NavigationRequestedMessage(page)
                 .Broadcast();
         }
 

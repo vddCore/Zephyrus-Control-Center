@@ -31,12 +31,19 @@ namespace Slate.View.Window
             InitializeComponent();
 
             Message.Subscribe<TrayIconClickedMessage>(this, OnTrayClicked);
-            Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
+            Message.Subscribe<NavigatedToPageMessage>(this, OnNavigatedToPage);
+            Message.Subscribe<NavigatedBackMessage>(this, OnNavigatedBack);
         }
 
-        private void OnPageSwitched(PageSwitchedMessage msg)
+        private void OnNavigatedToPage(NavigatedToPageMessage msg)
+            => UpdateVisualState(msg.PageMarker);
+
+        private void OnNavigatedBack(NavigatedBackMessage msg) 
+            => UpdateVisualState(msg.CurrentPage);
+
+        private void UpdateVisualState(PageMarker page)
         {
-            if (msg.PageMarker == Pages.MainMenu)
+            if (page == Pages.MainMenu)
             {
                 BackButton.Classes.Set("OnMainPage", true);
             }
@@ -45,9 +52,9 @@ namespace Slate.View.Window
                 BackButton.Classes.Set("OnMainPage", false);
             }
 
-            ResizeTo(msg.PageMarker!.ViewHeight);
+            ResizeTo(page.ViewHeight);
         }
-
+        
         protected override void OnLoaded()
         {
             var hwnd = PlatformImpl!.Handle.Handle;

@@ -21,9 +21,15 @@ namespace Slate.Model.Messaging
     public sealed record MainWindowTransitionFinishedMessage(bool WasSlidingIn)
         : Message;
 
-    public sealed record PageSwitchedMessage(PageMarker? PageMarker)
+    public sealed record NavigationRequestedMessage(PageMarker PageMarker)
         : Message;
 
+    public sealed record NavigatedToPageMessage(PageMarker PageMarker)
+        : Message;
+
+    public sealed record NavigatedBackMessage(PageMarker CurrentPage)
+        : Message;
+    
     public sealed record SettingsModifiedMessage(
         SettingsComponent Origin,
         string? PropertyName

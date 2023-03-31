@@ -20,60 +20,13 @@
                     <pageElements:AuraColorControl />
                 </primitives:Card>
 
-                <primitives:Card>
-                    <StackPanel Spacing="4"
-                                Margin="4">
-                        <primitives:KeyBindingControl KeyLabel="M4"
-                                                      DefaultFunctionButtonContent="ZCC"
-                                                      KeyBind="{Binding KeyboardSettings.BindM4, Mode=TwoWay}">
-                            <primitives:KeyBindingControl.KeyIconContent>
-                                <Image Source="{DynamicResource AsusRogLogo}">
-                                    <Image.RenderTransform>
-                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
-                                    </Image.RenderTransform>
-                                </Image>
-                            </primitives:KeyBindingControl.KeyIconContent>
-                        </primitives:KeyBindingControl>
-
-                        <primitives:KeyBindingControl KeyLabel="M3"
-                                                      DefaultFunctionButtonContent="ZCC"
-                                                      KeyBind="{Binding KeyboardSettings.BindM3, Mode=TwoWay}">
-                            <primitives:KeyBindingControl.KeyIconContent>
-                                <Image Source="{DynamicResource MicrophoneIcon}">
-                                    <Image.RenderTransform>
-                                        <ScaleTransform ScaleX="0.65" ScaleY="0.65" />
-                                    </Image.RenderTransform>
-                                </Image>
-                            </primitives:KeyBindingControl.KeyIconContent>
-                        </primitives:KeyBindingControl>
-
-                        <primitives:KeyBindingControl KeyLabel="F4"
-                                                      DefaultFunctionButtonContent="ZCC"
-                                                      KeyBind="{Binding KeyboardSettings.BindF4, Mode=TwoWay}"
-                                                      VerticalKeyLabelAlignment="Top">
-                            <primitives:KeyBindingControl.KeyIconContent>
-                                <Image Source="{DynamicResource AuraIcon}">
-                                    <Image.RenderTransform>
-                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
-                                    </Image.RenderTransform>
-                                </Image>
-                            </primitives:KeyBindingControl.KeyIconContent>
-                        </primitives:KeyBindingControl>
-
-                        <primitives:KeyBindingControl KeyLabel="F5"
-                                                      DefaultFunctionButtonContent="ZCC"
-                                                      KeyBind="{Binding KeyboardSettings.BindF5, Mode=TwoWay}"
-                                                      VerticalKeyLabelAlignment="Top">
-                            <primitives:KeyBindingControl.KeyIconContent>
-                                <Image Source="{DynamicResource FanIcon}">
-                                    <Image.RenderTransform>
-                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
-                                    </Image.RenderTransform>
-                                </Image>
-                            </primitives:KeyBindingControl.KeyIconContent>
-                        </primitives:KeyBindingControl>
-                    </StackPanel>
-                </primitives:Card>
+                <primitives:MainMenuButton Header="Key bindings"
+                                           Description="Macro keys, Fn-key overrides..."
+                                           Command="{Binding ActivateKeyBindingsPage}">
+                    <primitives:MainMenuButton.ImageContent>
+                        <icons:SFIcon FontSize="24" Glyph="&#xF8A6;" />
+                    </primitives:MainMenuButton.ImageContent>
+                </primitives:MainMenuButton>
             </StackPanel>
         </ScrollViewer>
 

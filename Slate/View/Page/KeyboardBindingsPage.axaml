@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
+             xmlns:vm="clr-namespace:Slate.ViewModel.Page"
+             xmlns:control="clr-namespace:Slate.View.Control"
+             xmlns:aura="clr-namespace:Starlight.Asus.Aura;assembly=Starlight"
+             xmlns:icons="clr-namespace:Slate.View.Control.Icons"
+             xmlns:page="clr-namespace:Slate.View.Page"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             xmlns:pageElements="clr-namespace:Slate.View.Control.PageElements"
+             x:Class="Slate.View.Page.KeyboardBindingsPage"
+             DataContext="{mvvm:DataContextSource vm:KeyboardBindingsPageViewModel}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="4">
+                <primitives:Card>
+                    <StackPanel Spacing="4"
+                                Margin="4">
+                        <primitives:KeyBindingControl KeyLabel="M4"
+                                                      DefaultFunctionButtonContent="ZCC"
+                                                      KeyBind="{Binding KeyboardSettings.BindM4, Mode=TwoWay}">
+                            <primitives:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource AsusRogLogo}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </primitives:KeyBindingControl.KeyIconContent>
+                        </primitives:KeyBindingControl>
+
+                        <primitives:KeyBindingControl KeyLabel="M3"
+                                                      DefaultFunctionButtonContent="ZCC"
+                                                      KeyBind="{Binding KeyboardSettings.BindM3, Mode=TwoWay}">
+                            <primitives:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource MicrophoneIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.65" ScaleY="0.65" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </primitives:KeyBindingControl.KeyIconContent>
+                        </primitives:KeyBindingControl>
+
+                        <primitives:KeyBindingControl KeyLabel="F4"
+                                                      DefaultFunctionButtonContent="ZCC"
+                                                      KeyBind="{Binding KeyboardSettings.BindF4, Mode=TwoWay}"
+                                                      VerticalKeyLabelAlignment="Top">
+                            <primitives:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource AuraIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </primitives:KeyBindingControl.KeyIconContent>
+                        </primitives:KeyBindingControl>
+
+                        <primitives:KeyBindingControl KeyLabel="F5"
+                                                      DefaultFunctionButtonContent="ZCC"
+                                                      KeyBind="{Binding KeyboardSettings.BindF5, Mode=TwoWay}"
+                                                      VerticalKeyLabelAlignment="Top">
+                            <primitives:KeyBindingControl.KeyIconContent>
+                                <Image Source="{DynamicResource FanIcon}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </primitives:KeyBindingControl.KeyIconContent>
+                        </primitives:KeyBindingControl>
+                    </StackPanel>
+                </primitives:Card>
+            </StackPanel>
+        </ScrollViewer>
+
+        <icons:SFIcon Grid.RowSpan="2"
+                      Glyph="&#xE087;"
+                      FontSize="196"
+                      Foreground="#09FFFFFF"
+                      Margin="0,0,12,-23"
+                      IsHitTestVisible="False"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom" />
+    </Grid>
+</UserControl>

@@ -117,6 +117,10 @@
         <DependentUpon>AniMeMatrixBuiltInSelector.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Page\KeyboardBindingsPage.axaml.cs">
+        <DependentUpon>KeyboardBindingsPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

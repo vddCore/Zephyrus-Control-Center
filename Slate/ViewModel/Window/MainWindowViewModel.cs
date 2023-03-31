@@ -1,5 +1,5 @@
-﻿using Avalonia;
-using Avalonia.Input;
+﻿using System.Collections.Generic;
+using Avalonia;
 using Glitonea.Extensions;
 using Glitonea.Mvvm;
 using Glitonea.Mvvm.Messaging;
@@ -16,7 +16,20 @@ namespace Slate.ViewModel.Window
         private readonly ISettingsService _settingsService;
         private readonly ApplicationController _applicationController;
 
-        public PageMarker? CurrentPage { get; private set; }
+        private Stack<PageMarker> _navigationStack = new();
+
+        public PageMarker? CurrentPage
+        {
+            get
+            {
+                if (_navigationStack.TryPeek(out var page))
+                    return page;
+
+                return null;
+            }
+        }
+
+        public bool CanNavigateBack => _navigationStack.Count > 1;
         public bool BackButtonEnabled { get; private set; } = true;
 
         public MainWindowViewModel(
@@ -43,7 +56,9 @@ namespace Slate.ViewModel.Window
             Message.Subscribe<MainWindowLoadedMessage>(this, OnMainWindowLoaded);
             Message.Subscribe<MainWindowTransitionFinishedMessage>(this, OnMainWindowTransitionFinished);
             Message.Subscribe<SettingsModifiedMessage>(this, OnSettingsModified);
-            Message.Subscribe<PageSwitchedMessage>(this, OnPageSwitched);
+            Message.Subscribe<NavigatedToPageMessage>(this, OnNavigatedToPage);
+            Message.Subscribe<NavigatedBackMessage>(this, OnNavigatedBack);
+            Message.Subscribe<NavigationRequestedMessage>(this, OnNavigationRequested);
             Message.Subscribe<EcoModeTransitionStartedMessage>(this, OnEcoModeTransitionStarted);
             Message.Subscribe<EcoModeTransitionFinishedMessage>(this, OnEcoModeTransitionFinished);
         }
@@ -62,7 +77,7 @@ namespace Slate.ViewModel.Window
                 
                 if (window.Elevated)
                 {
-                    SetCurrentPage(Pages.Debug);
+                    NavigateTo(Pages.Debug);
                 }
                 else
                 {
@@ -71,32 +86,50 @@ namespace Slate.ViewModel.Window
             }
             else
             {
-                SetCurrentPage(Pages.MainMenu);
+                _navigationStack.Pop();
+
+                new NavigatedBackMessage(CurrentPage!)
+                    .Broadcast();
             }
         }
 
-        private void SetCurrentPage(PageMarker? page)
+        private void NavigateTo(PageMarker pageMarker)
         {
-            new PageSwitchedMessage(page)
+            if (CurrentPage == pageMarker)
+                return;
+            
+            _navigationStack.Push(pageMarker);
+
+            new NavigatedToPageMessage(pageMarker)
                 .Broadcast();
         }
 
+        private void NavigateToTop()
+        {
+            _navigationStack.Clear();
+            NavigateTo(Pages.MainMenu);
+        }
+
+        private void OnNavigationRequested(NavigationRequestedMessage msg)
+            => NavigateTo(msg.PageMarker);
+        
+        private void OnNavigatedToPage(NavigatedToPageMessage msg) 
+            => OnPropertyChanged(nameof(CurrentPage));
+
+        private void OnNavigatedBack(NavigatedBackMessage msg) 
+            => OnPropertyChanged(nameof(CurrentPage));
+
         private void OnMainWindowLoaded(MainWindowLoadedMessage _)
         {
-            SetCurrentPage(Pages.MainMenu);
+            NavigateToTop();
         }
 
         private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)
         {
             if (!msg.WasSlidingIn)
             {
-                SetCurrentPage(Pages.MainMenu);
+                NavigateToTop();
             }
-        }
-
-        private void OnPageSwitched(PageSwitchedMessage msg)
-        {
-            CurrentPage = msg.PageMarker;
         }
 
         private async void OnSettingsModified(SettingsModifiedMessage _)

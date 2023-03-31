@@ -150,6 +150,10 @@
                         <DataTemplate DataType="{x:Type view:DebugPageMarker}">
                             <page:DebugPage />
                         </DataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type view:KeyboardBindingsPageMarker}">
+                            <page:KeyboardBindingsPage />
+                        </DataTemplate>
                     </TransitioningContentControl.DataTemplates>
                 </TransitioningContentControl>
             </Grid>
