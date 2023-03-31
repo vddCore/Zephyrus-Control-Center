@@ -7,7 +7,6 @@ namespace Slate.Infrastructure.Services
     public interface IAsusAnimeMatrixService : IService
     {
         void SetBrightness(BrightnessLevel level);
-        void SetBuiltInAnimationStatus(bool enabled);
-        void SetBuiltInAnimation(AnimeMatrixBuiltIn builtIn);
+        void SetBuiltInAnimation(bool enable, AnimeMatrixBuiltIn builtIn);
     }
 }

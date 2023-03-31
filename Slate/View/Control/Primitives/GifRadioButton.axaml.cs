@@ -2,6 +2,7 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using PropertyChanged;
 
 namespace Slate.View.Control.Primitives
@@ -18,8 +19,16 @@ namespace Slate.View.Control.Primitives
         public static readonly StyledProperty<double> GifHeightProperty
             = AvaloniaProperty.Register<GifRadioButton, double>(nameof(GifHeight));
 
+        public static readonly StyledProperty<string?> SelectionGroupProperty
+            = AvaloniaProperty.Register<GifRadioButton, string?>(nameof(SelectionGroup));
+        
+        public static readonly StyledProperty<bool?> IsCheckedProperty
+            = AvaloniaProperty.Register<GifRadioButton, bool?>(nameof(IsChecked));
+
+        public event EventHandler<RoutedEventArgs>? Click;
+        
         public Uri GifSourceUri
-        {
+        {   
             get => GetValue(GifSourceUriProperty);
             set => SetValue(GifSourceUriProperty, value);
         }
@@ -34,6 +43,18 @@ namespace Slate.View.Control.Primitives
         {
             get => GetValue(GifHeightProperty);
             set => SetValue(GifHeightProperty, value);
+        }
+        
+        public string? SelectionGroup
+        {
+            get => GetValue(SelectionGroupProperty);
+            set => SetValue(SelectionGroupProperty, value);
+        }
+        
+        public bool? IsChecked
+        {
+            get => GetValue(IsCheckedProperty);
+            set => SetValue(IsCheckedProperty, value);
         }
         
         public GifRadioButton()
@@ -53,6 +74,11 @@ namespace Slate.View.Control.Primitives
             GifImageContainer.Stop();
             
             base.OnPointerExited(e);
+        }
+
+        private void Button_OnClick(object? sender, RoutedEventArgs e)
+        {
+            Click?.Invoke(this, e);
         }
     }
 }

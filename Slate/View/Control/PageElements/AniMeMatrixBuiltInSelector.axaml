@@ -1,0 +1,114 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             xmlns:pageElements="clr-namespace:Slate.View.Control.PageElements"
+             x:Class="Slate.View.Control.PageElements.AniMeMatrixBuiltInSelector">
+    <Grid RowDefinitions="Auto,Auto"
+          ColumnDefinitions="*,*">
+        <StackPanel Spacing="4"
+                    Margin="4,0,0,2"
+                    HorizontalAlignment="Left"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            <TextBlock Text="Running"
+                       Margin="2,0,0,0" />
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4"
+                        IsEnabled="{Binding $parent[pageElements:AniMeMatrixBuiltInSelector].IsRunningSelectorEnabled, 
+                                            Mode=TwoWay}">
+
+                <primitives:GifRadioButton Name="RunningButtonA"
+                                           GifSourceUri="avares://Slate/Resources/Animations/power_saving_1.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="RunningAnimationGroup"
+                                           Click="RunningButtonA_OnClick"/>
+
+                <primitives:GifRadioButton Name="RunningButtonB"
+                                           GifSourceUri="avares://Slate/Resources/Animations/power_saving_2.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="RunningAnimationGroup"
+                                           Click="RunningButtonB_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Spacing="4"
+                    Margin="0,2,4,2"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
+                    Grid.Column="1">
+            <TextBlock Text="Shutdown"
+                       Margin="2,0,0,0" />
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+
+                <primitives:GifRadioButton Name="ShutdownButtonA"
+                                           GifSourceUri="avares://Slate/Resources/Animations/shutdown_1.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="ShutdownAnimationGroup"
+                                           Click="ShutdownButtonA_OnClick"/>
+
+                <primitives:GifRadioButton Name="ShutdownButtonB"
+                                           GifSourceUri="avares://Slate/Resources/Animations/shutdown_2.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="ShutdownAnimationGroup"
+                                           Click="ShutdownButtonB_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Spacing="4"
+                    Margin="4,2,0,2"
+                    HorizontalAlignment="Left"
+                    Grid.Row="1"
+                    Grid.Column="0">
+            <TextBlock Text="Sleeping"
+                       Margin="2,0,0,0" />
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+
+                <primitives:GifRadioButton Name="SleepingButtonA"
+                                           GifSourceUri="avares://Slate/Resources/Animations/sleep_1.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="SleepAnimationGroup" 
+                                           Click="SleepingButtonA_OnClick"/>
+
+                <primitives:GifRadioButton Name="SleepingButtonB"
+                                           GifSourceUri="avares://Slate/Resources/Animations/sleep_2.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="SleepAnimationGroup"
+                                           Click="SleepingButtonB_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Spacing="4"
+                    Margin="0,2,4,2"
+                    HorizontalAlignment="Right"
+                    Grid.Row="1"
+                    Grid.Column="1">
+            <TextBlock Text="Start-up"
+                       Margin="2,0,0,0" />
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+
+                <primitives:GifRadioButton Name="StartupButtonA"
+                                           GifSourceUri="avares://Slate/Resources/Animations/start_1.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="StartupAnimationGroup"
+                                           Click="StartupButtonA_OnClick"/>
+
+                <primitives:GifRadioButton Name="StartupButtonB"
+                                           GifSourceUri="avares://Slate/Resources/Animations/start_2.gif"
+                                           GifWidth="64"
+                                           GifHeight="64"
+                                           SelectionGroup="StartupAnimationGroup" 
+                                           Click="StartupButtonB_OnClick"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

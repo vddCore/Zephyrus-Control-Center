@@ -6,32 +6,28 @@
              xmlns:mvvm="clr-namespace:Glitonea.Mvvm;assembly=Glitonea"
              xmlns:vm="clr-namespace:Slate.ViewModel.Page"
              xmlns:avaloniaGif="clr-namespace:AvaloniaGif;assembly=AvaloniaGif"
+             xmlns:pageElements="clr-namespace:Slate.View.Control.PageElements"
              x:Class="Slate.View.Page.AniMeMatrixPage"
              DataContext="{mvvm:DataContextSource vm:AniMeMatrixPageViewModel}">
-    <control:Card>
-        <StackPanel Spacing="4">
-            <control:BrightnessSelector Classes="SnapTop"
-                                        BrightnessLevel="{Binding Brightness, Mode=TwoWay}" />
+    <StackPanel Spacing="4">
+        <control:Card>
+            <StackPanel Spacing="4">
+                <ToggleSwitch Grid.Row="0"
+                              Grid.ColumnSpan="4"
+                              Margin="-4,0"
+                              IsChecked="{Binding AniMeMatrixSettings.PreferPowerSavingAnimation, Mode=TwoWay}"
+                              Content="Prefer power-saving animation" />
 
-            <StackPanel Orientation="Horizontal"
-                        Margin="4,0"
-                        Spacing="4">
-                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/running_binary.gif"
-                                        GifWidth="50"
-                                        GifHeight="50" />
-                
-                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/running_rogglitch.gif"
-                                        GifWidth="50"
-                                        GifHeight="50" />
-                
-                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/shutdown_glitchout.gif"
-                                        GifWidth="50"
-                                        GifHeight="50" />
-                
-                <control:GifRadioButton GifSourceUri="avares://Slate/Resources/Animations/shutdown_seeya.gif"
-                                        GifWidth="50"
-                                        GifHeight="50" />
+                <pageElements:AniMeMatrixBuiltInSelector IsRunningSelectorEnabled="{Binding AniMeMatrixSettings.PreferPowerSavingAnimation, Mode=TwoWay}"
+                                                         RunningAnimation="{Binding AniMeMatrixSettings.RunningBuiltIn, Mode=TwoWay}"
+                                                         SleepingAnimation="{Binding AniMeMatrixSettings.SleepingBuiltIn, Mode=TwoWay}"
+                                                         ShutdownAnimation="{Binding AniMeMatrixSettings.ShutdownBuiltIn, Mode=TwoWay}"
+                                                         StartupAnimation="{Binding AniMeMatrixSrttings.StartupBuiltIn, Mode=TwoWay}" />
+
+                <control:BrightnessSelector Classes="SnapBottom"
+                                            BrightnessLevel="{Binding Brightness, Mode=TwoWay}" />
             </StackPanel>
-        </StackPanel>
-    </control:Card>
+        </control:Card>
+    </StackPanel>
+
 </UserControl>

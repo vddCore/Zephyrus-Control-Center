@@ -9,7 +9,7 @@ namespace Slate.Model.Settings.Components
     {
         public BrightnessLevel Brightness { get; set; } = BrightnessLevel.Bright;
 
-        public bool BuiltInAnimationEnabled { get; set; } = true;
+        public bool PreferPowerSavingAnimation { get; set; } = true;
         public AnimeMatrixBuiltIn.Running RunningBuiltIn { get; set; } = AnimeMatrixBuiltIn.Running.RogLogoGlitch;
         public AnimeMatrixBuiltIn.Sleeping SleepingBuiltIn { get; set; } = AnimeMatrixBuiltIn.Sleeping.Starfield;
         public AnimeMatrixBuiltIn.Shutdown ShutdownBuiltIn { get; set; } = AnimeMatrixBuiltIn.Shutdown.GlitchOut;
@@ -27,14 +27,14 @@ namespace Slate.Model.Settings.Components
                     break;
                 }
 
-                case nameof(BuiltInAnimationEnabled):
-                case nameof(StartupBuiltIn):
-                case nameof(RunningBuiltIn):
+                case nameof(PreferPowerSavingAnimation):
+                case nameof(RunningBuiltIn) when PreferPowerSavingAnimation:
                 case nameof(SleepingBuiltIn):
                 case nameof(ShutdownBuiltIn):
+                case nameof(StartupBuiltIn):
                 {
                     new AniMeMatrixBuiltInsChangedMessage(
-                        BuiltInAnimationEnabled,
+                        PreferPowerSavingAnimation,
                         new AnimeMatrixBuiltIn(
                             RunningBuiltIn,
                             SleepingBuiltIn,

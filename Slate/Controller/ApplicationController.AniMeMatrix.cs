@@ -16,12 +16,10 @@ namespace Slate.Controller
 
         private void OnAniMeMatrixBuiltInsChanged(AniMeMatrixBuiltInsChangedMessage msg)
         {
-            _asusAnimeMatrixService.SetBuiltInAnimationStatus(msg.Enabled);
-
-            if (msg.Enabled)
-            {
-                _asusAnimeMatrixService.SetBuiltInAnimation(msg.BuiltInConfiguration);
-            }
+            _asusAnimeMatrixService.SetBuiltInAnimation(
+                msg.PreferPowerSavingAnimation,
+                msg.BuiltInConfiguration
+            );
         }
 
         private void OnAniMeMatrixBrightnessChanged(AniMeMatrixBrightnessChangedMessage msg)

@@ -97,7 +97,7 @@ namespace Slate.Model.Messaging
     ) : Message;
 
     public sealed record AniMeMatrixBuiltInsChangedMessage(
-        bool Enabled,
+        bool PreferPowerSavingAnimation,
         AnimeMatrixBuiltIn BuiltInConfiguration
     ) : Message;
 

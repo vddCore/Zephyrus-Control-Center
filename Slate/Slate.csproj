@@ -113,6 +113,10 @@
         <DependentUpon>GifRadioButton.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="View\Control\PageElements\AniMeMatrixBuiltInSelector.axaml.cs">
+        <DependentUpon>AniMeMatrixBuiltInSelector.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -125,17 +129,27 @@
       <None Remove="Resources\Fonts\fa5_brands.otf" />
       <AvaloniaResource Include="Resources\Fonts\fa5_brands.otf" />
       <None Remove="Resources\Animations\running_binary.gif" />
-      <AvaloniaResource Include="Resources\Animations\running_binary.gif" />
       <None Remove="Resources\Animations\running_rogglitch.gif" />
-      <AvaloniaResource Include="Resources\Animations\running_rogglitch.gif" />
       <None Remove="Resources\Animations\shutdown_glitchout.gif" />
-      <AvaloniaResource Include="Resources\Animations\shutdown_glitchout.gif" />
       <None Remove="Resources\Animations\shutdown_seeya.gif" />
-      <AvaloniaResource Include="Resources\Animations\shutdown_seeya.gif" />
       <None Remove="Resources\Animations\sleep_starfield.gif" />
-      <AvaloniaResource Include="Resources\Animations\sleep_starfield.gif" />
       <None Remove="Resources\Animations\startup_staticemergence.gif" />
-      <AvaloniaResource Include="Resources\Animations\startup_staticemergence.gif" />
+      <None Remove="Resources\Animations\power_saving_1.gif" />
+      <AvaloniaResource Include="Resources\Animations\power_saving_1.gif" />
+      <None Remove="Resources\Animations\power_saving_2.gif" />
+      <AvaloniaResource Include="Resources\Animations\power_saving_2.gif" />
+      <None Remove="Resources\Animations\shutdown_1.gif" />
+      <AvaloniaResource Include="Resources\Animations\shutdown_1.gif" />
+      <None Remove="Resources\Animations\shutdown_2.gif" />
+      <AvaloniaResource Include="Resources\Animations\shutdown_2.gif" />
+      <None Remove="Resources\Animations\sleep_1.gif" />
+      <AvaloniaResource Include="Resources\Animations\sleep_1.gif" />
+      <None Remove="Resources\Animations\sleep_2.gif" />
+      <AvaloniaResource Include="Resources\Animations\sleep_2.gif" />
+      <None Remove="Resources\Animations\start_1.gif" />
+      <AvaloniaResource Include="Resources\Animations\start_1.gif" />
+      <None Remove="Resources\Animations\start_2.gif" />
+      <AvaloniaResource Include="Resources\Animations\start_2.gif" />
     </ItemGroup>
 
     <ItemGroup>
@@ -146,9 +160,5 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Resources\Templates\SwitchBar.axaml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Infrastructure\ValueConverters" />
     </ItemGroup>
 </Project>

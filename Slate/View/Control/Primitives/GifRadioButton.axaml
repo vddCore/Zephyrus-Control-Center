@@ -10,13 +10,16 @@
                  CornerRadius="6"
                  Padding="2"
                  Background="Transparent"
-                 GroupName="SelectedGif">
+                 GroupName="{Binding $parent[primitives:GifRadioButton].SelectionGroup, Mode=TwoWay}"
+                 IsChecked="{Binding $parent[primitives:GifRadioButton].IsChecked, Mode=TwoWay}"
+                 Click="Button_OnClick">
         <Border CornerRadius="5"
                 Background="#FF000000"
                 BorderBrush="#FF000000"
                 BorderThickness="1"
                 Padding="1">
             <avaloniaGif:GifImage Name="GifImageContainer"
+                                  Stretch="UniformToFill"
                                   SourceUri="{Binding $parent[primitives:GifRadioButton].GifSourceUri, Mode=TwoWay}"
                                   AutoStart="False"
                                   Width="{Binding $parent[primitives:GifRadioButton].GifWidth, Mode=TwoWay}"

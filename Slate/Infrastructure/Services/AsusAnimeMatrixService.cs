@@ -16,11 +16,8 @@ namespace Slate.Infrastructure.Services
         public void SetBrightness(BrightnessLevel level) 
             => _device.SetBrightness(level);
 
-        public void SetBuiltInAnimationStatus(bool enabled) 
-            => _device.SetBuiltInAnimation(enabled);
-
-        public void SetBuiltInAnimation(AnimeMatrixBuiltIn builtIn) 
-            => _device.SetBuiltInAnimation(true, builtIn);
+        public void SetBuiltInAnimation(bool enable, AnimeMatrixBuiltIn builtIn) 
+            => _device.SetBuiltInAnimation(enable, builtIn);
 
         public void Dispose()
         {
