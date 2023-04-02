@@ -1,9 +1,9 @@
-[submodule "Glitonea"]
-	path = Glitonea
-	url = https://github.com/vddcore/Glitonea.git
-[submodule "Starlight"]
-	path = Starlight
+[submodule "Dependencies/Glitonea"]
+	path = Dependencies/Glitonea
+	url = https://github.com/vddCore/Glitonea.git
+[submodule "Dependencies/Avalonia.GIF"]
+	path = Dependencies/Avalonia.GIF
+	url = https://github.com/vddCore/Avalonia.GIF.git
+[submodule "Dependencies/Starlight"]
+	path = Dependencies/Starlight
 	url = https://github.com/vddCore/Starlight.git
-[submodule "Avalonia.GIF"]
-	path = Avalonia.GIF
-	url = https://github.com/vddCore/Avalonia.GIF

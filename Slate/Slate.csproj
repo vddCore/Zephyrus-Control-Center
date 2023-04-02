@@ -124,45 +124,27 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AvaloniaResource Include="Resources\Fonts\fa5_brands.otf" />
       <AvaloniaResource Include="Resources\Fonts\segoe_fluent.ttf" />
       <AvaloniaResource Include="Resources\Icons\icon.ico" />
-      <AvaloniaXaml Remove="Resources\Styles\ToggleSwitch.axaml" />
       <AvaloniaResource Include="Resources\Styles\Card.axaml" />
       <AvaloniaResource Include="Resources\Styles\ToggleSwitch.axaml" />
-      <None Remove="Resources\Fonts\fa5_brands.ttf" />
-      <None Remove="Resources\Fonts\fa5_brands.otf" />
-      <AvaloniaResource Include="Resources\Fonts\fa5_brands.otf" />
-      <None Remove="Resources\Animations\running_binary.gif" />
-      <None Remove="Resources\Animations\running_rogglitch.gif" />
-      <None Remove="Resources\Animations\shutdown_glitchout.gif" />
-      <None Remove="Resources\Animations\shutdown_seeya.gif" />
-      <None Remove="Resources\Animations\sleep_starfield.gif" />
-      <None Remove="Resources\Animations\startup_staticemergence.gif" />
-      <None Remove="Resources\Animations\power_saving_1.gif" />
       <AvaloniaResource Include="Resources\Animations\power_saving_1.gif" />
-      <None Remove="Resources\Animations\power_saving_2.gif" />
       <AvaloniaResource Include="Resources\Animations\power_saving_2.gif" />
-      <None Remove="Resources\Animations\shutdown_1.gif" />
       <AvaloniaResource Include="Resources\Animations\shutdown_1.gif" />
-      <None Remove="Resources\Animations\shutdown_2.gif" />
       <AvaloniaResource Include="Resources\Animations\shutdown_2.gif" />
-      <None Remove="Resources\Animations\sleep_1.gif" />
       <AvaloniaResource Include="Resources\Animations\sleep_1.gif" />
-      <None Remove="Resources\Animations\sleep_2.gif" />
       <AvaloniaResource Include="Resources\Animations\sleep_2.gif" />
-      <None Remove="Resources\Animations\start_1.gif" />
       <AvaloniaResource Include="Resources\Animations\start_1.gif" />
-      <None Remove="Resources\Animations\start_2.gif" />
       <AvaloniaResource Include="Resources\Animations\start_2.gif" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj" />
-      <ProjectReference Include="..\Glitonea\Glitonea.csproj" />
-      <ProjectReference Include="..\Starlight\Starlight\Starlight.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Resources\Templates\SwitchBar.axaml" />
+      <ProjectReference Include="..\Slate.API\Slate.API.csproj" />
+      <ProjectReference Include="..\Slate.Asus\Slate.Asus.csproj" />
+      
+      <ProjectReference Include="..\Dependencies\Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj" />
+      <ProjectReference Include="..\Dependencies\Glitonea\Glitonea.csproj" />
+      <ProjectReference Include="..\Dependencies\Starlight\Starlight\Starlight.csproj" />
     </ItemGroup>
 </Project>

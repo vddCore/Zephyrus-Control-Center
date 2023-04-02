@@ -1,6 +1,6 @@
-﻿using Slate.Infrastructure.Asus.Acpi.FunctionSets;
+﻿using Slate.Asus.Acpi.FunctionSets;
 
-namespace Slate.Infrastructure.Asus.Acpi.Endpoints
+namespace Slate.Asus.Acpi.Endpoints
 {
     public class AsusDevsEndpoint : AsusAcpiEndpoint<DevsMethod>
     {

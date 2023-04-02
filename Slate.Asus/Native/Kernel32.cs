@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Slate.Infrastructure.Native
+namespace Slate.Asus.Native
 {
     internal static class Kernel32
     {

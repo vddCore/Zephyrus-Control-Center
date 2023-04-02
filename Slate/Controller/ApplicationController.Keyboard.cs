@@ -2,7 +2,7 @@
 using System.IO;
 using Avalonia.Threading;
 using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure.Asus;
+using Slate.Asus;
 using Slate.Model;
 using Slate.Model.Messaging;
 using Slate.Model.Settings.Components;

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Management;
 using Glitonea.Mvvm;
-using Slate.Infrastructure.Asus;
+using Slate.Asus;
 
 namespace Slate.Infrastructure.Services
 {

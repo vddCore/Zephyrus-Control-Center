@@ -1,4 +1,4 @@
-﻿namespace Slate.Infrastructure.Asus
+﻿namespace Slate.Asus
 {
     public enum PerformancePreset : byte
     {

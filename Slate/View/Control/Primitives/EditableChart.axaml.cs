@@ -14,7 +14,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using PropertyChanged;
 using SkiaSharp;
-using Slate.Infrastructure.Asus;
+using Slate.Asus;
 
 namespace Slate.View.Control.Primitives
 {

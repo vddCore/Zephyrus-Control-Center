@@ -2,11 +2,17 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate", "Slate\Slate.csproj", "{65A10EE6-CB91-4582-A962-B72E9746C06B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitonea", "Glitonea\Glitonea.csproj", "{11F333ED-ECDD-4191-A48C-55C68C1D8634}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate.API", "Slate.API\Slate.API.csproj", "{67226973-C1D0-4DE3-905A-B75676584383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starlight", "Starlight\Starlight\Starlight.csproj", "{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate.Asus", "Slate.Asus\Slate.Asus.csproj", "{612B40B6-06B6-4EE5-BB20-4A4AA0983062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaGif", "Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj", "{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{1AC64CCC-023F-4454-AB73-AD12CD19B7E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glitonea", "Dependencies\Glitonea\Glitonea.csproj", "{11F333ED-ECDD-4191-A48C-55C68C1D8634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starlight", "Dependencies\Starlight\Starlight\Starlight.csproj", "{765DDC4A-E8B5-49F9-BC95-1B934F4A263F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaGif", "Dependencies\Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj", "{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,5 +45,22 @@ Global
 		{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
 		{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
+		{67226973-C1D0-4DE3-905A-B75676584383}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
+		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{830404FA-3ADD-42D9-8EC3-B76904AF0F5B} = {1AC64CCC-023F-4454-AB73-AD12CD19B7E3}
+		{11F333ED-ECDD-4191-A48C-55C68C1D8634} = {1AC64CCC-023F-4454-AB73-AD12CD19B7E3}
+		{765DDC4A-E8B5-49F9-BC95-1B934F4A263F} = {1AC64CCC-023F-4454-AB73-AD12CD19B7E3}
 	EndGlobalSection
 EndGlobal

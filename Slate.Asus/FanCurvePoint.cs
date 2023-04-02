@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Slate.Infrastructure.Asus
+namespace Slate.Asus
 {
     public struct FanCurvePoint
     {

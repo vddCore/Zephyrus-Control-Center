@@ -1,7 +1,7 @@
 ﻿using System;
-using Slate.Infrastructure.Asus.Acpi.FunctionSets;
+using Slate.Asus.Acpi.FunctionSets;
 
-namespace Slate.Infrastructure.Asus.Acpi
+namespace Slate.Asus.Acpi
 {
     public abstract class AsusAcpiEndpoint<T> where T : struct
     {

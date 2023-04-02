@@ -1,4 +1,4 @@
-﻿namespace Slate.Infrastructure.Asus.Acpi
+﻿namespace Slate.Asus.Acpi
 {
     public enum AsusIoCtl
     {

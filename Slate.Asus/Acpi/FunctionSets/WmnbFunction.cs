@@ -1,4 +1,4 @@
-﻿namespace Slate.Infrastructure.Asus.Acpi.FunctionSets
+﻿namespace Slate.Asus.Acpi.FunctionSets
 {
     public enum WmnbFunction
     {

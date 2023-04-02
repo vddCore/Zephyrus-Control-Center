@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Slate.Infrastructure.Asus.Acpi.Endpoints;
-using Slate.Infrastructure.Asus.Acpi.FunctionSets;
-using Slate.Infrastructure.Native;
+using Slate.Asus.Acpi.Endpoints;
+using Slate.Asus.Acpi.FunctionSets;
+using Slate.Asus.Native;
 
-namespace Slate.Infrastructure.Asus.Acpi
+namespace Slate.Asus.Acpi
 {
     public class AsusAcpiProxy : IDisposable
     {

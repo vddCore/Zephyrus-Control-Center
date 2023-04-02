@@ -1,5 +1,5 @@
-﻿using Slate.Infrastructure;
-using Slate.Infrastructure.Asus;
+﻿using Slate.Asus;
+using Slate.Infrastructure;
 using Slate.Infrastructure.Settings;
 using Slate.Model.Messaging;
 

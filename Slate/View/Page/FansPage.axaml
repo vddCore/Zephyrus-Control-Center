@@ -4,9 +4,9 @@
              xmlns:page="clr-namespace:Slate.ViewModel.Page"
              xmlns:control="clr-namespace:Slate.View.Control"
              xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-             xmlns:asus="clr-namespace:Slate.Infrastructure.Asus"
              xmlns:icons="clr-namespace:Slate.View.Control.Icons"
              xmlns:primitives="clr-namespace:Slate.View.Control.Primitives"
+             xmlns:asus="clr-namespace:Slate.Asus;assembly=Slate.Asus"
              x:Class="Slate.View.Page.FansPage"
              DataContext="{mvvm:DataContextSource page:FansPageViewModel}">
     <Grid RowDefinitions="Auto,Auto">

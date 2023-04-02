@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Slate.Infrastructure.Asus
+namespace Slate.Asus
 {
     public record FanCurve
     {

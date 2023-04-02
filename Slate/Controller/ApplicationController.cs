@@ -1,6 +1,6 @@
 ﻿using System.Management;
 using Glitonea.Mvvm.Messaging;
-using Slate.Infrastructure.Asus;
+using Slate.Asus;
 using Slate.Infrastructure.Services;
 using Slate.Model.Messaging;
 using Slate.Model.Settings;

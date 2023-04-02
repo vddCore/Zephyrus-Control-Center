@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Slate.Infrastructure.Asus.Acpi
+namespace Slate.Asus.Acpi
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class RequiresAcpiSessionAttribute : Attribute
