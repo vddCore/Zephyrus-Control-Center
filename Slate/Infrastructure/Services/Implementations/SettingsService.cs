@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Slate.Model.Settings;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class SettingsService : ISettingsService
     {

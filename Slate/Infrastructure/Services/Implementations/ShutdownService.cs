@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class ShutdownService : IShutdownService
     {

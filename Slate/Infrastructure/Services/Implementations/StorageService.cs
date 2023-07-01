@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class StorageService : IStorageService
     {

@@ -2,7 +2,7 @@
 using Glitonea.Mvvm.Messaging;
 using Slate.Model.Messaging;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class HardwareMonitorService : IHardwareMonitorService, INotifyPropertyChanged
     {

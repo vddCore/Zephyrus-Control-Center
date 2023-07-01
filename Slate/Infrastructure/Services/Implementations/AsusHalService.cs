@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Text;
-using Microsoft.Win32;
 using Slate.Asus;
 using Slate.Asus.Acpi;
-using Slate.Infrastructure.Native;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class AsusHalService : IAsusHalService
     {

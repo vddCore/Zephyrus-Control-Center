@@ -1,6 +1,6 @@
 ﻿using Slate.Infrastructure.Native;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class DisplayManagementService : IDisplayManagementService
     {

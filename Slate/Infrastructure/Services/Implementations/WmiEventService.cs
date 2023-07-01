@@ -4,7 +4,7 @@ using System.Linq;
 using System.Management;
 using Slate.Infrastructure.WMI;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class WmiEventService : IWmiEventService, IDisposable
     {

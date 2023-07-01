@@ -2,7 +2,7 @@
 using System.Drawing;
 using Starlight.Asus.Aura;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class AsusAuraService : IAsusAuraService, IDisposable
     {

@@ -2,7 +2,7 @@
 using Slate.Infrastructure.Native;
 using Slate.Infrastructure.PowerManagement;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class PowerManagementService : IPowerManagementService
     {

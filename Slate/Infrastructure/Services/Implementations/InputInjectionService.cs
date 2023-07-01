@@ -1,9 +1,8 @@
 ﻿using System.Runtime.InteropServices;
-using System.Threading;
 using Slate.Infrastructure.Native;
 using Slate.Model;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class InputInjectionService : IInputInjectionService
     {

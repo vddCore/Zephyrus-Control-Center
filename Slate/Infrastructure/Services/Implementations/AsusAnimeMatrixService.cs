@@ -2,7 +2,7 @@
 using Starlight.Asus;
 using Starlight.Asus.AnimeMatrix;
 
-namespace Slate.Infrastructure.Services
+namespace Slate.Infrastructure.Services.Implementations
 {
     public class AsusAnimeMatrixService : IAsusAnimeMatrixService, IDisposable
     {
