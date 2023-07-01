@@ -42,8 +42,7 @@
     <Application.Styles>
         <fa:FluentAvaloniaTheme PreferSystemTheme="False"
                                 PreferUserAccentColor="True"
-                                UseSystemFontOnWindows="True"
-                                RequestedTheme="Dark" />
+                                UseSystemFontOnWindows="True" />
 
         <StyleInclude Source="/Resources/Styles/ToggleSwitch.axaml" />
         <StyleInclude Source="/Resources/Styles/Card.axaml" />

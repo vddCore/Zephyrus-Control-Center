@@ -48,10 +48,8 @@ namespace Slate
 
             base.OnFrameworkInitializationCompleted();
             
-            TrayIcon.GetIcons(this)[0].IsVisible = true;
-            
-            _platformSettings = AvaloniaLocator.Current.GetRequiredService<IPlatformSettings>();
-            _platformSettings.ColorValuesChanged += PlatformSettings_ColorValuesChanged;
+            TrayIcon.GetIcons(this)![0].IsVisible = true;
+            PlatformSettings!.ColorValuesChanged += PlatformSettings_ColorValuesChanged;
         }
 
         private void OnMainWindowTransitionFinished(MainWindowTransitionFinishedMessage msg)

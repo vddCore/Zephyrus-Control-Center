@@ -77,9 +77,7 @@ namespace Slate.ViewModel.Control
 
                 if (value)
                 {
-                    var color = AvaloniaLocator
-                        .Current
-                        .GetRequiredService<IPlatformSettings>()
+                    var color = Application.Current!.PlatformSettings!
                         .GetColorValues()
                         .AccentColor1;
 

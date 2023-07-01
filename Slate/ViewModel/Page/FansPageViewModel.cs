@@ -64,9 +64,7 @@ namespace Slate.ViewModel.Page
             _asusHalService = asusHalService;
             HardwareMonitor = hardwareMonitor;
 
-            var primaryColor = AvaloniaLocator
-                .Current
-                .GetRequiredService<IPlatformSettings>()
+            var primaryColor = Application.Current!.PlatformSettings!
                 .GetColorValues()
                 .AccentColor1
                 .ToSKColor();
