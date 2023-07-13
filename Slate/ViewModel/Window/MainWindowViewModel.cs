@@ -73,7 +73,7 @@ namespace Slate.ViewModel.Window
         {
             if (CurrentPage == Pages.MainMenu)
             {
-                var window = (Application.Current.GetDesktopLifetime().MainWindow as MainWindow)!;
+                var window = (Application.Current!.GetDesktopLifetime()!.MainWindow as MainWindow)!;
                 
                 if (window.Elevated)
                 {

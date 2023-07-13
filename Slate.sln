@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starlight", "Dependencies\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaGif", "Dependencies\Avalonia.GIF\AvaloniaGif\AvaloniaGif.csproj", "{830404FA-3ADD-42D9-8EC3-B76904AF0F5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slate.ServiceControl", "Slate.ServiceControl\Slate.ServiceControl.csproj", "{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,12 @@ Global
 		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.Release|Any CPU.Build.0 = Release|Any CPU
 		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
 		{612B40B6-06B6-4EE5-BB20-4A4AA0983062}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.AcpiTesting|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3D3656-9298-4C3B-9A0C-2DE8E573775E}.AcpiTesting|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{830404FA-3ADD-42D9-8EC3-B76904AF0F5B} = {1AC64CCC-023F-4454-AB73-AD12CD19B7E3}

@@ -20,7 +20,6 @@ namespace Slate
     public class App : Application
     {
         private readonly Timer _globalTimer = new(250);
-        private IPlatformSettings? _platformSettings;
 
         private ulong _globalTickCount;
 
@@ -77,7 +76,7 @@ namespace Slate
 
         private void Quit_Clicked(object? sender, EventArgs e)
         {
-            this.GetDesktopLifetime()
+            this.GetDesktopLifetime()!
                 .Shutdown();
         }
         

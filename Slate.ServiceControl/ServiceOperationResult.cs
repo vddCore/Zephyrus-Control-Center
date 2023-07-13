@@ -1,0 +1,31 @@
+﻿namespace Slate.ServiceControl
+{
+    public enum ServiceOperationResult
+    {
+        Success,
+        NotSupported,
+        AccessDenied,
+        OtherServicesDependOnThisService,
+        InvalidRequestControlCode,
+        InvalidServiceState,
+        ServiceNotStarted,
+        RequestTimeOut,
+        UnknownFailureWhileStarting,
+        ServiceExecutableMissing,
+        ServiceAlreadyRunning,
+        ServiceDatabaseLocked,
+        DependencyServiceMissing,
+        DependencyLookupFailed,
+        ServiceDisabled,
+        ServiceAuthenticationIncorrect,
+        ServiceIsBeingRemoved,
+        ServiceWithoutExecutionThread,
+        ServiceWithCircularDependencies,
+        DuplicateServiceName,
+        InvalidServiceName,
+        InvalidServiceParametersProvided,
+        AccountOrPermissionsInvalid,
+        ServiceExistsAndIsAvailable,
+        ServiceIsPaused
+    }
+}

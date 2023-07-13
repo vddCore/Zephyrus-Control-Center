@@ -100,8 +100,8 @@ namespace Slate.ViewModel.Page
             HideDecisionBox();
 
             /* Ah yes, special cases. Don't we love them. <3 */
-            ((Application.Current.GetMainWindow() as MainWindow)!.DataContext as MainWindowViewModel)!.NavigateBack();
-            ((Application.Current.GetMainWindow() as MainWindow)!.DataContext as MainWindowViewModel)!.NavigateBack();
+            ((Application.Current!.GetMainWindow() as MainWindow)!.DataContext as MainWindowViewModel)!.NavigateBack();
+            ((Application.Current!.GetMainWindow() as MainWindow)!.DataContext as MainWindowViewModel)!.NavigateBack();
 #if !DEBUG
             _shutdownService.RequestSystemReboot("Zephyrus Control Center: graphics mode switch.");
 #endif
