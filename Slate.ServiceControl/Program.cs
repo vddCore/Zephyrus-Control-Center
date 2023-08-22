@@ -47,7 +47,9 @@ namespace Slate.ServiceControl
                     && operationResult != ServiceOperationResult.ServiceNotStarted)
                     return (int)operationResult;
 
-                if ((operationResult = ServiceController.StopService(service)) != ServiceOperationResult.Success
+                if ((operationResult = ServiceController.DeleteService(service)) != ServiceOperationResult.Success
+                    && operationResult != ServiceOperationResult.InvalidServiceName)
+                    return (int)operationResult;
             }
 
             return 0;

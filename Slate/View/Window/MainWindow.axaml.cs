@@ -54,8 +54,8 @@ namespace Slate.View.Window
 
             ResizeTo(page.ViewHeight);
         }
-        
-        protected override void OnLoaded()
+
+        protected override void OnInitialized()
         {
             var hwnd = TryGetPlatformHandle()?.Handle ?? IntPtr.Zero;
 
@@ -67,7 +67,7 @@ namespace Slate.View.Window
             IsVisible = false;
             Position = HiddenDesktopPosition;
 
-            base.OnLoaded();
+            base.OnInitialized();
 
             new MainWindowLoadedMessage()
                 .Broadcast();

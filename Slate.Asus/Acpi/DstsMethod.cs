@@ -20,7 +20,7 @@
         GetGpuFanSpeed = 0x00110014,
         Unk_0x00110015 = 0x00110015,
         Unk_0x00110016 = 0x00110016,
-        IsFanOverboostSupported= 0x00110018,
+        IsFanOverboostSupported = 0x00110018,
         Unk_0x00110022 = 0x00110022,
         Unk_0x00110023 = 0x00110023,
         GetCpuFanCurve = 0x00110024,

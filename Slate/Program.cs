@@ -68,7 +68,7 @@ namespace Slate
                 .UsePlatformDetect()
                 .With(new Win32PlatformOptions
                 {
-                    UseWindowsUIComposition = true
+                    CompositionMode = new[] { Win32CompositionMode.WinUIComposition }
                 })
                 .LogToTrace()
                 .AfterSetup((_) => Message.Broadcast<MainWindowLoadedMessage>());
