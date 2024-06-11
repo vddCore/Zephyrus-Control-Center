@@ -1,3 +1,5 @@
+# Archived! I no longer own a G14, switched to Framework Laptop 16 instead.
+
 # Zephyrus Control Center
 Made mostly out of frustration with having to choose between functionality and eye-candy. I *will* have both, because I can. Also maybe to flex AvaloniaUI and reverse-engineering skills. Sometimes it's cool to remind yourself what you're really capable of. ^-^  
 
